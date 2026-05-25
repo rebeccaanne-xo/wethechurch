@@ -75,43 +75,46 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 /* ── HOME ── */
 #screen-home{overflow:hidden;display:flex;flex-direction:column}
-.home-hero{background:var(--navy);padding:calc(var(--st) + 28px) 28px 0;position:relative;flex-shrink:0;background-image:radial-gradient(ellipse at 75% 10%,rgba(194,115,138,.2) 0%,transparent 55%),radial-gradient(ellipse at 15% 90%,rgba(74,124,111,.12) 0%,transparent 50%);text-align:center}
-.home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peony);margin-bottom:10px}
-.home-tagline{font-size:13px;color:#8AA0BC;line-height:1.55;margin-bottom:18px}
-.hvh-verse{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:22px;color:var(--cream);line-height:1.75;margin-bottom:14px}
-.hvh-ref{font-size:12px;color:#8AA0BC;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:0}
-.home-hero-fade{height:24px;background:linear-gradient(var(--navy),var(--linen));flex-shrink:0}
+.home-hero{background:var(--navy);padding:calc(var(--st) + 44px) 28px 36px;position:relative;flex-shrink:0;background-image:radial-gradient(ellipse at 70% 0%,rgba(194,115,138,.28) 0%,transparent 50%),radial-gradient(ellipse at 20% 100%,rgba(74,124,111,.18) 0%,transparent 50%),radial-gradient(ellipse at 50% 55%,rgba(196,137,90,.07) 0%,transparent 60%);text-align:center}
+.home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--peony);margin-bottom:22px}
+.hvh-divider{width:28px;height:1px;background:rgba(194,115,138,.4);margin:0 auto 22px}
+.hvh-verse{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:27px;color:var(--cream);line-height:1.65;margin-bottom:12px;letter-spacing:-.01em}
+.hvh-ref{font-size:11px;color:var(--peony);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.home-tagline{font-size:12px;color:rgba(138,160,188,.7);line-height:1.65;margin-bottom:0;max-width:260px;margin-left:auto;margin-right:auto}
+.home-hero-fade{height:40px;background:linear-gradient(var(--navy),var(--linen));flex-shrink:0}
 
-.home-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 16px 100px}
+.home-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 16px 120px}
 
-.cs-strip{background:white;border-radius:12px;padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.04)}
-.cs-strip:active{background:#faf6f7}
-.css-dot{width:8px;height:8px;border-radius:50%;background:var(--peony);flex-shrink:0}
-.css-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:2px}
-.css-title{font-size:14px;font-weight:600;color:var(--navy)}
+.cs-strip{background:white;border-radius:14px;padding:13px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:0 2px 16px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.04)}
+.cs-strip:active{opacity:.85}
+.css-dot{width:8px;height:8px;border-radius:50%;background:var(--peony);flex-shrink:0;animation:pulse-dot 2.4s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+.css-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:3px}
+.css-title{font-size:14px;font-weight:600;color:var(--navy);line-height:1.3}
 .css-arrow{font-size:18px;color:var(--peony);margin-left:auto;flex-shrink:0}
 
-.next-session-card{background:var(--navy);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:0 6px 24px rgba(27,42,74,.35)}
-.ns-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8AA0BC;margin-bottom:4px}
-.ns-date{font-size:17px;font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:2px}
-.ns-chapter{font-size:12px;color:#8AA0BC;margin-bottom:12px}
-.ns-join{display:block;text-align:center;background:var(--peony);color:white;font-size:14px;font-weight:700;padding:11px;border-radius:10px;text-decoration:none;letter-spacing:.01em}
+.next-session-card{background:var(--navy);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 10px 36px rgba(27,42,74,.45);background-image:radial-gradient(ellipse at 90% 10%,rgba(194,115,138,.32) 0%,transparent 55%),radial-gradient(ellipse at 5% 90%,rgba(74,124,111,.18) 0%,transparent 50%);position:relative;overflow:hidden}
+.ns-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(138,160,188,.85);margin-bottom:6px}
+.ns-date{font-size:20px;font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:4px}
+.ns-chapter{font-size:13px;color:rgba(138,160,188,.85);margin-bottom:18px}
+.ns-join{display:block;text-align:center;background:var(--peony);color:white;font-size:14px;font-weight:700;padding:13px;border-radius:12px;text-decoration:none;letter-spacing:.02em}
+.ns-join:active{opacity:.85}
 
-.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
-.quick-card{background:white;border-radius:12px;padding:11px 12px;border:none;cursor:pointer;transition:transform .12s;box-shadow:0 2px 10px rgba(0,0,0,.08);border-left:3px solid transparent;display:flex;align-items:center;gap:10px}
-.quick-card:active{transform:scale(.96)}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.quick-card{background:white;border-radius:16px;padding:15px 14px;border:none;cursor:pointer;transition:transform .12s,box-shadow .12s;box-shadow:0 3px 18px rgba(0,0,0,.09);border-left:4px solid transparent;display:flex;align-items:center;gap:12px}
+.quick-card:active{transform:scale(.96);box-shadow:0 1px 8px rgba(0,0,0,.08)}
 .quick-card:nth-child(1){border-left-color:var(--navy)}
 .quick-card:nth-child(2){border-left-color:var(--sage)}
 .quick-card:nth-child(3){border-left-color:var(--peony)}
 .quick-card:nth-child(4){border-left-color:var(--amber)}
-.qc-icon{font-size:22px;flex-shrink:0}
+.qc-icon{font-size:26px;flex-shrink:0}
 .qc-content{flex:1;min-width:0}
-.qc-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:1px;line-height:1.2}
-.qc-sub{font-size:11px;color:#8A96A8;line-height:1.2}
+.qc-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;line-height:1.2}
+.qc-sub{font-size:11px;color:#8A96A8;line-height:1.3}
 
-.week-q{background:white;border-radius:14px;padding:18px;margin-bottom:16px;border-left:4px solid var(--peony);box-shadow:0 2px 12px rgba(0,0,0,.07)}
-.wq-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:8px}
-.wq-text{font-size:16px;font-weight:600;color:var(--navy);line-height:1.5}
+.week-q{background:white;border-radius:16px;padding:20px;margin-bottom:16px;border-left:5px solid var(--peony);box-shadow:0 3px 18px rgba(0,0,0,.08)}
+.wq-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:10px}
+.wq-text{font-size:17px;font-weight:600;color:var(--navy);line-height:1.6;font-family:Georgia,'Times New Roman',serif;font-style:italic}
 
 .btms-card{background:white;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer}
 .btms-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
@@ -286,9 +289,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     <div class="home-hero">
       <button class="install-btn-top" id="install-btn-top">Add to Home Screen</button>
       <div class="home-eyebrow">We the Church · Bible Study</div>
-      <div class="home-tagline">One mind — Christ's. Figuring out together what that means and how to live it.</div>
+      <div class="hvh-divider"></div>
       <div class="hvh-verse">"For you are all one in Christ Jesus."</div>
       <div class="hvh-ref">Galatians 3:28</div>
+      <div class="home-tagline">One mind — Christ's. Figuring out what that means and how to live it.</div>
     </div>
     <div class="home-hero-fade"></div>
     <div class="home-body">
