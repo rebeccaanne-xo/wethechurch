@@ -18,13 +18,8 @@
 html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .app{display:flex;flex-direction:column;height:100%;height:100dvh}
 
-/* TOP BAR */
-.topbar{background:var(--navy);padding:calc(var(--st) + 12px) 20px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.08)}
-.topbar-left{display:flex;flex-direction:column}
-.topbar-title{font-size:17px;font-weight:700;color:var(--cream);letter-spacing:-.01em}
-.topbar-sub{font-size:11px;color:#8AA0BC;margin-top:1px}
-.topbar-right{display:flex;gap:10px;align-items:center}
-.install-btn-top{font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
+/* install button — floats in home hero when PWA prompt fires */
+.install-btn-top{display:none;position:absolute;top:calc(var(--st) + 12px);right:16px;font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;z-index:10}
 
 /* SCREENS */
 .screens{flex:1;overflow:hidden;position:relative}
@@ -39,10 +34,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .nav-btn.active .nav-icon,.nav-btn.active .nav-label{color:var(--peony)}
 
 /* ── SHARED COMPONENTS ── */
-.screen-header{padding:20px 20px 0}
-.sh-eyebrow{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--peony);margin-bottom:6px}
-.sh-title{font-size:22px;font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:4px}
-.sh-sub{font-size:13px;color:#8AA0BC;line-height:1.55;padding-bottom:16px}
+.screen-header{padding:calc(var(--st) + 14px) 20px 14px}
+.sh-title{font-size:20px;font-weight:700;color:var(--cream);letter-spacing:-.01em}
 .screen-body{padding:16px 16px 100px}
 
 .card{background:white;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
@@ -58,7 +51,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
 /* ── HOME ── */
-.home-hero{background:var(--navy);padding:36px 28px 0;background-image:radial-gradient(ellipse at 75% 10%,rgba(194,115,138,.2) 0%,transparent 55%),radial-gradient(ellipse at 15% 90%,rgba(74,124,111,.12) 0%,transparent 50%);text-align:center}
+.home-hero{background:var(--navy);padding:calc(var(--st) + 32px) 28px 0;position:relative;background-image:radial-gradient(ellipse at 75% 10%,rgba(194,115,138,.2) 0%,transparent 55%),radial-gradient(ellipse at 15% 90%,rgba(74,124,111,.12) 0%,transparent 50%);text-align:center}
 .home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peony);margin-bottom:20px}
 .hvh-verse{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:22px;color:var(--cream);line-height:1.75;margin-bottom:14px}
 .hvh-ref{font-size:12px;color:#8AA0BC;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:0}
@@ -241,21 +234,13 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 <body>
 <div class="app">
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-title">We the Church</div>
-    <div class="topbar-sub" id="topbar-sub">Bible Study + Community</div>
-  </div>
-  <button class="install-btn-top" id="install-btn-top">Add to Home Screen</button>
-</div>
-
 <!-- SCREENS -->
 <div class="screens">
 
   <!-- ── HOME ── -->
   <div class="screen active" id="screen-home">
     <div class="home-hero">
+      <button class="install-btn-top" id="install-btn-top">Add to Home Screen</button>
       <div class="home-eyebrow">We the Church · Bible Study</div>
       <div class="hvh-verse">"For you are all one in Christ Jesus."</div>
       <div class="hvh-ref">Galatians 3:28</div>
@@ -263,11 +248,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     <div class="home-hero-fade"></div>
     <div class="home-body">
 
-      <div class="cs-strip" onclick="showScreen('studies',document.querySelectorAll('.nav-btn')[1]);goToStudy('galatians')">
+      <div class="cs-strip" id="home-current-strip" onclick="">
         <div class="css-dot"></div>
         <div class="css-left">
           <div class="css-label">Currently in</div>
-          <div class="css-title">Galatians · Ch. 3 — Abraham's Faith</div>
+          <div class="css-title" id="home-current-title">Loading…</div>
         </div>
         <div class="css-arrow">›</div>
       </div>
@@ -302,15 +287,19 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         </div>
       </div>
 
+      <div class="section-eyebrow">This week's question</div>
+      <div class="week-q" id="home-week-q" style="display:none">
+        <div class="wq-label" id="home-wq-label">Galatians 3 · Week of May 30</div>
+        <div class="wq-text" id="home-wq-text"></div>
+      </div>
+
     </div>
   </div>
 
   <!-- ── STUDIES ── -->
   <div class="screen" id="screen-studies">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">Studies</div>
-      <div class="sh-sub">Books of the Bible and topical series — one chapter at a time.</div>
     </div>
 
     <!-- BOOK/SERIES LIST -->
@@ -319,7 +308,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="pill-row" id="study-filter-row">
           <button class="pill active" onclick="filterStudies('all',this)">All</button>
           <button class="pill" onclick="filterStudies('bible',this)">Books of the Bible</button>
-          <button class="pill" onclick="filterStudies('topical',this)">Topical series</button>
+          <button class="pill" onclick="filterStudies('topical',this)">Topical</button>
+          <button class="pill" onclick="filterStudies('series',this)">Series</button>
         </div>
 
         <div id="studies-list"></div>
@@ -363,10 +353,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
   <!-- ── RESOURCES ── -->
   <div class="screen" id="screen-resources">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">Resources</div>
-      <div class="sh-sub">Videos, PDFs, articles, and links — organized by topic and book.</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
       <div class="pill-row" id="res-filter-row">
@@ -382,13 +370,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
   <!-- ── NOTES ── -->
   <div class="screen" id="screen-notes">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">My Notes</div>
-      <div class="sh-sub">Saved on your device. Export anytime.</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
-      <div class="section-eyebrow">General notes — Galatians</div>
+      <div class="section-eyebrow" id="notes-study-label">Study notes</div>
       <textarea class="notes-area" id="notes-galatians" placeholder="Your notes from Galatians..."></textarea>
       <div class="section-eyebrow" style="margin-top:16px">General notes — all studies</div>
       <textarea class="notes-area" id="notes-general" placeholder="General study notes..."></textarea>
@@ -408,10 +394,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
   <!-- ── COMMUNITY ── -->
   <div class="screen" id="screen-community">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">Community</div>
-      <div class="sh-sub">This is where we gather, ask the real questions, and do life together.</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
 
@@ -491,6 +475,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 </div>
 <script>
+// ── CONFIG — update these when the active study/chapter changes ───────────
+const ACTIVE_STUDY_ID = 'galatians';
+const ACTIVE_CHAPTER_NUM = 3;
+
 // ── DATA ──────────────────────────────────────────────────────────────────
 
 const STUDIES = [
@@ -1369,6 +1357,32 @@ let resFilter = 'all';
 let openVerses = {};
 let verseNotes = JSON.parse(localStorage.getItem('wtc-vnotes')||'[]');
 
+// ── HOME ──────────────────────────────────────────────────────────────────
+function renderHome() {
+  const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
+  const ch = study && study.chapters.find(c=>c.num===ACTIVE_CHAPTER_NUM);
+  const strip = document.getElementById('home-current-strip');
+  if(study && ch && strip) {
+    document.getElementById('home-current-title').textContent = study.title+' · Ch. '+ch.num+' — '+ch.title;
+    strip.onclick = ()=>{
+      showScreen('studies', document.querySelectorAll('.nav-btn')[1]);
+      goToStudy(ACTIVE_STUDY_ID);
+      setTimeout(()=>openChapter(ACTIVE_CHAPTER_NUM), 50);
+    };
+  }
+  // Show first discussion question as the weekly question
+  if(ch && ch.discussion && ch.discussion.length) {
+    const wq = document.getElementById('home-week-q');
+    const wqText = document.getElementById('home-wq-text');
+    const wqLabel = document.getElementById('home-wq-label');
+    if(wq && wqText) {
+      wqText.textContent = ch.discussion[0].q;
+      if(wqLabel) wqLabel.textContent = study.title+' Ch. '+ch.num;
+      wq.style.display = 'block';
+    }
+  }
+}
+
 // ── NAVIGATION ─────────────────────────────────────────────────────────────
 function showScreen(id, btn) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -1376,10 +1390,6 @@ function showScreen(id, btn) {
   document.getElementById('screen-'+id).classList.add('active');
   if(btn) btn.classList.add('active');
   currentScreen = id;
-  document.getElementById('topbar-sub').textContent = {
-    home:'Bible Study + Community', studies:'Studies', resources:'Resources',
-    notes:'My Notes', community:'Community'
-  }[id]||'';
   if(id==='studies') renderStudiesList();
   if(id==='resources') renderResources();
   if(id==='notes') loadNotes();
@@ -1455,7 +1465,7 @@ function renderStudiesList() {
   document.getElementById('study-view').style.display='none';
   const filtered = STUDIES.filter(s=>studyFilter==='all'||s.type===studyFilter);
   document.getElementById('studies-list').innerHTML = filtered.map(s=>`
-    <div class="study-book" onclick="showChapterList(STUDIES.find(x=>x.id==='${s.id}'));currentStudy=STUDIES.find(x=>x.id==='${s.id}')">
+    <div class="study-book" onclick="goToStudy('${s.id}')">
       <div class="sb-num" style="background:${s.color}">${s.chapters.filter(c=>!c.locked).length}</div>
       <div class="sb-info">
         <div class="sb-type" style="color:${s.color}">${s.typeLabel}</div>
@@ -1659,6 +1669,9 @@ function openLink(url) {
 
 // ── NOTES ─────────────────────────────────────────────────────────────────
 function loadNotes() {
+  const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
+  const label = document.getElementById('notes-study-label');
+  if(label && study) label.textContent = 'Study notes — '+study.title;
   document.getElementById('notes-galatians').value=localStorage.getItem('wtc-notes-gal')||'';
   document.getElementById('notes-general').value=localStorage.getItem('wtc-notes-gen')||'';
   renderVerseNotes();
@@ -1731,7 +1744,10 @@ if(isIOS&&!window.navigator.standalone){
 function localizeNextSession() {
   const el = document.getElementById('ns-date');
   if (!el) return;
+  // Next session is May 30 2026 14:00 UTC (Galatians Ch.3)
   const date = new Date('2026-05-30T14:00:00Z');
+  const now = new Date();
+  // If session has passed, find the next one from session cards
   const localDate = date.toLocaleDateString([], {weekday:'long', month:'long', day:'numeric'});
   const localTime = date.toLocaleTimeString([], {hour:'numeric', minute:'2-digit', timeZoneName:'short'});
   el.textContent = localDate + ' · ' + localTime;
@@ -1747,6 +1763,7 @@ function localizeSessionTimes() {
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
+renderHome();
 renderStudiesList();
 renderResources();
 loadNotes();
