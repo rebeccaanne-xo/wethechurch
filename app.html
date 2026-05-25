@@ -45,7 +45,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .sh-sub{font-size:13px;color:#8AA0BC;line-height:1.55;padding-bottom:16px}
 .screen-body{padding:16px 16px 100px}
 
-.card{background:white;border-radius:14px;padding:16px;margin-bottom:10px;border:1px solid rgba(0,0,0,.06)}
+.card{background:white;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
 .card-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .card-body{font-size:13px;color:#4A5568;line-height:1.65}
 
@@ -58,53 +58,50 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
 /* ── HOME ── */
-.home-hero{background:var(--navy);padding:20px 20px 0;background-image:radial-gradient(ellipse at 80% 20%,rgba(194,115,138,.12) 0%,transparent 60%),radial-gradient(ellipse at 10% 80%,rgba(74,124,111,.08) 0%,transparent 50%)}
-.home-wtc{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--peony);margin-bottom:8px}
-.home-title{font-size:28px;font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:6px}
-.home-sub{font-size:14px;color:#8AA0BC;line-height:1.6;margin-bottom:20px}
-.home-verse-box{background:rgba(255,255,255,.09);border-left:4px solid var(--peony);padding:16px 18px;border-radius:0 12px 12px 0;margin-bottom:20px;box-shadow:inset 0 0 0 1px rgba(194,115,138,.15)}
-.home-verse-box p{font-style:italic;font-size:16px;color:var(--cream);line-height:1.8;margin-bottom:6px}
-.home-verse-box span{font-size:12px;color:#A8BFCC;font-weight:600;letter-spacing:.04em}
+.home-hero{background:var(--navy);padding:36px 28px 0;background-image:radial-gradient(ellipse at 75% 10%,rgba(194,115,138,.2) 0%,transparent 55%),radial-gradient(ellipse at 15% 90%,rgba(74,124,111,.12) 0%,transparent 50%);text-align:center}
+.home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peony);margin-bottom:20px}
+.hvh-verse{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:22px;color:var(--cream);line-height:1.75;margin-bottom:14px}
+.hvh-ref{font-size:12px;color:#8AA0BC;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:0}
+.home-hero-fade{height:28px;background:linear-gradient(var(--navy),var(--linen))}
 
-.home-body{padding:20px 16px 100px}
+.home-body{padding:12px 16px 100px}
 
-.current-study{background:white;border:1px solid rgba(0,0,0,.07);border-left:3px solid var(--peony);border-radius:14px;padding:16px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:background .15s}
-.current-study:active{background:#f9f4f6}
-.cs-icon{width:44px;height:44px;border-radius:12px;background:var(--peony);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.cs-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:4px}
-.cs-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:2px}
-.cs-sub{font-size:13px;color:#5A6A7A}
-.cs-arrow{margin-left:auto;font-size:20px;color:var(--peony)}
+.cs-strip{background:white;border-radius:12px;padding:13px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.04)}
+.cs-strip:active{background:#faf6f7}
+.css-dot{width:8px;height:8px;border-radius:50%;background:var(--peony);flex-shrink:0}
+.css-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:2px}
+.css-title{font-size:14px;font-weight:600;color:var(--navy)}
+.css-arrow{font-size:18px;color:var(--peony);margin-left:auto;flex-shrink:0}
 
-.next-session-card{background:var(--navy);border-radius:14px;padding:18px;margin-bottom:16px;border:1px solid rgba(194,115,138,.3)}
+.next-session-card{background:var(--navy);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 6px 24px rgba(27,42,74,.35)}
 .ns-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8AA0BC;margin-bottom:6px}
 .ns-date{font-size:18px;font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:4px}
 .ns-chapter{font-size:13px;color:#8AA0BC;margin-bottom:16px}
-.ns-join{display:block;text-align:center;background:var(--peony);color:white;font-size:15px;font-weight:700;padding:13px;border-radius:10px;text-decoration:none;letter-spacing:.01em}
+.ns-join{display:block;text-align:center;background:var(--peony);color:white;font-size:15px;font-weight:700;padding:14px;border-radius:12px;text-decoration:none;letter-spacing:.01em}
 
-.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.quick-card{background:white;border-radius:14px;padding:16px 14px 14px;border:1px solid rgba(0,0,0,.06);cursor:pointer;transition:transform .1s;border-top:3px solid transparent}
-.quick-card:active{transform:scale(.97)}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.quick-card{background:white;border-radius:16px;padding:18px 16px 16px;border:none;cursor:pointer;transition:transform .12s;box-shadow:0 2px 14px rgba(0,0,0,.08);border-top:3px solid transparent}
+.quick-card:active{transform:scale(.96)}
 .quick-card:nth-child(1){border-top-color:var(--navy)}
 .quick-card:nth-child(2){border-top-color:var(--sage)}
 .quick-card:nth-child(3){border-top-color:var(--peony)}
 .quick-card:nth-child(4){border-top-color:var(--amber)}
-.qc-icon{font-size:24px;margin-bottom:8px}
-.qc-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.qc-icon{font-size:28px;margin-bottom:10px}
+.qc-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .qc-sub{font-size:12px;color:#8A96A8;line-height:1.4}
 
-.week-q{background:white;border-radius:14px;padding:18px;margin-bottom:16px;border:1px solid rgba(0,0,0,.06);border-left:4px solid var(--peony)}
+.week-q{background:white;border-radius:14px;padding:18px;margin-bottom:16px;border-left:4px solid var(--peony);box-shadow:0 2px 12px rgba(0,0,0,.07)}
 .wq-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:8px}
 .wq-text{font-size:16px;font-weight:600;color:var(--navy);line-height:1.5}
 
-.btms-card{background:white;border-radius:14px;padding:18px;margin-bottom:12px;border:1px solid rgba(0,0,0,.06);cursor:pointer}
+.btms-card{background:white;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer}
 .btms-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
 .btms-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3}
 .btms-excerpt{font-size:14px;color:#4A5568;line-height:1.65;margin-bottom:10px}
 .btms-link{font-size:13px;color:var(--peony);font-weight:600}
 
 /* ── STUDIES ── */
-.study-book{background:white;border-radius:14px;padding:16px;margin-bottom:10px;border:1px solid rgba(0,0,0,.06);cursor:pointer;display:flex;align-items:center;gap:14px;transition:transform .1s}
+.study-book{background:white;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer;display:flex;align-items:center;gap:14px;transition:transform .1s}
 .study-book:active{transform:scale(.98)}
 .sb-num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:white;flex-shrink:0}
 .sb-info{flex:1}
@@ -238,6 +235,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .vn-item{background:white;border-radius:10px;padding:10px 12px;margin-bottom:6px;border:1px solid rgba(0,0,0,.06)}
 .vn-ref-label{font-size:10px;font-weight:600;color:var(--peony);margin-bottom:3px}
 .vn-text{font-size:13px;color:#2A2A3A;line-height:1.5}
+
+/* ── SHEET MODAL (study chapter view) ── */
+#study-view{background:var(--linen);position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:5;transform:translateY(102%);transition:transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;display:block}
+#study-view.open{transform:translateY(0);pointer-events:auto}
 </style>
 </head>
 <body>
@@ -258,71 +259,50 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <!-- ── HOME ── -->
   <div class="screen active" id="screen-home">
     <div class="home-hero">
-      <div class="home-wtc">We the Church · Bible Study</div>
-      <div class="home-title">Welcome home.</div>
-      <div class="home-sub">One mind — Christ's. Figuring out together what that means and how to live it.</div>
-      <div class="home-verse-box">
-        <p>"For you are all one in Christ Jesus."</p>
-        <span>Galatians 3:28</span>
-      </div>
+      <div class="home-eyebrow">We the Church · Bible Study</div>
+      <div class="hvh-verse">"For you are all one in Christ Jesus."</div>
+      <div class="hvh-ref">Galatians 3:28</div>
     </div>
+    <div class="home-hero-fade"></div>
     <div class="home-body">
 
-      <div class="section-eyebrow">Currently studying</div>
-      <div class="current-study" onclick="goToStudy('galatians')">
-        <div class="cs-icon">📖</div>
-        <div>
-          <div class="cs-label">Book of the Bible</div>
-          <div class="cs-title">Galatians</div>
-          <div class="cs-sub">Chapter 3 · Abraham's Faith</div>
+      <div class="cs-strip" onclick="showScreen('studies',document.querySelectorAll('.nav-btn')[1]);goToStudy('galatians')">
+        <div class="css-dot"></div>
+        <div class="css-left">
+          <div class="css-label">Currently in</div>
+          <div class="css-title">Galatians · Ch. 3 — Abraham's Faith</div>
         </div>
-        <div class="cs-arrow">›</div>
+        <div class="css-arrow">›</div>
       </div>
 
-      <div class="section-eyebrow">Next session</div>
       <div class="next-session-card">
-        <div class="ns-label">We The Church · Bible Study</div>
+        <div class="ns-label">Next Study Session</div>
         <div class="ns-date" id="ns-date">Saturday, May 30 · 7:00 AM PT</div>
         <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
         <a class="ns-join" href="https://discord.gg/xnQQqs9tm" target="_blank">Join the conversation →</a>
       </div>
 
-      <div class="section-eyebrow">This week</div>
-      <div class="week-q">
-        <div class="wq-label">Discussion question</div>
-        <div class="wq-text">Did you receive the Spirit by works of the law or by hearing with faith? Paul asks the Galatians this like it should be obvious. Is it obvious to you — and does how you live now actually reflect that answer?</div>
-      </div>
-
-      <div class="section-eyebrow">Quick access</div>
       <div class="quick-grid">
         <div class="quick-card" onclick="showScreen('studies',document.querySelectorAll('.nav-btn')[1])">
           <div class="qc-icon">📚</div>
           <div class="qc-title">Studies</div>
-          <div class="qc-sub">All books and series</div>
-        </div>
-        <div class="quick-card" onclick="showScreen('resources',document.querySelectorAll('.nav-btn')[2])">
-          <div class="qc-icon">🎬</div>
-          <div class="qc-title">Resources</div>
-          <div class="qc-sub">Videos, PDFs, links</div>
+          <div class="qc-sub">All books + series</div>
         </div>
         <div class="quick-card" onclick="showScreen('community',document.querySelectorAll('.nav-btn')[4])">
-          <div class="qc-icon">💬</div>
+          <div class="qc-icon">🤝</div>
           <div class="qc-title">Community</div>
           <div class="qc-sub">Discord + schedule</div>
+        </div>
+        <div class="quick-card" onclick="showScreen('resources',document.querySelectorAll('.nav-btn')[2])">
+          <div class="qc-icon">📖</div>
+          <div class="qc-title">Resources</div>
+          <div class="qc-sub">Articles, videos, PDFs</div>
         </div>
         <div class="quick-card" onclick="showScreen('notes',document.querySelectorAll('.nav-btn')[3])">
           <div class="qc-icon">✏️</div>
           <div class="qc-title">My Notes</div>
           <div class="qc-sub">Saved on your device</div>
         </div>
-      </div>
-
-      <div class="section-eyebrow">The Bible Tells Me So</div>
-      <div class="btms-card" onclick="openLink('REPLACE_WITH_BTMS_POST_1')">
-        <div class="btms-label">The Bible Tells Me So · Latest</div>
-        <div class="btms-title">We Are the Church</div>
-        <div class="btms-excerpt">The church was never a building, a service, or an institution. It was always us — the body of Christ, gathered, sent, and living it out together...</div>
-        <div class="btms-link">Read the full post →</div>
       </div>
 
     </div>
@@ -361,7 +341,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     </div>
 
     <!-- STUDY CHAPTER VIEW -->
-    <div id="study-view" style="display:none;background:var(--linen);position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:5">
+    <div id="study-view">
       <div class="study-view-header">
         <div class="svh-back" onclick="backToChapters()">‹ <span id="sv-book-name">Galatians</span></div>
         <div class="svh-label" id="sv-label"></div>
@@ -457,14 +437,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="cq-label">Galatians 3 · Week of May 30</div>
         <div class="cq-text">Did you receive the Spirit by works of the law or by hearing with faith? Paul asks the Galatians this like it should be obvious. Is it obvious to you — and does how you live now actually reflect that answer?</div>
         <div class="cq-discord" onclick="openLink('https://discord.gg/xnQQqs9tm')">Continue this conversation in Discord →</div>
-      </div>
-
-      <div class="section-eyebrow">The Bible Tells Me So</div>
-      <div class="btms-card" onclick="openLink('REPLACE_WITH_BTMS_POST_1')">
-        <div class="btms-label">The Bible Tells Me So · Article</div>
-        <div class="btms-title">We Are the Church</div>
-        <div class="btms-excerpt">The church was never a building, a service, or an institution. It was always us — the body of Christ, gathered, sent, and living it out together...</div>
-        <div class="btms-link">Read on WordPress →</div>
       </div>
 
       <div class="section-eyebrow">Upcoming sessions — Saturdays at 7:00 AM PT</div>
@@ -1384,6 +1356,9 @@ const RESOURCES = [
   {id:"r6",type:"video",typeLabel:"Video",color:"#C2738A",icon:"▶",
    title:"Introduction to Galatians",desc:"Historical and theological background for the book of Galatians.",
    url:"REPLACE_WITH_YOUTUBE_1"},
+  {id:"r7",type:"article",typeLabel:"The Bible Tells Me So",color:"#4A7C6F",icon:"✍️",
+   title:"We Are the Church",desc:"The church was never a building, a service, or an institution. It was always us — the body of Christ, gathered, sent, and living it out together.",
+   url:"REPLACE_WITH_BTMS_POST_1"},
 ];
 
 // ── STATE ─────────────────────────────────────────────────────────────────
@@ -1424,7 +1399,7 @@ function goToStudy(studyId) {
 function showChapterList(study) {
   document.getElementById('studies-list-view').style.display='none';
   document.getElementById('chapter-list-view').style.display='block';
-  document.getElementById('study-view').style.display='none';
+  document.getElementById('study-view').classList.remove('open');
   document.getElementById('cl-type').textContent = study.typeLabel;
   document.getElementById('cl-title').textContent = study.title;
   document.getElementById('cl-desc').textContent = study.desc;
@@ -1449,7 +1424,7 @@ function openChapter(num) {
   currentSTab = 'verses';
   openVerses = {};
   document.getElementById('chapter-list-view').style.display='none';
-  document.getElementById('study-view').style.display='block';
+  document.getElementById('study-view').classList.add('open');
   document.getElementById('sv-book-name').textContent = currentStudy.title;
   document.getElementById('sv-label').textContent = ch.label;
   document.getElementById('sv-title').textContent = ch.title;
@@ -1466,13 +1441,13 @@ function openChapter(num) {
 function backToStudies() {
   document.getElementById('studies-list-view').style.display='block';
   document.getElementById('chapter-list-view').style.display='none';
-  document.getElementById('study-view').style.display='none';
+  document.getElementById('study-view').classList.remove('open');
   renderStudiesList();
 }
 
 function backToChapters() {
   document.getElementById('chapter-list-view').style.display='block';
-  document.getElementById('study-view').style.display='none';
+  document.getElementById('study-view').classList.remove('open');
   showChapterList(currentStudy);
 }
 
@@ -1480,7 +1455,7 @@ function backToChapters() {
 function renderStudiesList() {
   document.getElementById('studies-list-view').style.display='block';
   document.getElementById('chapter-list-view').style.display='none';
-  document.getElementById('study-view').style.display='none';
+  document.getElementById('study-view').classList.remove('open');
   const filtered = STUDIES.filter(s=>studyFilter==='all'||s.type===studyFilter);
   document.getElementById('studies-list').innerHTML = filtered.map(s=>`
     <div class="study-book" onclick="showChapterList(STUDIES.find(x=>x.id==='${s.id}'));currentStudy=STUDIES.find(x=>x.id==='${s.id}')">
