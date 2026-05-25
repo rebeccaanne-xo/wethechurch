@@ -28,9 +28,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 /* BOTTOM NAV */
 .bottomnav{background:var(--navy);display:flex;border-top:1px solid rgba(255,255,255,.08);flex-shrink:0;padding-bottom:var(--sb)}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px 7px;background:none;border:none;cursor:pointer;gap:3px}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 2px 7px;background:none;border:none;cursor:pointer;gap:3px}
 .nav-icon{font-size:20px;color:rgba(255,255,255,.35);line-height:1;transition:color .15s}
 .nav-label{font-size:11px;color:rgba(255,255,255,.35);font-weight:500;letter-spacing:.02em;transition:color .15s}
+@media(max-width:390px){.nav-icon{font-size:17px}.nav-label{font-size:9px;letter-spacing:0}}
 .nav-btn.active .nav-icon,.nav-btn.active .nav-label{color:var(--peony)}
 
 /* ── SHARED COMPONENTS ── */
@@ -233,6 +234,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .vn-text{font-size:13px;color:#2A2A3A;line-height:1.5}
 
 /* ── TRUTH ── */
+.truth-hero{background:var(--navy);padding:28px 20px 24px;position:relative;overflow:hidden}
+.truth-hero::before{content:'⚖️';position:absolute;right:-10px;top:-10px;font-size:120px;opacity:.07;line-height:1}
+.truth-hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:6px}
+.truth-hero-title{font-size:28px;font-weight:800;color:white;margin-bottom:8px;line-height:1.1}
+.truth-hero-sub{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5;max-width:300px}
 .truth-intro{font-size:13px;color:var(--navy);opacity:.7;line-height:1.5;margin-bottom:20px}
 .truth-cat-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--peony);margin:20px 0 8px}
 .truth-card{background:white;border-radius:14px;padding:14px 16px;margin-bottom:8px;border:1px solid rgba(0,0,0,.07);display:flex;align-items:center;gap:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -465,15 +471,14 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     </div>
   </div>
 
-</div>
-
   <!-- ── TRUTH ── -->
   <div class="screen" id="screen-truth">
-    <div class="screen-header">
-      <div class="screen-title">The Truth</div>
+    <div class="truth-hero">
+      <div class="truth-hero-eyebrow">We The Church</div>
+      <div class="truth-hero-title">The Truth</div>
+      <div class="truth-hero-sub">Scripture doesn't dodge the hard questions — so we don't either. We go to the Word and let it speak.</div>
     </div>
-    <div class="screen-body" style="padding-bottom:20px">
-      <p class="truth-intro">Scripture doesn't dodge the hard questions — so we don't either. These articles take on false doctrine, current events, and the issues the church has gone quiet on. We go to the Word and let it speak.</p>
+    <div class="screen-body" style="padding-bottom:20px;padding-top:16px">
 
       <div class="truth-cat-label">False Doctrine &amp; Bad Theology</div>
       <div class="truth-card" onclick="openLink('truth/catholic-church.html')">
