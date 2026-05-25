@@ -236,9 +236,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .vn-ref-label{font-size:10px;font-weight:600;color:var(--peony);margin-bottom:3px}
 .vn-text{font-size:13px;color:#2A2A3A;line-height:1.5}
 
-/* ── SHEET MODAL (study chapter view) ── */
-#study-view{background:var(--linen);position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:5;transform:translateY(102%);transition:transform .38s cubic-bezier(.4,0,.2,1);pointer-events:none;display:block}
-#study-view.open{transform:translateY(0);pointer-events:auto}
 </style>
 </head>
 <body>
@@ -341,7 +338,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     </div>
 
     <!-- STUDY CHAPTER VIEW -->
-    <div id="study-view">
+    <div id="study-view" style="display:none;background:var(--linen);position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:5">
       <div class="study-view-header">
         <div class="svh-back" onclick="backToChapters()">‹ <span id="sv-book-name">Galatians</span></div>
         <div class="svh-label" id="sv-label"></div>
@@ -1399,7 +1396,7 @@ function goToStudy(studyId) {
 function showChapterList(study) {
   document.getElementById('studies-list-view').style.display='none';
   document.getElementById('chapter-list-view').style.display='block';
-  document.getElementById('study-view').classList.remove('open');
+  document.getElementById('study-view').style.display='none';
   document.getElementById('cl-type').textContent = study.typeLabel;
   document.getElementById('cl-title').textContent = study.title;
   document.getElementById('cl-desc').textContent = study.desc;
@@ -1424,7 +1421,7 @@ function openChapter(num) {
   currentSTab = 'verses';
   openVerses = {};
   document.getElementById('chapter-list-view').style.display='none';
-  document.getElementById('study-view').classList.add('open');
+  document.getElementById('study-view').style.display='block';
   document.getElementById('sv-book-name').textContent = currentStudy.title;
   document.getElementById('sv-label').textContent = ch.label;
   document.getElementById('sv-title').textContent = ch.title;
@@ -1441,13 +1438,13 @@ function openChapter(num) {
 function backToStudies() {
   document.getElementById('studies-list-view').style.display='block';
   document.getElementById('chapter-list-view').style.display='none';
-  document.getElementById('study-view').classList.remove('open');
+  document.getElementById('study-view').style.display='none';
   renderStudiesList();
 }
 
 function backToChapters() {
   document.getElementById('chapter-list-view').style.display='block';
-  document.getElementById('study-view').classList.remove('open');
+  document.getElementById('study-view').style.display='none';
   showChapterList(currentStudy);
 }
 
@@ -1455,7 +1452,7 @@ function backToChapters() {
 function renderStudiesList() {
   document.getElementById('studies-list-view').style.display='block';
   document.getElementById('chapter-list-view').style.display='none';
-  document.getElementById('study-view').classList.remove('open');
+  document.getElementById('study-view').style.display='none';
   const filtered = STUDIES.filter(s=>studyFilter==='all'||s.type===studyFilter);
   document.getElementById('studies-list').innerHTML = filtered.map(s=>`
     <div class="study-book" onclick="showChapterList(STUDIES.find(x=>x.id==='${s.id}'));currentStudy=STUDIES.find(x=>x.id==='${s.id}')">
