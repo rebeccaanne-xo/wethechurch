@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Truth — The Catholic Church | We The Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111111;
+    --warm-white: #faf8f4;
+    --parchment: #f0ead8;
+    --gold: #b5892a;
+    --rust: #7a2e1e;
+    --muted: #4a4540;
+    --border: #d9d0bc;
+    --claim-bg: #f7f0f0;
+    --claim-border: #b07070;
+    --truth-bg: #f0f5ee;
+    --truth-border: #5a8a52;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  .breadcrumb {
+    padding: 20px 40px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 8px; }
+
+  .hero {
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 70px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 300px;
+    color: rgba(181,137,42,0.08);
+    position: absolute;
+    top: -60px;
+    left: 20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 600;
+    line-height: 1.15;
+    max-width: 680px;
+    margin-bottom: 24px;
+  }
+  .hero-intro {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(250,248,244,0.90);
+    max-width: 580px;
+    line-height: 1.8;
+  }
+
+  .main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  .sister-note {
+    background: var(--parchment);
+    border-left: 3px solid var(--gold);
+    padding: 28px 32px;
+    margin-bottom: 52px;
+    font-style: italic;
+    color: #2a2420;
+    font-size: 16px;
+    line-height: 1.85;
+    border-radius: 0 4px 4px 0;
+  }
+  .sister-note strong {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .section { margin-bottom: 56px; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+
+  .comparison {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .claim {
+    background: var(--claim-bg);
+    border-left: 4px solid var(--claim-border);
+    padding: 22px 26px;
+  }
+  .claim-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .claim p {
+    font-size: 15px;
+    color: #2e1e1e;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+  .truth {
+    background: var(--truth-bg);
+    border-left: 4px solid var(--truth-border);
+    padding: 22px 26px;
+  }
+  .truth-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #2a5224;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .truth p {
+    font-size: 15px;
+    color: #1a2e18;
+    line-height: 1.75;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .truth p:last-child { margin-bottom: 0; }
+
+  .scripture {
+    background: #fff;
+    border: 1px solid #b8d0b4;
+    border-radius: 3px;
+    padding: 18px 22px;
+    margin-top: 14px;
+  }
+  .scripture-ref {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2a5224;
+    font-weight: 700;
+    margin-bottom: 7px;
+  }
+  .scripture-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #111111;
+    line-height: 1.7;
+    margin-bottom: 9px;
+  }
+  .scripture-note {
+    font-size: 13px;
+    color: #2e2a26;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 52px 0;
+  }
+
+  .bottom-line {
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 36px 40px;
+    border-radius: 4px;
+    margin-top: 52px;
+  }
+  .bottom-line .label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .bottom-line p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: rgba(250,248,244,0.95);
+  }
+
+  .dig-deeper { margin-top: 60px; }
+  .dig-deeper h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .dig-deeper-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .topic-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 18px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .topic-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 2px 12px rgba(181,137,42,0.12);
+  }
+  .topic-card-arrow { color: var(--gold); font-size: 18px; }
+
+  @media (max-width: 600px) {
+    .breadcrumb { padding: 16px 20px; }
+    .hero { padding: 50px 20px 44px; }
+    .main { padding: 40px 20px 80px; }
+    .bottom-line { padding: 28px 24px; }
+    .sister-note { padding: 22px 22px; }
+  }
+
+  .ask-section {
+    margin-top: 60px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 40px;
+  }
+  .ask-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .ask-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .ask-desc {
+    font-size: 15px;
+    color: #3a3530;
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .ask-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ask-form input,
+  .ask-form textarea {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px 16px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ask-form input:focus,
+  .ask-form textarea:focus { border-color: var(--gold); }
+  .ask-form textarea { resize: vertical; }
+  .ask-form button {
+    align-self: flex-start;
+    background: var(--ink);
+    color: var(--warm-white);
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: none;
+    border-radius: 3px;
+    padding: 14px 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .ask-form button:hover { background: var(--gold); }
+  .table-prompt {
+    margin-top: 24px;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 32px 36px;
+  }
+  .table-prompt-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .table-icon { font-size: 28px; color: var(--gold); flex-shrink: 0; }
+  .table-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .table-desc { font-size: 14px; color: #2a2420; line-height: 1.7; font-weight: 400; }
+  .table-btn {
+    flex-shrink: 0;
+    background: var(--ink);
+    color: var(--warm-white);
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 13px 24px;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .table-btn:hover { background: var(--gold); }
+
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 14px 40px;
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+  }
+  .share-bar-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .share-btn:hover { opacity: 0.82; }
+  .share-btn.facebook { background: #1877F2; color: #fff; }
+  .share-btn.twitter  { background: #000; color: #fff; }
+  .share-btn.email    { background: var(--ink); color: var(--warm-white); }
+  .share-btn.copy     { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+  .share-btn.copy.copied { background: var(--truth-bg); color: #2a5224; border-color: var(--truth-border); }
+  @media (max-width: 600px) {
+    .share-bar { padding: 12px 20px; gap: 8px; }
+    .share-btn { font-size: 12px; padding: 7px 12px; }
+  }
+
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 14px 40px;
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+  }
+  .share-bar-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .share-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .share-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .share-btn.facebook { background: #1877F2; color: #fff; }
+  .share-btn.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+  .share-btn.twitter  { background: #000; color: #fff; }
+  .share-btn.email    { background: #444; color: #fff; }
+  .share-btn.copy     { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+  .share-btn.copy.copied { background: var(--truth-bg); color: #2a5224; border-color: var(--truth-border); }
+  @media (max-width: 600px) {
+    .share-bar { padding: 12px 20px; gap: 8px; }
+    .share-btn { font-size: 12px; padding: 7px 12px; }
+    .share-btn span { display: none; }
+    .share-btn svg { width: 18px; height: 18px; }
+  }
+
+  .history-section {
+    margin-bottom: 56px;
+  }
+  .history-section .section-label {
+    color: #7a2e1e;
+  }
+  .history-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+  .history-block {
+    border: 1px solid #d4c4b0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .history-header {
+    background: #2a1f1a;
+    color: var(--warm-white);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .history-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    flex-shrink: 0;
+    min-width: 80px;
+  }
+  .history-event {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--warm-white);
+  }
+  .history-body {
+    background: #fdf8f3;
+    padding: 20px 24px;
+    border-top: 1px solid #d4c4b0;
+  }
+  .history-body p {
+    font-size: 15px;
+    color: #2a2018;
+    line-height: 1.75;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .history-body p:last-child { margin-bottom: 0; }
+  .history-verdict {
+    background: #1a1208;
+    color: rgba(250,248,244,0.88);
+    padding: 10px 16px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    margin-top: 12px;
+    line-height: 1.65;
+  }
+  .antichrist-note {
+    background: #2a1f1a;
+    border-left: 4px solid #b07070;
+    border-radius: 0 4px 4px 0;
+    padding: 24px 28px;
+    margin-top: 28px;
+  }
+  .antichrist-note-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c07070;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .antichrist-note p {
+    font-size: 15px;
+    color: rgba(250,248,244,0.88);
+    line-height: 1.75;
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  .antichrist-note p:last-child { margin-bottom: 0; }
+  .antichrist-scripture {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 3px;
+    padding: 16px 20px;
+    margin-top: 14px;
+  }
+  .antichrist-scripture .scripture-ref { color: #d4a070; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 7px; }
+  .antichrist-scripture .scripture-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: rgba(250,248,244,0.90); line-height: 1.7; margin-bottom: 8px; }
+  .antichrist-scripture .scripture-note { font-size: 13px; color: rgba(250,248,244,0.65); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="share-bar" id="share-top">
+  <span class="share-bar-label">Share</span>
+
+  <a class="share-btn facebook" href="#" onclick="shareFacebook(event)" aria-label="Share on Facebook">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    <span>Facebook</span>
+  </a>
+
+  <a class="share-btn instagram" href="#" onclick="shareInstagram(event)" aria-label="Share on Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    <span>Instagram</span>
+  </a>
+
+  <a class="share-btn twitter" href="#" onclick="shareTwitter(event)" aria-label="Share on X">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <span>X</span>
+  </a>
+
+  <a class="share-btn email" href="#" onclick="shareEmail(event)" aria-label="Share via Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Email</span>
+  </a>
+
+  <button class="share-btn copy" onclick="copyLink(this)" aria-label="Copy link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <span>Copy Link</span>
+  </button>
+</div>
+<nav class="breadcrumb">
+  <a href="/index.html">We The Church</a>
+  <span>›</span>
+  <a href="/truth/truth-index.html">The Truth</a>
+  <span>›</span>
+  The Catholic Church
+</nav>
+
+<div class="hero">
+  <div class="hero-label">The Truth</div>
+  <h1>The Catholic Church</h1>
+  <p class="hero-intro">A lot of us grew up in it, love people still in it, or carry questions we've never known how to ask. Here's what scripture actually says — no judgment, just truth.</p>
+</div>
+
+<div class="main">
+
+  <div class="sister-note">
+    <strong>This isn't about the people — it's about the doctrine.</strong> There are sincere, Jesus-loving people sitting in Catholic pews. This is not about them. It's about the institution — its structure, its claims, its traditions — and whether those things hold up against the Word. That's the only measuring stick we're using. Bring your questions. The Bible can handle them.
+  </div>
+
+  <!-- SECTION 1 — THE PETER ARGUMENT -->
+  <div class="section">
+    <div class="section-label">The Foundation Claim</div>
+    <h2>"Upon This Rock I Will Build My Church" — The Peter Argument</h2>
+
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What the Catholic Church teaches</div>
+        <p>In Matthew 16:18, Jesus tells Peter "upon this rock I will build my church." The Catholic Church teaches that this means Peter was appointed the first Pope — the rock on which the entire Church was built — and that every pope since is his direct successor, carrying that same authority. This is the cornerstone claim the entire papal structure rests on.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the Bible actually says</div>
+        <p>Read the full passage. Jesus had just asked "who do you say I am?" and Peter answered "You are the Messiah, the Son of the living God." The rock Jesus referred to was not Peter the man — it was the confession Peter just made. The Church is built on the truth of who Christ is, not on a human being. Peter himself never acted like a pope, was corrected publicly by Paul, and called himself a fellow elder — not a supreme authority.</p>
+        <div class="scripture">
+          <div class="scripture-ref">Matthew 16:15–18</div>
+          <div class="scripture-text">"But what about you?" he asked. "Who do you say I am?" Simon Peter answered, "You are the Messiah, the Son of the living God." Jesus replied, "Blessed are you, Simon son of Jonah... and I tell you that you are Peter, and on this rock I will build my church."</div>
+          <div class="scripture-note">The rock is the confession — "You are the Messiah." Jesus is making a wordplay: Peter (Petros, a stone) versus rock (petra, bedrock). The bedrock is Christ's identity, not Peter's person.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">1 Corinthians 3:11</div>
+          <div class="scripture-text">"For no one can lay any foundation other than the one already laid, which is Jesus Christ."</div>
+          <div class="scripture-note">Paul is clear. One foundation. It's not Peter. It's not a papal line. It's Christ alone.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Galatians 2:11</div>
+          <div class="scripture-text">"When Cephas came to Antioch, I opposed him to his face, because he stood condemned."</div>
+          <div class="scripture-note">Paul publicly rebuked Peter. You don't publicly rebuke an infallible pope. Peter was a leader and an apostle — but he was not above correction, and he knew it.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">1 Peter 5:1</div>
+          <div class="scripture-text">"To the elders among you, I appeal as a fellow elder..."</div>
+          <div class="scripture-note">Peter's own words. He called himself a fellow elder — not a supreme pontiff, not the head of the Church. His own letters don't support the papacy claim.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">1 Peter 2:4–5</div>
+          <div class="scripture-text">"As you come to him, the living Stone — rejected by humans but chosen by God and precious to him — you also, like living stones, are being built into a spiritual house..."</div>
+          <div class="scripture-note">Peter himself — the supposed first pope — tells us exactly what Jesus was building. Not an institution with four walls and a hierarchy. A spiritual house made of living people, with Christ as the cornerstone. We are the church. All of us. Every imperfect, still-being-built one of us.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Ephesians 2:19–22</div>
+          <div class="scripture-text">"...you are no longer foreigners and strangers, but fellow citizens with God's people and also members of his household, built on the foundation of the apostles and prophets, with Christ Jesus himself as the chief cornerstone. In him the whole building is joined together and rises to become a holy temple in the Lord."</div>
+          <div class="scripture-note">Christ is the cornerstone. Not Peter. Not the Pope. The foundation is the apostles and prophets — plural, not one man. And the building being constructed is people, not a cathedral. Jesus was not founding an institution. He was gathering a family.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- HOW IT STARTED -->
+  <div class="history-section">
+    <div class="section-label">How It Started</div>
+    <h2>The Roman Roots of the Catholic Church</h2>
+
+    <div class="history-block">
+      <div class="history-header">
+        <div class="history-year">313 AD</div>
+        <div class="history-event">Constantine's Edict of Milan — Rome Absorbs Christianity</div>
+      </div>
+      <div class="history-body">
+        <p>Emperor Constantine legalized Christianity across the Roman Empire — which sounds like a win until you look at what came next. Rome didn't convert to Christianity. It absorbed it. The imperial power structure, the hierarchy, the titles, the ceremonies — all of it got baptized and rebranded. Bishops became like governors. The Pope became like a Caesar. The church didn't transform Rome. Rome transformed the church.</p>
+        <p>Before Constantine, the church was decentralized, underground, and dangerous to belong to. After Constantine, it became the official religion of the most powerful empire on earth — with all the political machinery that entailed. That shift had consequences that are still with us.</p>
+        <div class="history-verdict">"When the church marries the state, the church becomes a widow." — the political union Constantine created corrupted the institution from the inside out.</div>
+      </div>
+    </div>
+
+    <div class="history-block">
+      <div class="history-header">
+        <div class="history-year">325 AD</div>
+        <div class="history-event">Council of Nicaea — Political Theology</div>
+      </div>
+      <div class="history-body">
+        <p>Constantine called the Council of Nicaea — not because he was theologically motivated, but because religious division was destabilizing his empire. He needed doctrinal uniformity for political control. He presided over a council of bishops like a king holding court, and those who disagreed with the majority were exiled. Theology was now being settled by imperial decree.</p>
+        <p>Some of what came out of Nicaea was true and necessary — the affirmation of Christ's full divinity is scriptural. But the process itself set a dangerous precedent: the state deciding doctrine, enforcing conformity, and punishing dissent. That is not how the early church operated. It is exactly how Rome operated.</p>
+        <div class="history-verdict">The Council of Nicaea was as much a political event as a theological one. Rome needed one church. One church needed Rome. The marriage was transactional.</div>
+      </div>
+    </div>
+
+    <div class="history-block">
+      <div class="history-header">
+        <div class="history-year">Middle Ages</div>
+        <div class="history-event">Scripture Locked Away — People Kept Dependent</div>
+      </div>
+      <div class="history-body">
+        <p>For centuries the Catholic Church kept the Bible in Latin — a language common people could not read. This was not accidental. If people could not read scripture for themselves, they were entirely dependent on priests to tell them what God said. The priest became the mediator. The church became the gatekeeper of salvation. Access to God required going through the institution.</p>
+        <p>When William Tyndale translated the Bible into English in the 1500s so ordinary people could read it, the Catholic Church had him strangled and burned at the stake. Men died so you could hold a Bible in your own language. The institution that killed them claimed to represent Christ.</p>
+        <div class="history-verdict">Keeping people from the Word keeps people controllable. That was the strategy. It was not pastoral. It was political.</div>
+      </div>
+    </div>
+
+    <div class="history-block">
+      <div class="history-header">
+        <div class="history-year">1095–1500s</div>
+        <div class="history-event">The Crusades & Indulgences — Power and Profit</div>
+      </div>
+      <div class="history-body">
+        <p>The Crusades were launched by papal decree — holy wars fought in the name of Christ that resulted in mass slaughter of Muslims, Jews, and even fellow Christians. The Pope had armies. The church had territories. Salvation was weaponized into political expansion.</p>
+        <p>Indulgences took it further — the church literally sold forgiveness. Pay enough money and your sins — or your dead relative's sins — would be pardoned. This is what broke Martin Luther. He nailed his 95 Theses to the door at Wittenberg in 1517 because the church had turned grace into a commodity and God into a transaction. The Reformation was not a rebellion. It was a return to scripture.</p>
+        <div class="history-verdict">An institution selling forgiveness is not representing Christ. It is replacing him.</div>
+      </div>
+    </div>
+
+    <div class="antichrist-note">
+      <div class="antichrist-note-label">Worth Naming Directly</div>
+      <p>The spirit of antichrist is not only about a singular future figure — it is anything that places itself in the seat that belongs to Christ alone. A human being claiming to be Christ's infallible representative on earth. An institution positioning itself as the necessary mediator between God and his people. A system that keeps people from the Word to keep them dependent. These are not just historical errors. They are the pattern scripture warns us about.</p>
+      <div class="antichrist-scripture">
+        <div class="scripture-ref">2 Thessalonians 2:3–4</div>
+        <div class="scripture-text">"...the man of lawlessness is revealed, the man doomed to destruction. He will oppose and will exalt himself over everything that is called God or is worshiped, so that he sets himself up in God's temple, proclaiming himself to be God."</div>
+        <div class="scripture-note">Any system that places a human authority in the seat of Christ — claiming infallibility, claiming to speak for God, positioning itself above scripture — is operating in this spirit whether it bears that name or not.</div>
+      </div>
+      <div class="antichrist-scripture">
+        <div class="scripture-ref">1 John 2:18</div>
+        <div class="scripture-text">"Dear children, this is the last hour; and as you have heard that the antichrist is coming, even now many antichrists have come."</div>
+        <div class="scripture-note">Many antichrists. Plural. This is not only about one future figure — it is a spirit that has operated throughout history in systems that displace Christ with human authority.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-label">Authority</div>
+    <h2>Scripture Alone — or Scripture Plus Tradition?</h2>
+
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What the Catholic Church teaches</div>
+        <p>Both sacred scripture and sacred tradition carry equal authority and must be accepted with the same reverence. The Church's Magisterium — its official teaching office — has the final say on how both are interpreted. Scripture alone is considered insufficient.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the Bible actually says</div>
+        <p>Scripture calls itself sufficient — completely able to equip believers for every good work. Nothing needs to be added. Jesus himself warned against elevating human tradition above God's commands, and he wasn't talking to pagans — he was talking to the most religiously serious people of his day.</p>
+        <div class="scripture">
+          <div class="scripture-ref">2 Timothy 3:16–17</div>
+          <div class="scripture-text">"All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness, so that the servant of God may be thoroughly equipped for every good work."</div>
+          <div class="scripture-note">Thoroughly equipped. Not partially. The Word doesn't need tradition to complete it — it says so itself.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Mark 7:8–9</div>
+          <div class="scripture-text">"You have let go of the commands of God and are holding on to human traditions... You have a fine way of setting aside the commands of God in order to observe your own traditions."</div>
+          <div class="scripture-note">When tradition starts overriding scripture, Jesus calls it out by name. That warning doesn't expire.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-label">Mary & the Saints</div>
+    <h2>Can We Pray to Mary or the Saints?</h2>
+
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What the Catholic Church teaches</div>
+        <p>Mary is the Mother of God, perpetually virgin, sinless from conception (the Immaculate Conception), assumed bodily into heaven, and serves as a co-redemptrix and intercessor alongside Christ. Believers are encouraged to pray to Mary and the saints, who intercede with God on their behalf.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the Bible actually says</div>
+        <p>Mary was a faithful, chosen woman — and she knew her place. She called God her Savior, which means she knew she needed one. She never claimed sinlessness, never claimed a co-redemptrix role, and scripture gives us zero instruction to pray to her or anyone who has died. The access we have through Jesus is direct. Nothing and no one needs to stand between us.</p>
+        <div class="scripture">
+          <div class="scripture-ref">Luke 1:47</div>
+          <div class="scripture-text">"...and my spirit rejoices in God my Savior."</div>
+          <div class="scripture-note">Mary's own words settle the sinless claim. Someone who needs a Savior is not without sin — and cannot be a co-redeemer.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">1 Timothy 2:5</div>
+          <div class="scripture-text">"For there is one God and one mediator between God and mankind, the man Christ Jesus."</div>
+          <div class="scripture-note">One mediator. The list has one name. Mary is not on it. Neither are the saints.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Deuteronomy 18:10–12</div>
+          <div class="scripture-text">"...or who is a medium or spiritist or who consults the dead. Anyone who does these things is detestable to the Lord."</div>
+          <div class="scripture-note">Communicating with the dead — even saints — crosses into territory God explicitly warned against. This is not gray area.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-label">Confession</div>
+    <h2>Do We Confess Our Sins to a Priest?</h2>
+
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What the Catholic Church teaches</div>
+        <p>Confession of sins must be made to an ordained priest, who then grants absolution in Christ's name. This sacrament is necessary for forgiveness of mortal sins committed after baptism. Without it, those sins remain unforgiven.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the Bible actually says</div>
+        <p>We confess directly to God. He forgives directly. The access we have through Jesus doesn't require a human gatekeeper — that curtain tore in two the moment Christ died. We walk straight to the throne, with confidence, as his children.</p>
+        <div class="scripture">
+          <div class="scripture-ref">1 John 1:9</div>
+          <div class="scripture-text">"If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness."</div>
+          <div class="scripture-note">We confess to him. He forgives. A priest pronouncing absolution doesn't appear anywhere in this.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Hebrews 4:16</div>
+          <div class="scripture-text">"Let us then approach God's throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need."</div>
+          <div class="scripture-note">Confidence. Directly. That access was bought by Jesus and given to us. No appointment through a priest required.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Matthew 27:51</div>
+          <div class="scripture-text">"At that moment the curtain of the temple was torn in two from top to bottom."</div>
+          <div class="scripture-note">The curtain that separated people from God's presence tore when Jesus died. God tore it — from top to bottom. The barrier is gone. The priest standing between us and God is a curtain that no longer exists.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM LINE -->
+  <div class="bottom-line">
+    <div class="label">The Bottom Line</div>
+    <p>The Catholic Church built an institution on a passage where Jesus was doing the opposite — gathering imperfect people and calling them the church. He is the cornerstone. We are the living stones. No pope, no cathedral, no hierarchy required. The church was never a place you go. It's who you are when you belong to him. That's what the Word says — and it has always been enough. If you came from Catholicism or love someone still in it, bring your questions here. Truth is not afraid of them, and neither are we.</p>
+  </div>
+
+  <!-- DIG DEEPER -->
+  <div class="dig-deeper">
+    <h3>Dig Deeper</h3>
+    <p class="dig-deeper-sub">Explore the subtopics that live under this one.</p>
+    <div class="topic-grid">
+      <a href="catholic-church-papacy.html" class="topic-card">Papal Authority <span class="topic-card-arrow">→</span></a>
+      <a href="catholic-church-purgatory.html" class="topic-card">Purgatory <span class="topic-card-arrow">→</span></a>
+      <a href="catholic-church-mary.html" class="topic-card">Mary & Mariolatry <span class="topic-card-arrow">→</span></a>
+      <a href="catholic-church-priesthood.html" class="topic-card">The Priesthood <span class="topic-card-arrow">→</span></a>
+      <a href="catholic-church-sacraments.html" class="topic-card">Sacraments & Salvation <span class="topic-card-arrow">→</span></a>
+      <a href="catholic-church-tradition.html" class="topic-card">Tradition vs. Scripture <span class="topic-card-arrow">→</span></a>
+    </div>
+  </div>
+
+
+
+  <!-- SHARE BAR BOTTOM -->
+  <!-- SHARE BAR BOTTOM -->
+  <div class="share-bar" id="share-bottom">
+    <span class="share-bar-label">Share</span>
+  
+    <a class="share-btn facebook" href="#" onclick="shareFacebook(event)" aria-label="Share on Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      <span>Facebook</span>
+    </a>
+  
+    <a class="share-btn instagram" href="#" onclick="shareInstagram(event)" aria-label="Share on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <span>Instagram</span>
+    </a>
+  
+    <a class="share-btn twitter" href="#" onclick="shareTwitter(event)" aria-label="Share on X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>X</span>
+    </a>
+  
+    <a class="share-btn email" href="#" onclick="shareEmail(event)" aria-label="Share via Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>Email</span>
+    </a>
+  
+    <button class="share-btn copy" onclick="copyLink(this)" aria-label="Copy link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <span>Copy Link</span>
+    </button>
+  </div>
+
+  <!-- QUESTION FORM -->
+  <div class="ask-section">
+    <div class="ask-label">Still Have Questions?</div>
+    <h3 class="ask-title">Ask It Here</h3>
+    <p class="ask-desc">If something on this page raised a question you don't have an answer to, send it in. The best questions become future studies, resources, and discussions for the whole community.</p>
+    <form class="ask-form" action="YOUR_GOOGLE_SHEETS_FORM_URL" method="POST" target="_blank">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your first name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+      </div>
+      <textarea name="question" placeholder="What's your question?" rows="4" required></textarea>
+      <button type="submit">Submit Your Question &rarr;</button>
+    </form>
+  </div>
+
+  <!-- BIBLE STUDY PROMPT -->
+  <div class="table-prompt">
+    <div class="table-prompt-inner">
+      <div class="table-icon">&#10022;</div>
+      <div>
+        <div class="table-title">Bring It to the Table</div>
+        <p class="table-desc">Still wrestling with this? You don't have to figure it out alone. We study the Word together &mdash; real questions, real conversations, no performance required.</p>
+      </div>
+      <a href="YOUR_JOIN_PAGE_URL" class="table-btn">Join Bible Study &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<script>
+  function shareFacebook(e) {
+    e.preventDefault();
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+  }
+  function shareInstagram(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      alert('Link copied! Open Instagram and paste it in your story or bio.');
+    });
+  }
+  function shareTwitter(e) {
+    e.preventDefault();
+    var title = document.querySelector('h1') ? document.querySelector('h1').innerText : document.title;
+    window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent('What does the Bible actually say about ' + title + '? — We The Church'), '_blank', 'width=600,height=400');
+  }
+  function shareEmail(e) {
+    e.preventDefault();
+    var title = document.querySelector('h1') ? document.querySelector('h1').innerText : document.title;
+    window.location.href = 'mailto:?subject=What does the Bible say about ' + encodeURIComponent(title) + '&body=Thought you might find this helpful: ' + encodeURIComponent(window.location.href);
+  }
+  function copyLink(btn) {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="20 6 9 17 4 12"/></svg><span>Copied!</span>';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span>Copy Link</span>';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

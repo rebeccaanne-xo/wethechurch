@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Truth — Progressive Christianity | We The Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #111111; --warm-white: #faf8f4; --parchment: #f0ead8; --gold: #b5892a; --rust: #7a2e1e; --muted: #4a4540; --border: #d9d0bc; --claim-bg: #f7f0f0; --claim-border: #b07070; --truth-bg: #f0f5ee; --truth-border: #5a8a52; }
+  body { font-family: 'Lato', sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.75; font-size: 17px; }
+  .breadcrumb { padding: 20px 40px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb span { margin: 0 8px; }
+  .hero { background: var(--ink); color: var(--warm-white); padding: 70px 40px 60px; position: relative; overflow: hidden; }
+  .hero::before { content: '\201C'; font-family: 'Playfair Display', serif; font-size: 300px; color: rgba(181,137,42,0.08); position: absolute; top: -60px; left: 20px; line-height: 1; pointer-events: none; }
+  .hero-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 600; line-height: 1.15; max-width: 680px; margin-bottom: 24px; }
+  .hero-intro { font-size: 17px; font-weight: 400; color: rgba(250,248,244,0.90); max-width: 580px; line-height: 1.8; }
+  .main { max-width: 820px; margin: 0 auto; padding: 60px 40px 100px; }
+  .sister-note { background: var(--parchment); border-left: 3px solid var(--gold); padding: 28px 32px; margin-bottom: 52px; font-style: italic; color: #2a2420; font-size: 16px; line-height: 1.85; border-radius: 0 4px 4px 0; }
+  .sister-note strong { font-style: normal; font-weight: 700; color: var(--ink); }
+  .section { margin-bottom: 56px; }
+  .section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 700; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-bottom: 24px; color: var(--ink); }
+  .comparison { display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+  .claim { background: var(--claim-bg); border-left: 4px solid var(--claim-border); padding: 22px 26px; }
+  .claim-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin-bottom: 8px; }
+  .claim p { font-size: 15px; color: #2e1e1e; line-height: 1.75; font-weight: 400; }
+  .truth { background: var(--truth-bg); border-left: 4px solid var(--truth-border); padding: 22px 26px; }
+  .truth-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #2a5224; font-weight: 700; margin-bottom: 8px; }
+  .truth p { font-size: 15px; color: #1a2e18; line-height: 1.75; font-weight: 400; margin-bottom: 16px; }
+  .truth p:last-child { margin-bottom: 0; }
+  .scripture { background: #fff; border: 1px solid #b8d0b4; border-radius: 3px; padding: 18px 22px; margin-top: 14px; }
+  .scripture-ref { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #2a5224; font-weight: 700; margin-bottom: 7px; }
+  .scripture-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: #111111; line-height: 1.7; margin-bottom: 9px; }
+  .scripture-note { font-size: 13px; color: #2e2a26; font-weight: 400; line-height: 1.65; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+  .bottom-line { background: var(--ink); color: var(--warm-white); padding: 36px 40px; border-radius: 4px; margin-top: 52px; }
+  .bottom-line .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 700; }
+  .bottom-line p { font-size: 17px; font-weight: 400; line-height: 1.8; color: rgba(250,248,244,0.95); }
+  .dig-deeper { margin-top: 60px; }
+  .dig-deeper h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 6px; color: var(--ink); }
+  .dig-deeper-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .topic-card { background: #fff; border: 1px solid var(--border); padding: 18px 22px; border-radius: 4px; text-decoration: none; color: var(--ink); display: flex; align-items: center; justify-content: space-between; transition: border-color 0.2s, box-shadow 0.2s; font-size: 15px; font-weight: 400; }
+  .topic-card:hover { border-color: var(--gold); box-shadow: 0 2px 12px rgba(181,137,42,0.12); }
+  .topic-card-arrow { color: var(--gold); font-size: 18px; }
+  @media (max-width: 600px) { .breadcrumb { padding: 16px 20px; } .hero { padding: 50px 20px 44px; } .main { padding: 40px 20px 80px; } .bottom-line { padding: 28px 24px; } .sister-note { padding: 22px 22px; } }
+
+  .ask-section {
+    margin-top: 60px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 40px;
+  }
+  .ask-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .ask-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .ask-desc {
+    font-size: 15px;
+    color: #3a3530;
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .ask-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ask-form input,
+  .ask-form textarea {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px 16px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ask-form input:focus,
+  .ask-form textarea:focus { border-color: var(--gold); }
+  .ask-form textarea { resize: vertical; }
+  .ask-form button {
+    align-self: flex-start;
+    background: var(--ink);
+    color: var(--warm-white);
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: none;
+    border-radius: 3px;
+    padding: 14px 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .ask-form button:hover { background: var(--gold); }
+  .table-prompt {
+    margin-top: 24px;
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 32px 36px;
+  }
+  .table-prompt-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .table-icon { font-size: 28px; color: var(--gold); flex-shrink: 0; }
+  .table-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .table-desc { font-size: 14px; color: #2a2420; line-height: 1.7; font-weight: 400; }
+  .table-btn {
+    flex-shrink: 0;
+    background: var(--ink);
+    color: var(--warm-white);
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 13px 24px;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .table-btn:hover { background: var(--gold); }
+
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 14px 40px;
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+  }
+  .share-bar-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .share-btn:hover { opacity: 0.82; }
+  .share-btn.facebook { background: #1877F2; color: #fff; }
+  .share-btn.twitter  { background: #000; color: #fff; }
+  .share-btn.email    { background: var(--ink); color: var(--warm-white); }
+  .share-btn.copy     { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+  .share-btn.copy.copied { background: var(--truth-bg); color: #2a5224; border-color: var(--truth-border); }
+  @media (max-width: 600px) {
+    .share-bar { padding: 12px 20px; gap: 8px; }
+    .share-btn { font-size: 12px; padding: 7px 12px; }
+  }
+
+  .share-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 14px 40px;
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+  }
+  .share-bar-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .share-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+  .share-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .share-btn.facebook { background: #1877F2; color: #fff; }
+  .share-btn.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+  .share-btn.twitter  { background: #000; color: #fff; }
+  .share-btn.email    { background: #444; color: #fff; }
+  .share-btn.copy     { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+  .share-btn.copy.copied { background: var(--truth-bg); color: #2a5224; border-color: var(--truth-border); }
+  @media (max-width: 600px) {
+    .share-bar { padding: 12px 20px; gap: 8px; }
+    .share-btn { font-size: 12px; padding: 7px 12px; }
+    .share-btn span { display: none; }
+    .share-btn svg { width: 18px; height: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="share-bar" id="share-top">
+  <span class="share-bar-label">Share</span>
+
+  <a class="share-btn facebook" href="#" onclick="shareFacebook(event)" aria-label="Share on Facebook">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    <span>Facebook</span>
+  </a>
+
+  <a class="share-btn instagram" href="#" onclick="shareInstagram(event)" aria-label="Share on Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    <span>Instagram</span>
+  </a>
+
+  <a class="share-btn twitter" href="#" onclick="shareTwitter(event)" aria-label="Share on X">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <span>X</span>
+  </a>
+
+  <a class="share-btn email" href="#" onclick="shareEmail(event)" aria-label="Share via Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Email</span>
+  </a>
+
+  <button class="share-btn copy" onclick="copyLink(this)" aria-label="Copy link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <span>Copy Link</span>
+  </button>
+</div>
+<nav class="breadcrumb">
+  <a href="/index.html">We The Church</a>
+  <span>›</span>
+  <a href="/truth/truth-index.html">The Truth</a>
+  <span>›</span>
+  Progressive Christianity
+</nav>
+
+<div class="hero">
+  <div class="hero-label">The Truth</div>
+  <h1>Progressive Christianity</h1>
+  <p class="hero-intro">It sounds like more love, more grace, more inclusion. But when you look closely, something else is happening — the Word is being quietly edited. Let's look at what's actually being taught.</p>
+</div>
+
+<div class="main">
+
+  <div class="sister-note">
+    <strong>This movement is drawing people in because it feels kind.</strong> And some of the people in it genuinely love Jesus. But good intentions don't make doctrine true. When we start redefining what God said to make it more comfortable, we're not being more loving — we're being less honest. The Word is the standard, not the culture. Let's see what it actually says.
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Core Claim</div>
+    <h2>"God Is Love — So He Accepts Everyone Exactly As They Are"</h2>
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What Progressive Christianity teaches</div>
+        <p>God is love, and love does not condemn. A truly loving God would never ask anyone to change who they are, reject who they love, or feel shame about how they were made. The God of the Bible is inclusive, affirming, and welcoming of all people and all lifestyles. Any theology that calls something sin is rooted in fear, not love.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the Bible actually says</div>
+        <p>God is love — that is absolutely true. But love and acceptance are not the same thing. A doctor who loves their patient tells them hard truths. A parent who loves their child corrects them. The God of scripture loves every person deeply and calls every person to repentance — not because he hates who they are, but because he knows what sin costs and he paid it himself. "God accepts you" and "God affirms everything you do" are two completely different statements.</p>
+        <div class="scripture">
+          <div class="scripture-ref">1 John 4:8</div>
+          <div class="scripture-text">"Whoever does not love does not know God, because God is love."</div>
+          <div class="scripture-note">Yes — God is love. But read the whole letter. John also writes about sin, obedience, and keeping God's commands. Love and holiness are not opposites in scripture. They come from the same source.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">John 8:10–11</div>
+          <div class="scripture-text">"...Jesus straightened up and asked her, 'Woman, where are they? Has no one condemned you?' 'No one, sir,' she said. 'Then neither do I condemn you,' Jesus declared. 'Go now and leave your life of sin.'"</div>
+          <div class="scripture-note">Jesus did not condemn her — and he did not affirm her sin. Both things are true in the same breath. Progressive Christianity keeps the first sentence and cuts the second. That's not the whole gospel.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Romans 2:4</div>
+          <div class="scripture-text">"...do you show contempt for the riches of his kindness, forbearance and patience, not realizing that God's kindness is intended to lead you to repentance?"</div>
+          <div class="scripture-note">God's kindness has a direction. It leads somewhere — toward repentance, not away from it. Kindness that leads nowhere is not the kindness of scripture.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Scripture's Authority</div>
+    <h2>"The Bible Was Written by Humans and Reflects Their Biases"</h2>
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What Progressive Christianity teaches</div>
+        <p>The Bible is a human document shaped by the cultural biases of its authors. Parts of it — especially around gender, sexuality, and exclusivity — reflect ancient prejudices rather than timeless truth. We should read it through a lens of love and evolving understanding, setting aside passages that no longer serve the culture.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the Bible actually says</div>
+        <p>Scripture is clear about its own nature — it is God-breathed, not merely human-written. Yes, God used human authors with personalities and contexts. But the claim that we get to edit out the parts we dislike based on cultural comfort is not a new idea — it's as old as the garden. "Did God really say?" is the oldest question in the book. Literally.</p>
+        <div class="scripture">
+          <div class="scripture-ref">2 Timothy 3:16</div>
+          <div class="scripture-text">"All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness."</div>
+          <div class="scripture-note">All of it. Not the parts that age well. Not the parts we're comfortable with. All of it — including the rebuking and correcting parts.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">2 Peter 1:20–21</div>
+          <div class="scripture-text">"Above all, you must understand that no prophecy of Scripture came about by the prophet's own interpretation of things. For prophecy never had its origin in the human will, but prophets, though human, spoke from God as they were carried along by the Holy Spirit."</div>
+          <div class="scripture-note">Human authors, Holy Spirit origin. The cultural bias argument ignores what scripture says about how it was written.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Genesis 3:1</div>
+          <div class="scripture-text">"Now the serpent was more crafty than any of the wild animals the Lord God had made. He said to the woman, 'Did God really say...?'"</div>
+          <div class="scripture-note">The first lie ever recorded was a question about whether God's Word meant what it said. Progressive Christianity is not a new theology. It's a very old temptation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">The Narrow Road</div>
+    <h2>"Jesus Would Never Exclude Anyone — All Paths Lead to God"</h2>
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What Progressive Christianity teaches</div>
+        <p>A loving God would not condemn sincere people of other faiths. Jesus was a moral teacher who showed us how to live — but the idea that he is the only way to God is an exclusive, colonial idea that has been used to harm people. All sincere spiritual paths lead to the same God.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the Bible actually says</div>
+        <p>Jesus himself made the exclusivity claim — not the church, not theologians, not colonizers. He said it plainly and he said it in love. Calling it exclusive misses the point: it's not that God is withholding himself from anyone — it's that he provided one way, at enormous cost, and invites everyone into it. The door is narrow but it is open to all who come.</p>
+        <div class="scripture">
+          <div class="scripture-ref">John 14:6</div>
+          <div class="scripture-text">"Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'"</div>
+          <div class="scripture-note">Jesus said this. Not a church council. Not a creed. Jesus. Progressive Christianity has to either accept this or reject Jesus — there is no middle position.</div>
+        </div>
+        <div class="scripture">
+          <div class="scripture-ref">Acts 4:12</div>
+          <div class="scripture-text">"Salvation is found in no one else, for there is no other name under heaven given to mankind by which we must be saved."</div>
+          <div class="scripture-note">Peter said this before a hostile audience at personal risk. He wasn't being exclusive for the sake of power — he was telling the truth at cost to himself.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-line">
+    <div class="label">The Bottom Line</div>
+    <p>Progressive Christianity offers comfort but removes the cross. It keeps the language of love and strips out repentance, holiness, and the exclusivity of Christ. That's not a more loving gospel — it's a different one. The real gospel is harder and better than that. It says you are loved enough that God told you the truth, paid for your sin, and calls you to something more than you were. That's worth holding onto.</p>
+  </div>
+
+  <div class="dig-deeper">
+    <h3>Dig Deeper</h3>
+    <p class="dig-deeper-sub">Explore the subtopics that live under this one.</p>
+    <div class="topic-grid">
+      <a href="progressive-christianity-deconstruction.html" class="topic-card">Deconstruction <span class="topic-card-arrow">→</span></a>
+      <a href="progressive-christianity-affirming.html" class="topic-card">Affirming Theology <span class="topic-card-arrow">→</span></a>
+      <a href="progressive-christianity-hell.html" class="topic-card">Does Hell Exist? <span class="topic-card-arrow">→</span></a>
+      <a href="progressive-christianity-universalism.html" class="topic-card">Universalism <span class="topic-card-arrow">→</span></a>
+    </div>
+  </div>
+
+
+
+  <!-- SHARE BAR BOTTOM -->
+  <!-- SHARE BAR BOTTOM -->
+  <div class="share-bar" id="share-bottom">
+    <span class="share-bar-label">Share</span>
+  
+    <a class="share-btn facebook" href="#" onclick="shareFacebook(event)" aria-label="Share on Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      <span>Facebook</span>
+    </a>
+  
+    <a class="share-btn instagram" href="#" onclick="shareInstagram(event)" aria-label="Share on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <span>Instagram</span>
+    </a>
+  
+    <a class="share-btn twitter" href="#" onclick="shareTwitter(event)" aria-label="Share on X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span>X</span>
+    </a>
+  
+    <a class="share-btn email" href="#" onclick="shareEmail(event)" aria-label="Share via Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>Email</span>
+    </a>
+  
+    <button class="share-btn copy" onclick="copyLink(this)" aria-label="Copy link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <span>Copy Link</span>
+    </button>
+  </div>
+
+  <!-- QUESTION FORM -->
+  <div class="ask-section">
+    <div class="ask-label">Still Have Questions?</div>
+    <h3 class="ask-title">Ask It Here</h3>
+    <p class="ask-desc">If something on this page raised a question you don't have an answer to, send it in. The best questions become future studies, resources, and discussions for the whole community.</p>
+    <form class="ask-form" action="YOUR_GOOGLE_SHEETS_FORM_URL" method="POST" target="_blank">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your first name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+      </div>
+      <textarea name="question" placeholder="What's your question?" rows="4" required></textarea>
+      <button type="submit">Submit Your Question &rarr;</button>
+    </form>
+  </div>
+
+  <!-- BIBLE STUDY PROMPT -->
+  <div class="table-prompt">
+    <div class="table-prompt-inner">
+      <div class="table-icon">&#10022;</div>
+      <div>
+        <div class="table-title">Bring It to the Table</div>
+        <p class="table-desc">Still wrestling with this? You don't have to figure it out alone. We study the Word together &mdash; real questions, real conversations, no performance required.</p>
+      </div>
+      <a href="YOUR_JOIN_PAGE_URL" class="table-btn">Join Bible Study &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<script>
+  function shareFacebook(e) {
+    e.preventDefault();
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank', 'width=600,height=400');
+  }
+  function shareInstagram(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      alert('Link copied! Open Instagram and paste it in your story or bio.');
+    });
+  }
+  function shareTwitter(e) {
+    e.preventDefault();
+    var title = document.querySelector('h1') ? document.querySelector('h1').innerText : document.title;
+    window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent('What does the Bible actually say about ' + title + '? — We The Church'), '_blank', 'width=600,height=400');
+  }
+  function shareEmail(e) {
+    e.preventDefault();
+    var title = document.querySelector('h1') ? document.querySelector('h1').innerText : document.title;
+    window.location.href = 'mailto:?subject=What does the Bible say about ' + encodeURIComponent(title) + '&body=Thought you might find this helpful: ' + encodeURIComponent(window.location.href);
+  }
+  function copyLink(btn) {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="20 6 9 17 4 12"/></svg><span>Copied!</span>';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span>Copy Link</span>';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
