@@ -18,13 +18,8 @@
 html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .app{display:flex;flex-direction:column;height:100%;height:100dvh}
 
-/* TOP BAR */
-.topbar{background:var(--navy);padding:calc(var(--st) + 12px) 20px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.08)}
-.topbar-left{display:flex;flex-direction:column}
-.topbar-title{font-size:17px;font-weight:700;color:var(--cream);letter-spacing:-.01em}
-.topbar-sub{font-size:11px;color:#8AA0BC;margin-top:1px}
-.topbar-right{display:flex;gap:10px;align-items:center}
-.install-btn-top{font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
+/* install button — floats in home hero when PWA prompt fires */
+.install-btn-top{display:none;position:absolute;top:calc(var(--st) + 12px);right:16px;font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;z-index:10}
 
 /* SCREENS */
 .screens{flex:1;overflow:hidden;position:relative}
@@ -34,22 +29,20 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 /* BOTTOM NAV */
 .bottomnav{background:var(--navy);display:flex;border-top:1px solid rgba(255,255,255,.08);flex-shrink:0;padding-bottom:var(--sb)}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px 7px;background:none;border:none;cursor:pointer;gap:3px}
-.nav-icon{font-size:19px;color:rgba(255,255,255,.35);line-height:1;transition:color .15s}
-.nav-label{font-size:9px;color:rgba(255,255,255,.35);font-weight:500;letter-spacing:.02em;transition:color .15s}
+.nav-icon{font-size:20px;color:rgba(255,255,255,.35);line-height:1;transition:color .15s}
+.nav-label{font-size:11px;color:rgba(255,255,255,.35);font-weight:500;letter-spacing:.02em;transition:color .15s}
 .nav-btn.active .nav-icon,.nav-btn.active .nav-label{color:var(--peony)}
 
 /* ── SHARED COMPONENTS ── */
-.screen-header{padding:20px 20px 0}
-.sh-eyebrow{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--peony);margin-bottom:6px}
-.sh-title{font-size:22px;font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:4px}
-.sh-sub{font-size:13px;color:#8AA0BC;line-height:1.55;padding-bottom:16px}
+.screen-header{padding:calc(var(--st) + 14px) 20px 14px}
+.sh-title{font-size:20px;font-weight:700;color:var(--cream);letter-spacing:-.01em}
 .screen-body{padding:16px 16px 100px}
 
-.card{background:white;border-radius:14px;padding:16px;margin-bottom:10px;border:1px solid rgba(0,0,0,.06)}
+.card{background:white;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
 .card-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .card-body{font-size:13px;color:#4A5568;line-height:1.65}
 
-.section-eyebrow{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8A9AB0;margin:20px 0 10px}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6A82A0;margin:24px 0 10px}
 .section-eyebrow:first-child{margin-top:0}
 
 .pill-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
@@ -58,42 +51,53 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
 /* ── HOME ── */
-.home-hero{background:var(--navy);padding:20px 20px 0}
-.home-wtc{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--peony);margin-bottom:8px}
-.home-title{font-size:26px;font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:6px}
-.home-sub{font-size:14px;color:#8AA0BC;line-height:1.6;margin-bottom:16px}
-.home-verse-box{background:rgba(255,255,255,.06);border-left:3px solid var(--peony);padding:12px 16px;border-radius:0 10px 10px 0;margin-bottom:16px}
-.home-verse-box p{font-style:italic;font-size:13px;color:var(--cream);line-height:1.7;margin-bottom:4px}
-.home-verse-box span{font-size:11px;color:#8AA0BC;font-weight:600}
+#screen-home{overflow:hidden;display:flex;flex-direction:column}
+.home-hero{background:var(--navy);padding:calc(var(--st) + 28px) 28px 0;position:relative;flex-shrink:0;background-image:radial-gradient(ellipse at 75% 10%,rgba(194,115,138,.2) 0%,transparent 55%),radial-gradient(ellipse at 15% 90%,rgba(74,124,111,.12) 0%,transparent 50%);text-align:center}
+.home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--peony);margin-bottom:10px}
+.home-tagline{font-size:13px;color:#8AA0BC;line-height:1.55;margin-bottom:18px}
+.hvh-verse{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:22px;color:var(--cream);line-height:1.75;margin-bottom:14px}
+.hvh-ref{font-size:12px;color:#8AA0BC;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:0}
+.home-hero-fade{height:24px;background:linear-gradient(var(--navy),var(--linen));flex-shrink:0}
 
-.home-body{padding:16px 16px 100px}
+.home-body{flex:1;display:flex;flex-direction:column;padding:12px 16px 14px;overflow:hidden}
 
-.current-study{background:var(--navy);border-radius:14px;padding:16px 18px;margin-bottom:12px;display:flex;align-items:center;gap:14px;cursor:pointer}
-.cs-icon{width:44px;height:44px;border-radius:12px;background:var(--peony);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.cs-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8AA0BC;margin-bottom:4px}
-.cs-title{font-size:16px;font-weight:700;color:var(--cream);margin-bottom:2px}
-.cs-sub{font-size:12px;color:#8AA0BC}
-.cs-arrow{margin-left:auto;font-size:20px;color:var(--peony)}
+.cs-strip{background:white;border-radius:12px;padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid rgba(0,0,0,.04)}
+.cs-strip:active{background:#faf6f7}
+.css-dot{width:8px;height:8px;border-radius:50%;background:var(--peony);flex-shrink:0}
+.css-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:2px}
+.css-title{font-size:14px;font-weight:600;color:var(--navy)}
+.css-arrow{font-size:18px;color:var(--peony);margin-left:auto;flex-shrink:0}
 
-.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.quick-card{background:white;border-radius:14px;padding:14px;border:1px solid rgba(0,0,0,.06);cursor:pointer;transition:transform .1s}
-.quick-card:active{transform:scale(.97)}
-.qc-icon{font-size:22px;margin-bottom:6px}
-.qc-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px}
-.qc-sub{font-size:11px;color:#8A96A8;line-height:1.4}
+.next-session-card{background:var(--navy);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:0 6px 24px rgba(27,42,74,.35)}
+.ns-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8AA0BC;margin-bottom:4px}
+.ns-date{font-size:17px;font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:2px}
+.ns-chapter{font-size:12px;color:#8AA0BC;margin-bottom:12px}
+.ns-join{display:block;text-align:center;background:var(--peony);color:white;font-size:14px;font-weight:700;padding:11px;border-radius:10px;text-decoration:none;letter-spacing:.01em}
 
-.week-q{background:white;border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid rgba(0,0,0,.06);border-left:3px solid var(--peony)}
-.wq-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:6px}
-.wq-text{font-size:15px;font-weight:600;color:var(--navy);line-height:1.4}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.quick-card{background:white;border-radius:12px;padding:11px 12px;border:none;cursor:pointer;transition:transform .12s;box-shadow:0 2px 10px rgba(0,0,0,.08);border-left:3px solid transparent;display:flex;align-items:center;gap:10px}
+.quick-card:active{transform:scale(.96)}
+.quick-card:nth-child(1){border-left-color:var(--navy)}
+.quick-card:nth-child(2){border-left-color:var(--sage)}
+.quick-card:nth-child(3){border-left-color:var(--peony)}
+.quick-card:nth-child(4){border-left-color:var(--amber)}
+.qc-icon{font-size:22px;flex-shrink:0}
+.qc-content{flex:1;min-width:0}
+.qc-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:1px;line-height:1.2}
+.qc-sub{font-size:11px;color:#8A96A8;line-height:1.2}
 
-.btms-card{background:white;border-radius:14px;padding:16px;margin-bottom:10px;border:1px solid rgba(0,0,0,.06);cursor:pointer}
-.btms-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:6px}
-.btms-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.3}
-.btms-excerpt{font-size:13px;color:#4A5568;line-height:1.6;margin-bottom:8px}
-.btms-link{font-size:12px;color:var(--peony);font-weight:600}
+.week-q{background:white;border-radius:14px;padding:18px;margin-bottom:16px;border-left:4px solid var(--peony);box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.wq-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:8px}
+.wq-text{font-size:16px;font-weight:600;color:var(--navy);line-height:1.5}
+
+.btms-card{background:white;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer}
+.btms-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
+.btms-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.btms-excerpt{font-size:14px;color:#4A5568;line-height:1.65;margin-bottom:10px}
+.btms-link{font-size:13px;color:var(--peony);font-weight:600}
 
 /* ── STUDIES ── */
-.study-book{background:white;border-radius:14px;padding:16px;margin-bottom:10px;border:1px solid rgba(0,0,0,.06);cursor:pointer;display:flex;align-items:center;gap:14px;transition:transform .1s}
+.study-book{background:white;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer;display:flex;align-items:center;gap:14px;transition:transform .1s}
 .study-book:active{transform:scale(.98)}
 .sb-num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:white;flex-shrink:0}
 .sb-info{flex:1}
@@ -143,26 +147,26 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .verse-block.open .verse-chev{transform:rotate(180deg)}
 .verse-bd{display:none;padding:0 15px 15px;border-top:1px solid #F0EAE0}
 .verse-block.open .verse-bd{display:block}
-.verse-full{font-style:italic;font-size:14px;color:#1B2A4A;line-height:1.75;padding:13px 15px;background:#EAE6F5;border-radius:10px;margin:13px 0;border-left:3px solid var(--navy)}
+.verse-full{font-style:italic;font-size:16px;color:#1B2A4A;line-height:1.8;padding:14px 16px;background:#EAE6F5;border-radius:10px;margin:13px 0;border-left:3px solid var(--navy)}
 .verse-full.key{border-left-color:var(--peony);background:#FBF0F4}
 
 .ntabs{display:flex;gap:5px;margin-bottom:10px;overflow-x:auto;padding-bottom:2px}
 .ntabs::-webkit-scrollbar{display:none}
 .ntab{flex-shrink:0;font-size:11px;padding:5px 11px;border-radius:20px;border:1px solid rgba(0,0,0,.1);background:transparent;color:#6B7A8D;cursor:pointer;font-weight:500;transition:all .15s;font-family:-apple-system,sans-serif}
 .ntab.active{background:var(--peony);border-color:var(--peony);color:white}
-.npanel{display:none;font-size:13px;line-height:1.75;color:#2A2A3A}
+.npanel{display:none;font-size:15px;line-height:1.8;color:#2A2A3A}
 .npanel.active{display:block}
 .npanel p{margin-bottom:10px}
 .npanel p:last-child{margin-bottom:0}
 
-.src-quote{background:#F2F8F5;border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:10px 13px;margin:10px 0;font-size:12px;line-height:1.6;color:#2A3A2A}
-.src-attr{font-size:11px;font-weight:600;color:var(--sage);margin-top:4px}
-.warn-box{background:#FDF0F0;border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:10px 13px;margin:10px 0;font-size:12px;line-height:1.6;color:#4A1A1A}
-.sage-box{background:#EBF3F0;border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:10px 13px;margin:10px 0;font-size:12px;line-height:1.6;color:#1A3A2A}
-.amber-box{background:#FFF8EE;border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:10px 13px;margin:10px 0;font-size:12px;line-height:1.6;color:#3A2A10}
-.info-card{background:#F7F4F0;border-radius:10px;padding:12px 14px;margin:10px 0;border:1px solid rgba(0,0,0,.05)}
-.info-card-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px}
-.info-card-body{font-size:12px;color:#4A5568;line-height:1.6}
+.src-quote{background:#F2F8F5;border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.65;color:#2A3A2A}
+.src-attr{font-size:12px;font-weight:600;color:var(--sage);margin-top:5px}
+.warn-box{background:#FDF0F0;border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.65;color:#4A1A1A}
+.sage-box{background:#EBF3F0;border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.65;color:#1A3A2A}
+.amber-box{background:#FFF8EE;border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.65;color:#3A2A10}
+.info-card{background:#F7F4F0;border-radius:10px;padding:14px 16px;margin:12px 0;border:1px solid rgba(0,0,0,.05)}
+.info-card-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.info-card-body{font-size:14px;color:#4A5568;line-height:1.65}
 
 .greek-word{display:inline-block;background:#EAE6F5;border-radius:6px;padding:3px 9px;font-size:12px;margin:3px 2px;cursor:pointer;border:1px solid rgba(27,42,74,.15);color:var(--navy);font-weight:600}
 .greek-def{background:#F5F3FF;border-radius:9px;padding:9px 12px;margin:7px 0;font-size:12px;display:none;border-left:3px solid var(--peony);line-height:1.6}
@@ -170,7 +174,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 .key-verse-banner{background:var(--navy);border-radius:14px;padding:16px 18px;margin:14px 0;text-align:center}
 .kv-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--peony);margin-bottom:7px}
-.kv-text{font-style:italic;font-size:14px;color:var(--cream);line-height:1.75;margin-bottom:5px}
+.kv-text{font-style:italic;font-size:16px;color:var(--cream);line-height:1.8;margin-bottom:5px}
 .kv-ref{font-size:11px;color:#8AA0BC}
 
 /* video embed */
@@ -200,13 +204,13 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .cq-text{font-size:15px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:10px}
 .cq-discord{font-size:13px;color:var(--peony);font-weight:600;cursor:pointer}
 
-.session-card{background:white;border-radius:14px;padding:14px 16px;margin-bottom:8px;border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;gap:12px}
-.sc-date{width:44px;text-align:center;flex-shrink:0}
-.sc-month{font-size:10px;font-weight:600;text-transform:uppercase;color:var(--peony)}
-.sc-day{font-size:22px;font-weight:700;color:var(--navy);line-height:1}
+.session-card{background:white;border-radius:12px;padding:10px 14px;margin-bottom:6px;border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;gap:10px}
+.sc-date{width:38px;text-align:center;flex-shrink:0}
+.sc-month{font-size:9px;font-weight:600;text-transform:uppercase;color:var(--peony)}
+.sc-day{font-size:18px;font-weight:700;color:var(--navy);line-height:1}
 .sc-info{}
-.sc-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:2px}
-.sc-sub{font-size:12px;color:#6B7A8D}
+.sc-title{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:1px}
+.sc-sub{font-size:11px;color:#6B7A8D}
 
 .invite-block{background:var(--peony);border-radius:14px;padding:18px;margin-bottom:10px;text-align:center}
 .ib-title{font-size:16px;font-weight:700;color:white;margin-bottom:4px}
@@ -227,19 +231,24 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .vn-item{background:white;border-radius:10px;padding:10px 12px;margin-bottom:6px;border:1px solid rgba(0,0,0,.06)}
 .vn-ref-label{font-size:10px;font-weight:600;color:var(--peony);margin-bottom:3px}
 .vn-text{font-size:13px;color:#2A2A3A;line-height:1.5}
+
+/* ── TRUTH ── */
+.truth-intro{font-size:13px;color:var(--navy);opacity:.7;line-height:1.5;margin-bottom:20px}
+.truth-cat-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--peony);margin:20px 0 8px}
+.truth-card{background:white;border-radius:14px;padding:14px 16px;margin-bottom:8px;border:1px solid rgba(0,0,0,.07);display:flex;align-items:center;gap:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.truth-card:active{opacity:.7}
+.truth-card-icon{font-size:22px;flex-shrink:0}
+.truth-card-body{flex:1;min-width:0}
+.truth-card-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.truth-card-desc{font-size:12px;color:var(--navy);opacity:.6;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.truth-card-arrow{font-size:18px;color:var(--peony);flex-shrink:0}
+.truth-card.soon{opacity:.45;cursor:default;pointer-events:none}
+.truth-soon-badge{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(0,0,0,.08);color:var(--navy);border-radius:20px;padding:2px 7px;margin-top:3px;display:inline-block}
+
 </style>
 </head>
 <body>
 <div class="app">
-
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="topbar-title">We the Church</div>
-    <div class="topbar-sub" id="topbar-sub">Bible Study + Community</div>
-  </div>
-  <button class="install-btn-top" id="install-btn-top">Add to Home Screen</button>
-</div>
 
 <!-- SCREENS -->
 <div class="screens">
@@ -247,63 +256,54 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <!-- ── HOME ── -->
   <div class="screen active" id="screen-home">
     <div class="home-hero">
-      <div class="home-wtc">We the Church · Bible Study</div>
-      <div class="home-title">Welcome home.</div>
-      <div class="home-sub">One mind — Christ's. Figuring out together what that means and how to live it.</div>
-      <div class="home-verse-box">
-        <p>"For you are all one in Christ Jesus."</p>
-        <span>Galatians 3:28</span>
-      </div>
+      <button class="install-btn-top" id="install-btn-top">Add to Home Screen</button>
+      <div class="home-eyebrow">We the Church · Bible Study</div>
+      <div class="home-tagline">One mind — Christ's. Figuring out together what that means and how to live it.</div>
+      <div class="hvh-verse">"For you are all one in Christ Jesus."</div>
+      <div class="hvh-ref">Galatians 3:28</div>
     </div>
+    <div class="home-hero-fade"></div>
     <div class="home-body">
 
-      <div class="section-eyebrow">Currently studying</div>
-      <div class="current-study" onclick="goToStudy('galatians')">
-        <div class="cs-icon">📖</div>
-        <div>
-          <div class="cs-label">Book of the Bible</div>
-          <div class="cs-title">Galatians</div>
-          <div class="cs-sub">Chapter 3 · Abraham's Faith</div>
+      <div class="cs-strip" id="home-current-strip" onclick="">
+        <div class="css-dot"></div>
+        <div class="css-left">
+          <div class="css-label">Currently in</div>
+          <div class="css-title" id="home-current-title">Loading…</div>
         </div>
-        <div class="cs-arrow">›</div>
+        <div class="css-arrow">›</div>
       </div>
 
-      <div class="section-eyebrow">This week</div>
-      <div class="week-q">
-        <div class="wq-label">Discussion question</div>
-        <div class="wq-text">Did you receive the Spirit by works of the law or by hearing with faith? Paul asks the Galatians this like it should be obvious. Is it obvious to you — and does how you live now actually reflect that answer?</div>
+      <div class="next-session-card">
+        <div class="ns-label">Next Study Session</div>
+        <div class="ns-date" id="ns-date">Saturday, May 30 · 7:00 AM PT</div>
+        <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
+        <a class="ns-join" href="https://discord.gg/xnQQqs9tm" target="_blank">Join the conversation →</a>
       </div>
 
-      <div class="section-eyebrow">Quick access</div>
       <div class="quick-grid">
         <div class="quick-card" onclick="showScreen('studies',document.querySelectorAll('.nav-btn')[1])">
           <div class="qc-icon">📚</div>
-          <div class="qc-title">Studies</div>
-          <div class="qc-sub">All books and series</div>
-        </div>
-        <div class="quick-card" onclick="showScreen('resources',document.querySelectorAll('.nav-btn')[2])">
-          <div class="qc-icon">🎬</div>
-          <div class="qc-title">Resources</div>
-          <div class="qc-sub">Videos, PDFs, links</div>
+          <div class="qc-content"><div class="qc-title">Studies</div><div class="qc-sub">All books + series</div></div>
         </div>
         <div class="quick-card" onclick="showScreen('community',document.querySelectorAll('.nav-btn')[4])">
-          <div class="qc-icon">💬</div>
-          <div class="qc-title">Community</div>
-          <div class="qc-sub">Discord + schedule</div>
+          <div class="qc-icon">🤝</div>
+          <div class="qc-content"><div class="qc-title">Community</div><div class="qc-sub">Discord + schedule</div></div>
+        </div>
+        <div class="quick-card" onclick="showScreen('resources',document.querySelectorAll('.nav-btn')[2])">
+          <div class="qc-icon">📖</div>
+          <div class="qc-content"><div class="qc-title">Resources</div><div class="qc-sub">Articles, videos, PDFs</div></div>
         </div>
         <div class="quick-card" onclick="showScreen('notes',document.querySelectorAll('.nav-btn')[3])">
           <div class="qc-icon">✏️</div>
-          <div class="qc-title">My Notes</div>
-          <div class="qc-sub">Saved on your device</div>
+          <div class="qc-content"><div class="qc-title">My Notes</div><div class="qc-sub">Saved on your device</div></div>
         </div>
       </div>
 
-      <div class="section-eyebrow">The Bible Tells Me So</div>
-      <div class="btms-card" onclick="openLink('REPLACE_WITH_BTMS_POST_1')">
-        <div class="btms-label">The Bible Tells Me So · Latest</div>
-        <div class="btms-title">We Are the Church</div>
-        <div class="btms-excerpt">The church was never a building, a service, or an institution. It was always us — the body of Christ, gathered, sent, and living it out together...</div>
-        <div class="btms-link">Read the full post →</div>
+      <div class="section-eyebrow">This week's question</div>
+      <div class="week-q" id="home-week-q" style="display:none">
+        <div class="wq-label" id="home-wq-label">Galatians 3 · Week of May 30</div>
+        <div class="wq-text" id="home-wq-text"></div>
       </div>
 
     </div>
@@ -311,10 +311,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
   <!-- ── STUDIES ── -->
   <div class="screen" id="screen-studies">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">Studies</div>
-      <div class="sh-sub">Books of the Bible and topical series — one chapter at a time.</div>
     </div>
 
     <!-- BOOK/SERIES LIST -->
@@ -323,7 +321,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="pill-row" id="study-filter-row">
           <button class="pill active" onclick="filterStudies('all',this)">All</button>
           <button class="pill" onclick="filterStudies('bible',this)">Books of the Bible</button>
-          <button class="pill" onclick="filterStudies('topical',this)">Topical series</button>
+          <button class="pill" onclick="filterStudies('topical',this)">Topical</button>
+          <button class="pill" onclick="filterStudies('series',this)">Series</button>
         </div>
 
         <div id="studies-list"></div>
@@ -367,10 +366,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
   <!-- ── RESOURCES ── -->
   <div class="screen" id="screen-resources">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">Resources</div>
-      <div class="sh-sub">Videos, PDFs, articles, and links — organized by topic and book.</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
       <div class="pill-row" id="res-filter-row">
@@ -386,13 +383,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
   <!-- ── NOTES ── -->
   <div class="screen" id="screen-notes">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">My Notes</div>
-      <div class="sh-sub">Saved on your device. Export anytime.</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
-      <div class="section-eyebrow">General notes — Galatians</div>
+      <div class="section-eyebrow" id="notes-study-label">Study notes</div>
       <textarea class="notes-area" id="notes-galatians" placeholder="Your notes from Galatians..."></textarea>
       <div class="section-eyebrow" style="margin-top:16px">General notes — all studies</div>
       <textarea class="notes-area" id="notes-general" placeholder="General study notes..."></textarea>
@@ -412,12 +407,39 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
   <!-- ── COMMUNITY ── -->
   <div class="screen" id="screen-community">
-    <div class="screen-header" style="background:var(--navy);padding-bottom:16px">
-      <div class="sh-eyebrow">We the Church</div>
+    <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">Community</div>
-      <div class="sh-sub">This is where we gather, ask the real questions, and do life together.</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
+
+      <div class="section-eyebrow">This week's discussion</div>
+      <div class="comm-q">
+        <div class="cq-label">Galatians 3 · Week of May 30</div>
+        <div class="cq-text">Did you receive the Spirit by works of the law or by hearing with faith? Paul asks the Galatians this like it should be obvious. Is it obvious to you — and does how you live now actually reflect that answer?</div>
+        <div class="cq-discord" onclick="openLink('https://discord.gg/xnQQqs9tm')">Continue this conversation in Discord →</div>
+      </div>
+
+      <div class="section-eyebrow">Upcoming sessions — Saturdays at 7:00 AM PT</div>
+      <div class="session-card">
+        <div class="sc-date"><div class="sc-month">APR</div><div class="sc-day">20</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 2 ✓</div><div class="sc-sub">Completed</div></div>
+      </div>
+      <div class="session-card">
+        <div class="sc-date"><div class="sc-month">MAY</div><div class="sc-day">30</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 3</div><div class="sc-sub" data-session-utc="2026-05-30T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
+      </div>
+      <div class="session-card">
+        <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">6</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 4</div><div class="sc-sub" data-session-utc="2026-06-06T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
+      </div>
+      <div class="session-card">
+        <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">13</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 5</div><div class="sc-sub" data-session-utc="2026-06-13T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
+      </div>
+      <div class="session-card">
+        <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">20</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 6</div><div class="sc-sub" data-session-utc="2026-06-20T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
+      </div>
 
       <div class="section-eyebrow">Our Discord community</div>
       <div class="comm-discord">
@@ -430,51 +452,147 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
             <div class="cd-sub">Where community happens between sessions</div>
           </div>
         </div>
-        <a class="cd-btn" href="https://discord.gg/My8nfmBP">Open Discord →</a>
-      </div>
-
-      <div class="section-eyebrow">This week's discussion</div>
-      <div class="comm-q">
-        <div class="cq-label">Galatians 3 · Week of April 27</div>
-        <div class="cq-text">Did you receive the Spirit by works of the law or by hearing with faith? Paul asks the Galatians this like it should be obvious. Is it obvious to you — and does how you live now actually reflect that answer?</div>
-        <div class="cq-discord" onclick="openLink('https://discord.gg/My8nfmBP')">Continue this conversation in Discord →</div>
-      </div>
-
-      <div class="section-eyebrow">The Bible Tells Me So</div>
-      <div class="btms-card" onclick="openLink('REPLACE_WITH_BTMS_POST_1')">
-        <div class="btms-label">The Bible Tells Me So · Article</div>
-        <div class="btms-title">We Are the Church</div>
-        <div class="btms-excerpt">The church was never a building, a service, or an institution. It was always us — the body of Christ, gathered, sent, and living it out together...</div>
-        <div class="btms-link">Read on WordPress →</div>
-      </div>
-
-      <div class="section-eyebrow">Upcoming sessions — Sundays at 6:00 PM CT</div>
-      <div class="session-card">
-        <div class="sc-date"><div class="sc-month">APR</div><div class="sc-day">20</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 2 ✓</div><div class="sc-sub">Completed</div></div>
-      </div>
-      <div class="session-card">
-        <div class="sc-date"><div class="sc-month">APR</div><div class="sc-day">27</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 3</div><div class="sc-sub">Discord · Sunday 6:00 PM CT</div></div>
-      </div>
-      <div class="session-card">
-        <div class="sc-date"><div class="sc-month">MAY</div><div class="sc-day">4</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 4</div><div class="sc-sub">Discord · Sunday 6:00 PM CT</div></div>
-      </div>
-      <div class="session-card">
-        <div class="sc-date"><div class="sc-month">MAY</div><div class="sc-day">11</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 5</div><div class="sc-sub">Discord · Sunday 6:00 PM CT</div></div>
-      </div>
-      <div class="session-card">
-        <div class="sc-date"><div class="sc-month">MAY</div><div class="sc-day">18</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 6</div><div class="sc-sub">Discord · Sunday 6:00 PM CT</div></div>
+        <a class="cd-btn" href="https://discord.gg/xnQQqs9tm">Open Discord →</a>
       </div>
 
       <div class="section-eyebrow">Bring someone in</div>
       <div class="invite-block">
         <div class="ib-title">Know a woman who needs this?</div>
         <div class="ib-sub">Send her your invite link. She'll get everything she needs to join.</div>
-        <a class="ib-btn" href="https://wethechurch.beehiiv.com/">Share We the Church</a>
+        <a class="ib-btn" href="https://wethechurch.pages.dev/join">Share We the Church</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  <!-- ── TRUTH ── -->
+  <div class="screen" id="screen-truth">
+    <div class="screen-header">
+      <div class="screen-title">The Truth</div>
+    </div>
+    <div class="screen-body" style="padding-bottom:20px">
+      <p class="truth-intro">Scripture doesn't dodge the hard questions — so we don't either. These articles take on false doctrine, current events, and the issues the church has gone quiet on. We go to the Word and let it speak.</p>
+
+      <div class="truth-cat-label">False Doctrine &amp; Bad Theology</div>
+      <div class="truth-card" onclick="openLink('truth/catholic-church.html')">
+        <div class="truth-card-icon">⛪</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">The Catholic Church</div>
+          <div class="truth-card-desc">Tradition vs. Scripture — where they diverge and why it matters</div>
+        </div>
+        <div class="truth-card-arrow">›</div>
+      </div>
+      <div class="truth-card" onclick="openLink('truth/prosperity-gospel.html')">
+        <div class="truth-card-icon">💰</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">The Prosperity Gospel</div>
+          <div class="truth-card-desc">Health, wealth &amp; blessing — what the Bible actually teaches</div>
+        </div>
+        <div class="truth-card-arrow">›</div>
+      </div>
+      <div class="truth-card" onclick="openLink('truth/progressive-christianity.html')">
+        <div class="truth-card-icon">🔄</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Progressive Christianity</div>
+          <div class="truth-card-desc">When the faith gets remodeled to fit the culture</div>
+        </div>
+        <div class="truth-card-arrow">›</div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">✋</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Hyper Grace</div>
+          <div class="truth-card-desc">Grace without holiness — a partial gospel</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🎙️</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">New Apostolic Reformation</div>
+          <div class="truth-card-desc">Modern apostles, dominionism &amp; the Bible's answer</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="truth-cat-label">Current Events &amp; Culture</div>
+      <div class="truth-card" onclick="openLink('truth/zionism.html')">
+        <div class="truth-card-icon">🕍</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Zionism &amp; Christian Zionism</div>
+          <div class="truth-card-desc">Israel, prophecy &amp; what Scripture actually says</div>
+        </div>
+        <div class="truth-card-arrow">›</div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🏳️‍🌈</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Homosexuality</div>
+          <div class="truth-card-desc">Love and truth — holding both without flinching</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">⚖️</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Transgenderism</div>
+          <div class="truth-card-desc">Identity, the body &amp; what God says about both</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🌙</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Witchcraft &amp; Manifestation</div>
+          <div class="truth-card-desc">Why the church needs to name this clearly</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="truth-cat-label">End Times &amp; Prophecy</div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🕊️</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">The Rapture</div>
+          <div class="truth-card-desc">The origins of the doctrine and what Scripture says</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">📜</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Revelation</div>
+          <div class="truth-card-desc">How to read it — and what it's actually about</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="truth-cat-label">Heart &amp; Character</div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">👑</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Pride</div>
+          <div class="truth-card-desc">The root sin — why it's first on every list</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🫀</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Anxiety &amp; Fear</div>
+          <div class="truth-card-desc">What the Bible actually says — not just "don't worry"</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🤲</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Biblical Womanhood</div>
+          <div class="truth-card-desc">What it is, what it isn't, and why it's worth reclaiming</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
       </div>
 
     </div>
@@ -499,10 +617,17 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <button class="nav-btn" onclick="showScreen('community',this)">
     <span class="nav-icon">🤝</span><span class="nav-label">Community</span>
   </button>
+  <button class="nav-btn" onclick="showScreen('truth',this)">
+    <span class="nav-icon">⚖️</span><span class="nav-label">Truth</span>
+  </button>
 </div>
 
 </div>
 <script>
+// ── CONFIG — update these when the active study/chapter changes ───────────
+const ACTIVE_STUDY_ID = 'galatians';
+const ACTIVE_CHAPTER_NUM = 3;
+
 // ── DATA ──────────────────────────────────────────────────────────────────
 
 const STUDIES = [
@@ -1365,6 +1490,9 @@ const RESOURCES = [
   {id:"r6",type:"video",typeLabel:"Video",color:"#C2738A",icon:"▶",
    title:"Introduction to Galatians",desc:"Historical and theological background for the book of Galatians.",
    url:"REPLACE_WITH_YOUTUBE_1"},
+  {id:"r7",type:"article",typeLabel:"The Bible Tells Me So",color:"#4A7C6F",icon:"✍️",
+   title:"We Are the Church",desc:"The church was never a building, a service, or an institution. It was always us — the body of Christ, gathered, sent, and living it out together.",
+   url:"REPLACE_WITH_BTMS_POST_1"},
 ];
 
 // ── STATE ─────────────────────────────────────────────────────────────────
@@ -1378,6 +1506,32 @@ let resFilter = 'all';
 let openVerses = {};
 let verseNotes = JSON.parse(localStorage.getItem('wtc-vnotes')||'[]');
 
+// ── HOME ──────────────────────────────────────────────────────────────────
+function renderHome() {
+  const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
+  const ch = study && study.chapters.find(c=>c.num===ACTIVE_CHAPTER_NUM);
+  const strip = document.getElementById('home-current-strip');
+  if(study && ch && strip) {
+    document.getElementById('home-current-title').textContent = study.title+' · Ch. '+ch.num+' — '+ch.title;
+    strip.onclick = ()=>{
+      showScreen('studies', document.querySelectorAll('.nav-btn')[1]);
+      goToStudy(ACTIVE_STUDY_ID);
+      setTimeout(()=>openChapter(ACTIVE_CHAPTER_NUM), 50);
+    };
+  }
+  // Show first discussion question as the weekly question
+  if(ch && ch.discussion && ch.discussion.length) {
+    const wq = document.getElementById('home-week-q');
+    const wqText = document.getElementById('home-wq-text');
+    const wqLabel = document.getElementById('home-wq-label');
+    if(wq && wqText) {
+      wqText.textContent = ch.discussion[0].q;
+      if(wqLabel) wqLabel.textContent = study.title+' Ch. '+ch.num;
+      wq.style.display = 'block';
+    }
+  }
+}
+
 // ── NAVIGATION ─────────────────────────────────────────────────────────────
 function showScreen(id, btn) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -1385,10 +1539,6 @@ function showScreen(id, btn) {
   document.getElementById('screen-'+id).classList.add('active');
   if(btn) btn.classList.add('active');
   currentScreen = id;
-  document.getElementById('topbar-sub').textContent = {
-    home:'Bible Study + Community', studies:'Studies', resources:'Resources',
-    notes:'My Notes', community:'Community'
-  }[id]||'';
   if(id==='studies') renderStudiesList();
   if(id==='resources') renderResources();
   if(id==='notes') loadNotes();
@@ -1464,7 +1614,7 @@ function renderStudiesList() {
   document.getElementById('study-view').style.display='none';
   const filtered = STUDIES.filter(s=>studyFilter==='all'||s.type===studyFilter);
   document.getElementById('studies-list').innerHTML = filtered.map(s=>`
-    <div class="study-book" onclick="showChapterList(STUDIES.find(x=>x.id==='${s.id}'));currentStudy=STUDIES.find(x=>x.id==='${s.id}')">
+    <div class="study-book" onclick="goToStudy('${s.id}')">
       <div class="sb-num" style="background:${s.color}">${s.chapters.filter(c=>!c.locked).length}</div>
       <div class="sb-info">
         <div class="sb-type" style="color:${s.color}">${s.typeLabel}</div>
@@ -1668,6 +1818,9 @@ function openLink(url) {
 
 // ── NOTES ─────────────────────────────────────────────────────────────────
 function loadNotes() {
+  const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
+  const label = document.getElementById('notes-study-label');
+  if(label && study) label.textContent = 'Study notes — '+study.title;
   document.getElementById('notes-galatians').value=localStorage.getItem('wtc-notes-gal')||'';
   document.getElementById('notes-general').value=localStorage.getItem('wtc-notes-gen')||'';
   renderVerseNotes();
@@ -1736,10 +1889,35 @@ if(isIOS&&!window.navigator.standalone){
   b.style.display='block';b.textContent='Add to Home Screen';
 }
 
+// ── LOCAL TIME ────────────────────────────────────────────────────────────
+function localizeNextSession() {
+  const el = document.getElementById('ns-date');
+  if (!el) return;
+  // Next session is May 30 2026 14:00 UTC (Galatians Ch.3)
+  const date = new Date('2026-05-30T14:00:00Z');
+  const now = new Date();
+  // If session has passed, find the next one from session cards
+  const localDate = date.toLocaleDateString([], {weekday:'long', month:'long', day:'numeric'});
+  const localTime = date.toLocaleTimeString([], {hour:'numeric', minute:'2-digit', timeZoneName:'short'});
+  el.textContent = localDate + ' · ' + localTime;
+}
+
+function localizeSessionTimes() {
+  document.querySelectorAll('[data-session-utc]').forEach(el => {
+    const utc = el.getAttribute('data-session-utc');
+    const date = new Date(utc);
+    const localTime = date.toLocaleTimeString([], {hour:'numeric', minute:'2-digit', timeZoneName:'short'});
+    el.textContent = 'Discord · Saturday ' + localTime;
+  });
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────
+renderHome();
 renderStudiesList();
 renderResources();
 loadNotes();
+localizeSessionTimes();
+localizeNextSession();
 </script>
 </body>
 </html>
