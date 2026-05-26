@@ -569,6 +569,13 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       <div class="sh-title">Resources</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
+      <div class="pill-row" id="res-filter-row">
+        <button class="pill active" onclick="filterRes('all',this)">All</button>
+        <button class="pill" onclick="filterRes('pdf',this)">PDF</button>
+        <button class="pill" onclick="filterRes('video',this)">Video</button>
+        <button class="pill" onclick="filterRes('article',this)">Articles</button>
+        <button class="pill" onclick="filterRes('source',this)">Sources</button>
+      </div>
       <div id="resources-list"></div>
     </div>
   </div>
