@@ -70,6 +70,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .topbar-cross{display:flex;align-items:center;justify-content:center}
 .topbar-name{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,238,241,.55);font-family:Arial,sans-serif}
 .topbar-tag{font-size:11px;color:var(--peony);opacity:.8;font-style:italic;font-family:Georgia,'Times New Roman',serif}
+@media(max-width:699px){.topbar-tag{font-size:13px}}
 .topbar-install{position:absolute;right:14px;top:50%;transform:translateY(-50%) translateY(calc(var(--st)/2));font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
 
 /* ── APP FOOTER BRAND ── */
@@ -2407,21 +2408,42 @@ function delNote(i){verseNotes.splice(i,1);localStorage.setItem('wtc-vnotes',JSO
 
 // ── PWA ───────────────────────────────────────────────────────────────────
 let deferredPrompt;
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+
+// iOS instruction modal
+const iosModal = document.createElement('div');
+iosModal.id = 'ios-install-modal';
+iosModal.style.cssText='display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.6);align-items:flex-end;justify-content:center';
+iosModal.innerHTML=`
+  <div style="background:white;border-radius:20px 20px 0 0;padding:28px 24px 40px;max-width:480px;width:100%;text-align:center">
+    <div style="font-size:28px;margin-bottom:12px">📲</div>
+    <div style="font-size:17px;font-weight:700;color:#1B2A4A;margin-bottom:8px">Add to Home Screen</div>
+    <div style="font-size:14px;color:#6B7A8D;line-height:1.65;margin-bottom:20px">
+      Tap the <strong style="color:#1B2A4A">Share button</strong> <span style="font-size:18px">⎋</span> at the bottom of Safari,<br>then tap <strong style="color:#1B2A4A">"Add to Home Screen"</strong>.
+    </div>
+    <button onclick="document.getElementById('ios-install-modal').style.display='none'" style="background:#1B2A4A;color:white;border:none;padding:12px 32px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:-apple-system,sans-serif">Got it</button>
+  </div>`;
+document.body.appendChild(iosModal);
+
 window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();deferredPrompt=e;
   document.getElementById('install-btn-top').style.display='block';
 });
+
 document.getElementById('install-btn-top').addEventListener('click',async()=>{
+  if(isIOS){
+    iosModal.style.display='flex';
+    return;
+  }
   if(!deferredPrompt) return;
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt=null;
   document.getElementById('install-btn-top').style.display='none';
 });
-const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-if(isIOS&&!window.navigator.standalone){
-  const b=document.getElementById('install-btn-top');
-  b.style.display='block';b.textContent='Add to Home Screen';
+
+if(isIOS && !window.navigator.standalone){
+  document.getElementById('install-btn-top').style.display='block';
 }
 
 // ── LOCAL TIME ────────────────────────────────────────────────────────────
