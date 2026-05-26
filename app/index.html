@@ -18,8 +18,6 @@
 html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .app{display:flex;flex-direction:column;height:100%;height:100dvh}
 
-/* install button — floats in home hero when PWA prompt fires */
-.install-btn-top{display:none;position:absolute;top:calc(var(--st) + 12px);right:16px;font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;z-index:10}
 
 /* SCREENS */
 .screens{flex:1;overflow:hidden;position:relative}
@@ -57,7 +55,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .dash-btn{display:block;text-align:center;background:var(--peony);color:white;font-size:13px;font-weight:700;padding:10px;border-radius:10px;text-decoration:none;letter-spacing:.01em}
 
 /* ── SHARED COMPONENTS ── */
-.screen-header{padding:calc(var(--st) + 14px) 20px 14px}
+.screen-header{padding:14px 20px 14px}
 .sh-title{font-size:20px;font-weight:700;color:var(--cream);letter-spacing:-.01em}
 .screen-body{padding:16px 16px 100px}
 
@@ -73,35 +71,36 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill{flex-shrink:0;font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid rgba(0,0,0,.1);background:white;color:#6B7A8D;cursor:pointer;font-weight:500;transition:all .15s;font-family:-apple-system,sans-serif}
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
+/* ── TOP BAR ── */
+.topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 44px);position:relative}
+.topbar-cross{font-size:18px;color:var(--peony);line-height:1}
+.topbar-install{position:absolute;right:14px;top:50%;transform:translateY(-50%) translateY(calc(var(--st)/2));font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
+
+/* ── APP FOOTER BRAND ── */
+.app-footer-brand{background:var(--navy);padding:10px 20px calc(var(--sb) + 10px);text-align:center;border-top:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.afb-name{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,238,241,.3)}
+.afb-tag{font-size:11px;color:rgba(138,160,188,.35);margin-top:2px}
+
 /* ── DESKTOP FRAME ── */
 @media(min-width:700px){
   html,body{background:#0c1220}
   .app{max-width:1020px;margin:0 auto;border-left:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07);box-shadow:0 0 100px rgba(0,0,0,.6)}
-  .home-hero{padding:calc(var(--st) + 60px) 60px 50px;min-height:300px}
-  .hvh-verse{font-size:34px}
-  .home-tagline{max-width:400px}
-  .home-hero-fade{height:52px}
-  .home-body{padding:28px 36px 80px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  .home-body{padding:24px 36px 60px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
   .bottomnav{padding-bottom:0}
-  .nav-label{display:block !important}
-  .nav-btn{padding:12px 4px !important}
+  .app-footer-brand{padding-bottom:10px}
+  .nav-btn{padding:12px 4px}
   .nav-icon{font-size:22px}
   .nav-label{font-size:12px}
 }
 
 /* ── MOBILE HOME TIGHTEN ── */
 @media(max-width:699px){
-  .home-body{padding:12px 14px 100px}
+  .home-body{padding:14px 14px 80px}
   .home-body .section-eyebrow{margin:14px 0 8px}
-  .home-body .home-col:first-child>.section-eyebrow:first-of-type{margin-top:0}
 }
 
 /* ── HOME ── */
 #screen-home{overflow:hidden;display:flex;flex-direction:column}
-.home-hero{background:var(--navy);padding:calc(var(--st) + 28px) 28px 20px;position:relative;flex-shrink:0;background-image:radial-gradient(ellipse at 70% 0%,rgba(194,115,138,.28) 0%,transparent 50%),radial-gradient(ellipse at 20% 100%,rgba(74,124,111,.18) 0%,transparent 50%),radial-gradient(ellipse at 50% 55%,rgba(196,137,90,.07) 0%,transparent 60%);text-align:center}
-.home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--peony);margin-bottom:6px}
-.home-tagline{font-size:12px;color:rgba(138,160,188,.6);line-height:1.55;margin-bottom:0;max-width:260px;margin-left:auto;margin-right:auto}
-.home-hero-fade{height:32px;background:linear-gradient(var(--navy),var(--linen));flex-shrink:0}
 .home-verse-card{background:white;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 3px 18px rgba(0,0,0,.07);border-left:3px solid var(--peony);text-align:left}
 .hvc-text{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.65;margin-bottom:8px}
 .hvc-ref{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony)}
@@ -323,17 +322,17 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 <body>
 <div class="app">
 
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-cross">✝</span>
+  <button class="topbar-install" id="install-btn-top">Add to Home Screen</button>
+</div>
+
 <!-- SCREENS -->
 <div class="screens">
 
   <!-- ── HOME ── -->
   <div class="screen active" id="screen-home">
-    <div class="home-hero">
-      <button class="install-btn-top" id="install-btn-top">Add to Home Screen</button>
-      <div class="home-eyebrow">We the Church · Bible Study</div>
-      <div class="home-tagline">One mind — Christ's. Figuring out what that means and how to live it.</div>
-    </div>
-    <div class="home-hero-fade"></div>
     <div class="home-body">
 
       <!-- LEFT COL: study context + session -->
@@ -362,7 +361,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="section-eyebrow">Next session</div>
         <div class="next-session-card">
           <div class="ns-label">Next Study Session</div>
-          <div class="ns-date" id="ns-date">Saturday, May 30 · 7:00 AM PT</div>
+          <div class="ns-date" id="ns-date">Saturday, May 30</div>
           <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
           <a class="ns-join" href="https://discord.gg/xnQQqs9tm" target="_blank">Join the conversation →</a>
         </div>
@@ -520,7 +519,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="cq-discord" onclick="openLink('https://discord.gg/xnQQqs9tm')">Continue this conversation in Discord →</div>
       </div>
 
-      <div class="section-eyebrow">Upcoming sessions — Saturdays at 7:00 AM PT</div>
+      <div class="section-eyebrow">Upcoming sessions — Saturdays · times shown in your timezone</div>
       <div class="session-card">
         <div class="sc-date"><div class="sc-month">APR</div><div class="sc-day">20</div></div>
         <div class="sc-info"><div class="sc-title">Galatians — Chapter 2 ✓</div><div class="sc-sub">Completed</div></div>
@@ -758,6 +757,12 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <button class="nav-btn" onclick="openMoreDrawer()">
     <span class="nav-icon">⊞</span><span class="nav-label">More</span>
   </button>
+</div>
+
+<!-- FOOTER BRAND -->
+<div class="app-footer-brand">
+  <div class="afb-name">We The Church · Bible Study</div>
+  <div class="afb-tag">One mind — Christ's.</div>
 </div>
 
 </div>
