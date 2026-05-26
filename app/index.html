@@ -103,10 +103,16 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .quick-card{background:white;border-radius:16px;padding:15px 14px;border:none;cursor:pointer;transition:transform .12s,box-shadow .12s;box-shadow:0 3px 18px rgba(0,0,0,.09);border-left:4px solid transparent;display:flex;align-items:center;gap:12px}
 .quick-card:active{transform:scale(.96);box-shadow:0 1px 8px rgba(0,0,0,.08)}
-.quick-card:nth-child(1){border-left-color:var(--navy)}
-.quick-card:nth-child(2){border-left-color:var(--sage)}
-.quick-card:nth-child(3){border-left-color:var(--peony)}
+.quick-card:nth-child(1){border-left-color:var(--sage)}
+.quick-card:nth-child(2){border-left-color:var(--plum)}
+.quick-card:nth-child(3){border-left-color:var(--navy)}
 .quick-card:nth-child(4){border-left-color:var(--amber)}
+
+.truth-article-card{background:white;border-radius:16px;padding:16px 18px;margin-bottom:14px;box-shadow:0 3px 18px rgba(0,0,0,.08);cursor:pointer;border-top:3px solid var(--peony)}
+.truth-article-card:active{opacity:.8}
+.tac-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peony);margin-bottom:7px}
+.tac-title{font-size:16px;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:10px}
+.tac-link{font-size:13px;font-weight:700;color:var(--peony)}
 .qc-icon{font-size:26px;flex-shrink:0}
 .qc-content{flex:1;min-width:0}
 .qc-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;line-height:1.2}
@@ -306,6 +312,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="css-arrow">›</div>
       </div>
 
+      <div class="week-q" id="home-week-q" style="display:none">
+        <div class="wq-label" id="home-wq-label">Galatians 3 · Week of May 30</div>
+        <div class="wq-text" id="home-wq-text"></div>
+      </div>
+
       <div class="next-session-card">
         <div class="ns-label">Next Study Session</div>
         <div class="ns-date" id="ns-date">Saturday, May 30 · 7:00 AM PT</div>
@@ -314,13 +325,13 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       </div>
 
       <div class="quick-grid">
-        <div class="quick-card" id="qc-truth" onclick="">
-          <div class="qc-icon">🔍</div>
-          <div class="qc-content"><div class="qc-title" id="qc-truth-title">The Truth</div><div class="qc-sub" id="qc-truth-sub">Featured article</div></div>
-        </div>
         <div class="quick-card" onclick="openLink('https://discord.gg/xnQQqs9tm')">
           <div class="qc-icon">🤝</div>
           <div class="qc-content"><div class="qc-title">Community</div><div class="qc-sub">Join Discord</div></div>
+        </div>
+        <div class="quick-card" onclick="showScreen('prayer',null)">
+          <div class="qc-icon">🙏</div>
+          <div class="qc-content"><div class="qc-title">Prayer</div><div class="qc-sub">Talk to Him</div></div>
         </div>
         <div class="quick-card" onclick="openCurrentChapter()">
           <div class="qc-icon">📖</div>
@@ -332,10 +343,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         </div>
       </div>
 
-      <div class="section-eyebrow">This week's question</div>
-      <div class="week-q" id="home-week-q" style="display:none">
-        <div class="wq-label" id="home-wq-label">Galatians 3 · Week of May 30</div>
-        <div class="wq-text" id="home-wq-text"></div>
+      <div class="truth-article-card" id="home-truth-card" onclick="">
+        <div class="tac-eyebrow">The Truth · Featured</div>
+        <div class="tac-title" id="home-truth-title"></div>
+        <div class="tac-link">Read article →</div>
       </div>
 
     </div>
@@ -1561,12 +1572,11 @@ function renderHome() {
     document.getElementById('home-current-title').textContent = study.title+' · Ch. '+ch.num+' — '+ch.title;
     strip.onclick = ()=>openCurrentChapter();
   }
-  // Populate featured truth card
-  const qcTruth = document.getElementById('qc-truth');
-  if(qcTruth) {
-    document.getElementById('qc-truth-title').textContent = FEATURED_TRUTH.title;
-    document.getElementById('qc-truth-sub').textContent = FEATURED_TRUTH.sub;
-    qcTruth.onclick = ()=>openLink(FEATURED_TRUTH.url);
+  // Populate featured truth article card
+  const tacCard = document.getElementById('home-truth-card');
+  if(tacCard) {
+    document.getElementById('home-truth-title').textContent = FEATURED_TRUTH.title;
+    tacCard.onclick = ()=>openLink(FEATURED_TRUTH.url);
   }
   // Update current chapter card label
   if(study && ch) {
