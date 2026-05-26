@@ -628,9 +628,9 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
             <div class="cd-sub">Live discussion · every other Saturday</div>
           </div>
         </div>
-        <!-- Discord widget — replace SERVER_ID with your Discord server ID -->
+        <!-- Discord widget — lazy loaded when Community tab opens -->
         <div style="border-radius:10px;overflow:hidden;margin-top:12px">
-          <iframe src="https://discord.com/widget?id=SERVER_ID&theme=dark" width="100%" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius:10px;display:block"></iframe>
+          <iframe id="discord-widget" data-src="https://discord.com/widget?id=SERVER_ID&theme=dark" width="100%" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius:10px;display:block"></iframe>
         </div>
         <a class="cd-btn" href="https://discord.gg/xnQQqs9tm" target="_blank" style="margin-top:10px">Open Discord →</a>
       </div>
@@ -656,6 +656,14 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       <div class="session-card">
         <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">20</div></div>
         <div class="sc-info"><div class="sc-title">Galatians — Chapter 6</div><div class="sc-sub" data-session-utc="2026-06-20T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
+      </div>
+
+      <div class="section-eyebrow">Support the ministry</div>
+      <div class="card" style="margin-bottom:12px;border-left:3px solid var(--peony)">
+        <div class="card-body" style="font-size:14px;line-height:1.7;color:#2a2a3a">
+          We The Church is free — and always will be. If the Word has meant something to you here and you want to support it, we receive gifts with gratitude.<br><br>
+          <a href="https://cash.app/$RebeccaAnneXO" target="_blank" style="color:var(--peony);font-weight:700;text-decoration:none">Give via Cash App → $RebeccaAnneXO</a>
+        </div>
       </div>
 
       <div class="section-eyebrow">Bring someone in</div>
@@ -1989,6 +1997,14 @@ function toggleTWContext(i) {
   if(toggle) toggle.textContent = isOpen ? 'Context ▾' : 'Context ▴';
 }
 
+// ── DISCORD LAZY LOAD ─────────────────────────────────────────────────────
+function loadDiscordWidget() {
+  const iframe = document.getElementById('discord-widget');
+  if(iframe && !iframe.src && iframe.dataset.src) {
+    iframe.src = iframe.dataset.src;
+  }
+}
+
 // ── COMMUNITY BILLBOARD ────────────────────────────────────────────────────
 function renderCommunity() {
   const el = document.getElementById('community-posts');
@@ -2026,7 +2042,7 @@ function showScreen(id, btn) {
   if(activeTab) activeTab.classList.add('active');
   currentScreen = id;
   if(id==='thisweek') renderThisWeek();
-  if(id==='community') renderCommunity();
+  if(id==='community') { renderCommunity(); loadDiscordWidget(); }
   if(id==='studies') renderStudiesList();
   if(id==='resources') renderResources();
   if(id==='notes') loadNotes();
