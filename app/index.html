@@ -369,8 +369,14 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
       </div>
 
-      <!-- RIGHT COL: quick access + progress + truth -->
+      <!-- RIGHT COL: progress + quick access + truth -->
       <div class="home-col">
+
+        <div class="section-eyebrow">Study progress</div>
+        <div class="ch-progress-card">
+          <div class="ch-progress-label" id="ch-progress-label">Galatians · 6 Chapters</div>
+          <div class="ch-progress-row" id="ch-progress-row"></div>
+        </div>
 
         <div class="section-eyebrow">Quick access</div>
         <div class="quick-grid">
@@ -390,12 +396,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
             <div class="qc-icon">✏️</div>
             <div class="qc-content"><div class="qc-title">My Notes</div><div class="qc-sub">Saved on your device</div></div>
           </div>
-        </div>
-
-        <div class="section-eyebrow">Study progress</div>
-        <div class="ch-progress-card">
-          <div class="ch-progress-label" id="ch-progress-label">Galatians · 6 Chapters</div>
-          <div class="ch-progress-row" id="ch-progress-row"></div>
         </div>
 
         <div class="section-eyebrow">From The Truth</div>
@@ -715,6 +715,36 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 </div>
 
 <!-- BOTTOM NAV -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeMoreDrawer()"></div>
+<div class="more-drawer" id="more-drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-title">More</div>
+  <div class="drawer-row" onclick="closeMoreDrawer();showScreen('prayer',null)">
+    <div class="drawer-row-icon">🙏</div>
+    <div class="drawer-row-text">
+      <div class="drawer-row-title">Prayer</div>
+      <div class="drawer-row-sub">Talk to Him · record what He's saying</div>
+    </div>
+    <div class="drawer-row-arrow">›</div>
+  </div>
+  <div class="drawer-row" onclick="closeMoreDrawer();showScreen('notes',null)">
+    <div class="drawer-row-icon">✏️</div>
+    <div class="drawer-row-text">
+      <div class="drawer-row-title">Notes</div>
+      <div class="drawer-row-sub">Your study notes · saved on device</div>
+    </div>
+    <div class="drawer-row-arrow">›</div>
+  </div>
+  <div class="drawer-row" onclick="closeMoreDrawer();showScreen('resources',null)">
+    <div class="drawer-row-icon">📚</div>
+    <div class="drawer-row-text">
+      <div class="drawer-row-title">Resources</div>
+      <div class="drawer-row-sub">Videos · PDFs · articles · sources</div>
+    </div>
+    <div class="drawer-row-arrow">›</div>
+  </div>
+</div>
+
 <div class="bottomnav">
   <button class="nav-btn active" onclick="showScreen('home',this)">
     <span class="nav-icon">⌂</span><span class="nav-label">Home</span>
@@ -1951,6 +1981,17 @@ function filterRes(f,btn) {
   document.querySelectorAll('#res-filter-row .pill').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderResources();
+}
+
+function openMoreDrawer() {
+  document.getElementById('more-drawer').classList.add('open');
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMoreDrawer() {
+  document.getElementById('more-drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 function openLink(url) {

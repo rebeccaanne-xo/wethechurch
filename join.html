@@ -89,11 +89,11 @@ body::before {
 
 .hero-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(42px, 10vw, 72px);
+  font-size: clamp(30px, 7vw, 48px);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.1;
   color: var(--cream);
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   opacity: 0;
   animation: fadeUp .7s ease forwards .25s;
 }
@@ -460,7 +460,21 @@ body::before {
   color: var(--cream);
   margin-bottom: 12px;
 }
-.success-msg p { font-size: 14px; color: #8AA0BC; line-height: 1.7; }
+.success-msg p { font-size: 14px; color: #8AA0BC; line-height: 1.7; margin-bottom: 24px; }
+.success-app-btn {
+  display: inline-block;
+  background: var(--peony);
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 14px 32px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.success-app-btn:hover { background: #a85f76; }
 
 /* ERROR */
 .form-error {
@@ -662,7 +676,8 @@ footer {
     <div class="success-msg" id="success-msg">
       <div class="success-icon">✝</div>
       <h3>You're in. Welcome home.</h3>
-      <p>Check your email — we've sent you the app install link, the Discord invite, and everything you need to get started. We'll see you Saturday.</p>
+      <p>We'll see you Saturday. In the meantime — get into the app, meet the community, and start in the Word.</p>
+      <a href="/app/index.html" class="success-app-btn">Open the App →</a>
     </div>
   </div>
 </section>
