@@ -27,30 +27,16 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 /* BOTTOM NAV */
 /* ── TAB NAV ── */
 .tabnav{background:var(--navy);display:flex;align-items:flex-end;padding:6px 6px 0;gap:3px;flex-shrink:0}
-.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 4px 9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-bottom:none;border-top-width:3px;border-top-style:solid;border-radius:8px 8px 0 0;cursor:pointer;gap:2px;transition:all .15s}
-.tab-btn.active{background:var(--linen);border-color:rgba(0,0,0,.08);border-top-width:3px;border-top-style:solid}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 4px 9px;background:rgba(255,255,255,.07);border-top:3px solid transparent;border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1);border-bottom:none;border-radius:8px 8px 0 0;cursor:pointer;gap:2px;transition:all .15s}
 .tab-btn:nth-child(1){border-top-color:var(--sage)}
 .tab-btn:nth-child(2){border-top-color:var(--peony)}
 .tab-btn:nth-child(3){border-top-color:var(--amber)}
 .tab-btn:nth-child(4){border-top-color:var(--plum)}
+.tab-btn.active{background:var(--linen);border-left-color:rgba(0,0,0,.08);border-right-color:rgba(0,0,0,.08)}
 .tab-icon{font-size:16px;color:rgba(255,255,255,.4);line-height:1;transition:color .15s}
 .tab-label{font-size:10px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:color .15s}
 .tab-btn.active .tab-icon,.tab-btn.active .tab-label{color:var(--navy)}
 
-/* MORE DRAWER */
-.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
-.drawer-overlay.open{opacity:1;pointer-events:all}
-.more-drawer{position:fixed;bottom:0;left:0;right:0;background:var(--linen);border-radius:20px 20px 0 0;z-index:201;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);padding-bottom:calc(var(--sb) + 20px)}
-.more-drawer.open{transform:translateY(0)}
-.drawer-handle{width:36px;height:4px;border-radius:2px;background:rgba(0,0,0,.15);margin:12px auto 16px}
-.drawer-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6A82A0;text-align:center;margin-bottom:16px}
-.drawer-row{display:flex;align-items:center;gap:14px;padding:16px 18px;background:white;margin:0 16px 8px;border-radius:14px;cursor:pointer;border:1px solid rgba(0,0,0,.06)}
-.drawer-row:active{opacity:.7}
-.drawer-row-icon{font-size:26px;flex-shrink:0}
-.drawer-row-text{flex:1}
-.drawer-row-title{font-size:16px;font-weight:700;color:var(--navy)}
-.drawer-row-sub{font-size:12px;color:#6B7A8D;margin-top:1px}
-.drawer-row-arrow{font-size:20px;color:var(--peony);flex-shrink:0}
 
 /* HOME DASHBOARD */
 .dash-card{background:white;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
@@ -348,8 +334,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <button class="tab-btn" onclick="showScreen('truth',this)">
     <span class="tab-icon">🧭</span><span class="tab-label">Truth</span>
   </button>
-  <button class="tab-btn" onclick="openMoreDrawer()">
-    <span class="tab-icon">⊞</span><span class="tab-label">More</span>
+  <button class="tab-btn" onclick="showScreen('resources',this)">
+    <span class="tab-icon">📚</span><span class="tab-label">Resources</span>
   </button>
 </div>
 
@@ -719,6 +705,92 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         </div>
       </div>
 
+      <div class="truth-cat-label">Relationships &amp; the Body</div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">💔</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Sex Without Covenant</div>
+          <div class="truth-card-desc">What God designed sex for — and what it costs when we use it to pursue</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🔗</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Soul Ties</div>
+          <div class="truth-card-desc">Is it biblical — and what does it mean for your healing</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🪞</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Situationships &amp; the Pursuit Dynamic</div>
+          <div class="truth-card-desc">Why we do it, what Scripture says, and how to stop</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">💍</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Marriage, Divorce &amp; Remarriage</div>
+          <div class="truth-card-desc">What the Bible actually says — without the shame or the loopholes</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="truth-cat-label">Addiction</div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">⛓️</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">What the Bible Says About Addiction</div>
+          <div class="truth-card-desc">Bondage, freedom, and why willpower was never the answer</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🍷</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Alcohol &amp; Substance</div>
+          <div class="truth-card-desc">What Scripture permits, what it warns against, and where the line is</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">📱</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Digital Addiction &amp; Distraction</div>
+          <div class="truth-card-desc">Phones, scrolling, and the slow theft of your mind</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="truth-cat-label">Grief</div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🕯️</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Grief &amp; the God Who Weeps</div>
+          <div class="truth-card-desc">What Scripture says about loss — and why God doesn't rush you through it</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">👶</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">Miscarriage &amp; Pregnancy Loss</div>
+          <div class="truth-card-desc">The silence the church often keeps — and what God says instead</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+      <div class="truth-card soon">
+        <div class="truth-card-icon">🪦</div>
+        <div class="truth-card-body">
+          <div class="truth-card-title">When Someone You Love Dies</div>
+          <div class="truth-card-desc">Heaven, eternity, and how to grieve with hope</div>
+          <span class="truth-soon-badge">Coming Soon</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -739,35 +811,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="drawer-overlay" id="drawer-overlay" onclick="closeMoreDrawer()"></div>
-<div class="more-drawer" id="more-drawer">
-  <div class="drawer-handle"></div>
-  <div class="drawer-title">More</div>
-  <div class="drawer-row" onclick="closeMoreDrawer();showScreen('prayer',null)">
-    <div class="drawer-row-icon">🙏</div>
-    <div class="drawer-row-text">
-      <div class="drawer-row-title">Prayer</div>
-      <div class="drawer-row-sub">Talk to Him · record what He's saying</div>
-    </div>
-    <div class="drawer-row-arrow">›</div>
-  </div>
-  <div class="drawer-row" onclick="closeMoreDrawer();showScreen('notes',null)">
-    <div class="drawer-row-icon">✏️</div>
-    <div class="drawer-row-text">
-      <div class="drawer-row-title">Notes</div>
-      <div class="drawer-row-sub">Your study notes · saved on device</div>
-    </div>
-    <div class="drawer-row-arrow">›</div>
-  </div>
-  <div class="drawer-row" onclick="closeMoreDrawer();showScreen('resources',null)">
-    <div class="drawer-row-icon">📚</div>
-    <div class="drawer-row-text">
-      <div class="drawer-row-title">Resources</div>
-      <div class="drawer-row-sub">Videos · PDFs · articles · sources</div>
-    </div>
-    <div class="drawer-row-arrow">›</div>
-  </div>
-</div>
 
 <!-- FOOTER BRAND -->
 <div class="app-footer-brand">
@@ -781,11 +824,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 const ACTIVE_STUDY_ID = 'galatians';
 const ACTIVE_CHAPTER_NUM = 3;
 
-// ── FEATURED TRUTH — update when a new article drops ──────────────────────
+// ── FEATURED — update when new content drops ──────────────────────────────
 const FEATURED_TRUTH = {
-  title: 'Zionism & Christian Zionism',
-  sub: 'Current Events',
-  url: '../truth/zionism.html'
+  title: 'Welcome Home — An Introduction to We The Church',
+  sub: 'Newsletter · Vol. 1',
+  url: '../articles/wtc-introduction.html'
 };
 
 // ── DATA ──────────────────────────────────────────────────────────────────
@@ -1632,6 +1675,9 @@ const STUDIES = [
 ];
 
 const RESOURCES = [
+  {id:"r0",type:"article",typeLabel:"Newsletter · Vol. 1",color:"#C2738A",icon:"✉️",
+   title:"Welcome Home — An Introduction to We The Church",desc:"What this community is, who it's for, and why it exists. Start here.",
+   url:"../articles/wtc-introduction.html"},
   {id:"r1",type:"pdf",typeLabel:"PDF Download",color:"#4A7C6F",icon:"📄",
    title:"Galatians 1 — Study Recap",desc:"Full chapter 1 notes with key passages, historical context, and discernment section.",
    url:"REPLACE_WITH_GAL1_PDF"},
@@ -1998,16 +2044,6 @@ function filterRes(f,btn) {
   renderResources();
 }
 
-function openMoreDrawer() {
-  document.getElementById('more-drawer').classList.add('open');
-  document.getElementById('drawer-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeMoreDrawer() {
-  document.getElementById('more-drawer').classList.remove('open');
-  document.getElementById('drawer-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
 
 function openLink(url) {
   if(url&&!url.includes('REPLACE')) window.open(url,'_blank');

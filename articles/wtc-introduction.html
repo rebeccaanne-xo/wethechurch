@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Home — Newsletter Vol. 1 | We The Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1B2A4A;
+    --peony: #C2738A;
+    --sage: #4A7C6F;
+    --amber: #C4895A;
+    --ink: #111111;
+    --warm-white: #faf8f4;
+    --parchment: #f0ead8;
+    --linen: #F2E8D6;
+    --gold: #C4895A;
+    --muted: #4a4540;
+    --border: #d9d0bc;
+  }
+  body { font-family: 'Lato', sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.75; font-size: 17px; }
+
+  /* BREADCRUMB */
+  .breadcrumb { padding: 18px 40px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .breadcrumb a { color: var(--peony); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 8px; opacity: .5; }
+
+  /* HERO */
+  .hero { background: var(--navy); color: var(--warm-white); padding: 70px 40px 60px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: '✝';
+    font-size: 320px;
+    color: rgba(194,115,138,0.06);
+    position: absolute;
+    top: -40px;
+    right: -20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--peony); margin-bottom: 16px; font-weight: 700; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 56px); font-weight: 600; line-height: 1.1; max-width: 680px; margin-bottom: 24px; }
+  .hero h1 em { font-style: italic; color: var(--peony); }
+  .hero-intro { font-size: 18px; font-weight: 300; color: rgba(250,248,244,0.85); max-width: 580px; line-height: 1.85; }
+
+  /* MAIN */
+  .main { max-width: 780px; margin: 0 auto; padding: 60px 40px 100px; }
+
+  /* LETTER OPENER */
+  .letter-open { background: var(--parchment); border-left: 3px solid var(--peony); padding: 28px 32px; margin-bottom: 52px; font-style: italic; color: #2a2420; font-size: 16px; line-height: 1.9; border-radius: 0 4px 4px 0; }
+  .letter-open strong { font-style: normal; font-weight: 700; color: var(--navy); }
+
+  /* BODY TEXT */
+  .body-section { margin-bottom: 48px; }
+  .section-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--peony); margin-bottom: 10px; font-weight: 700; }
+  .body-section h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-bottom: 20px; color: var(--navy); line-height: 1.25; }
+  .body-section p { margin-bottom: 18px; font-size: 17px; line-height: 1.85; color: #2a2420; }
+  .body-section p:last-child { margin-bottom: 0; }
+
+  /* SCRIPTURE BLOCK */
+  .scripture-block { background: #fff; border: 1px solid #c8d8c4; border-radius: 4px; padding: 24px 28px; margin: 32px 0; }
+  .scripture-ref { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); font-weight: 700; margin-bottom: 10px; }
+  .scripture-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--navy); line-height: 1.7; margin-bottom: 10px; }
+  .scripture-note { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* WHAT WE ARE / AREN'T */
+  .list-block { background: var(--warm-white); border: 1px solid var(--border); border-radius: 4px; padding: 24px 28px; margin: 28px 0; }
+  .list-block-title { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin-bottom: 16px; }
+  .list-block ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .list-block ul li { font-size: 15px; color: #2a2420; line-height: 1.65; padding-left: 20px; position: relative; }
+  .list-block ul li::before { content: '—'; position: absolute; left: 0; color: var(--peony); font-weight: 700; }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+
+  /* BOTTOM LINE */
+  .bottom-line { background: var(--navy); color: var(--warm-white); padding: 36px 40px; border-radius: 4px; margin-top: 52px; }
+  .bottom-line .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--peony); margin-bottom: 14px; font-weight: 700; }
+  .bottom-line p { font-size: 17px; font-weight: 300; line-height: 1.85; color: rgba(250,248,244,0.92); margin-bottom: 16px; }
+  .bottom-line p:last-child { margin-bottom: 0; }
+  .bottom-line strong { color: #fff; font-weight: 700; }
+
+  /* NEXT STEP */
+  .next-step { margin-top: 52px; padding: 32px 36px; border: 1px solid var(--border); border-radius: 4px; border-top: 3px solid var(--peony); }
+  .next-step .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--peony); margin-bottom: 12px; font-weight: 700; }
+  .next-step h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 12px; }
+  .next-step p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .next-step a { display: inline-block; background: var(--peony); color: white; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; padding: 13px 28px; border-radius: 4px; text-decoration: none; transition: background 0.2s; }
+  .next-step a:hover { background: #a85f76; }
+
+  /* SIGN OFF */
+  .sign-off { margin-top: 52px; font-style: italic; font-size: 16px; color: var(--muted); line-height: 1.85; }
+  .sign-off strong { font-style: normal; font-weight: 700; color: var(--navy); display: block; margin-top: 12px; font-size: 15px; }
+
+  /* FOOTER */
+  footer { background: #0F1A2E; padding: 32px 40px; text-align: center; margin-top: 80px; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; }
+  footer a { color: var(--peony); text-decoration: none; }
+
+  /* MOBILE */
+  @media(max-width:640px){
+    .breadcrumb { padding: 14px 20px; }
+    .hero { padding: 50px 24px 44px; }
+    .main { padding: 40px 24px 80px; }
+    .bottom-line { padding: 28px 24px; }
+    .next-step { padding: 24px 20px; }
+    .letter-open { padding: 20px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="/index.html">We The Church</a>
+  <span>›</span>
+  <a href="/articles/">Newsletter</a>
+  <span>›</span>
+  Vol. 1 — Welcome Home
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Newsletter · Vol. 1 · May 2026</div>
+  <h1>Welcome <em>Home.</em></h1>
+  <p class="hero-intro">An introduction to We The Church — what it is, what it isn't, who it's for, and why it exists.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LETTER OPENER -->
+  <div class="letter-open">
+    <strong>To the woman reading this —</strong><br><br>
+    I don't know how you found us. Maybe someone sent you a link. Maybe you typed something into a search bar at 1am because you needed the Bible to be real and you didn't know where else to look. Maybe you've been in church your whole life and something finally cracked open and you realized you'd been handed a version of God that didn't match the one in the Book. However you got here — I'm glad you did. This is for you.
+  </div>
+
+  <!-- WHAT THIS IS -->
+  <div class="body-section">
+    <div class="section-eyebrow">What We Are</div>
+    <h2>A Bible study community. Not a church building. Not a brand.</h2>
+    <p>We The Church is a community of women gathering around the Word. Not around a denomination. Not around a pastor's personality or a Sunday morning production. Not around a set of political opinions or a theological camp that tells you what to think before you've read the text yourself.</p>
+    <p>We open the Bible together. We ask hard questions. We sit in the tension when the text doesn't say what we expected. We hold scripture as the authority — not a tradition, not a trend, not a feeling.</p>
+    <p>That's it. That's the whole thing.</p>
+
+    <div class="scripture-block">
+      <div class="scripture-ref">Galatians 3:28 ESV</div>
+      <div class="scripture-text">"There is neither Jew nor Greek, there is neither slave nor free, there is no male and female, for you are all one in Christ Jesus."</div>
+      <div class="scripture-note">One mind. One body. One source of truth. That's the church Paul was talking about — not a building, not an institution. People. Called out, gathered together, unified in Christ. That's who we are.</div>
+    </div>
+  </div>
+
+  <!-- WHO IT'S FOR -->
+  <div class="body-section">
+    <div class="section-eyebrow">Who It's For</div>
+    <h2>If you've been burned, bored, or completely unchurched — you're exactly right.</h2>
+    <p>We built this for women who are done with watered-down truth. Women who have been handed a gospel that's been sanded smooth of every hard edge, filtered through self-help language, and handed back as Christianity. Women who have sat through services that made them feel worse about themselves and no closer to God.</p>
+    <p>We built it for women who were never in church at all — who always suspected there was something real in the Bible but never had a safe place to look at it honestly.</p>
+    <p>And we built it for women who are deeply rooted, seasoned in scripture, and hungry for community that takes the Word as seriously as they do.</p>
+
+    <div class="list-block">
+      <div class="list-block-title">You belong here if —</div>
+      <ul>
+        <li>You've ever felt like the questions you were asking weren't welcome at church</li>
+        <li>You want to actually understand what you're reading, not just be told what it means</li>
+        <li>You're tired of Christianity that looks like a brand and sounds like therapy</li>
+        <li>You've been hurt by religious institutions and you're not sure you trust them anymore — but you still believe in God</li>
+        <li>You're brand new to the Bible and want to start somewhere real</li>
+        <li>You want community that is honest, not curated</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- WHAT WE AREN'T -->
+  <div class="body-section">
+    <div class="section-eyebrow">What We're Not</div>
+    <h2>No performance required. No membership tier. No right answers.</h2>
+    <p>We are not a replacement for a local church. We're not trying to be. If you have a healthy, Bible-grounded community in your city — keep it. Bring what you're learning here back to that table.</p>
+    <p>We are not a place where you need to have it together to show up. There are no spiritual prerequisites. You don't have to know the books of the Bible in order. You don't have to have the right vocabulary. You don't have to be healed yet from the last thing that broke you.</p>
+    <p>We are not going to tell you what to think. We're going to read the text together and let it speak. You're allowed to be wrong. So are we. That's what the study is for.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="body-section">
+    <div class="section-eyebrow">How It Works</div>
+    <h2>Every other Saturday. Your Bible. Discord. No dress code.</h2>
+    <p>Every other Saturday morning we gather on Discord — text and voice — and we work through a chapter together. Right now we're in Galatians. Paul's most urgent letter. Written to a community that was being told the gospel they received wasn't enough — that they needed to add something to it to really be in. Sound familiar?</p>
+    <p>Before each session we release study notes — context, key passages, discussion questions. During the session we read, respond, and talk. After the session the notes stay in the app so you can come back to them anytime.</p>
+    <p>Between sessions there's The Truth — a library of articles on the hard questions. Bad theology, real-life sin patterns, current events, grief, addiction, relationships. Scripture-grounded, direct, no hedging.</p>
+    <p>All of it lives in the app. All of it is free.</p>
+  </div>
+
+  <hr>
+
+  <!-- BOTTOM LINE -->
+  <div class="bottom-line">
+    <div class="label">The bottom line</div>
+    <p>The Word hasn't changed. The noise has. There has never been more information about God and less hunger for the actual text. We are women who want the text. We want to know what it says, what it meant, and what it means for how we live.</p>
+    <p>That's the whole mission. <strong>Open the Bible. Read it together. Let it be what it actually is.</strong></p>
+  </div>
+
+  <!-- NEXT STEP -->
+  <div class="next-step">
+    <div class="label">Your next step</div>
+    <h3>Join the study. We're already in it.</h3>
+    <p>We're currently working through Galatians. Chapter 3 is next. You don't need to catch up — just come in at the chapter we're on and let the text speak for itself. The study notes will orient you.</p>
+    <a href="/join.html">Join the Community →</a>
+  </div>
+
+  <!-- SIGN OFF -->
+  <div class="sign-off">
+    I'm glad you're here. I mean that in the plainest way — not as a thing you say at the top of a newsletter, but because women who are hungry for truth and tired of pretending are exactly who this was built for. Welcome home.
+    <strong>— Rebecca, We The Church</strong>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>We The Church · Bible Study Community · <a href="/index.html">wethechurch.pages.dev</a></p>
+</footer>
+
+</body>
+</html>
