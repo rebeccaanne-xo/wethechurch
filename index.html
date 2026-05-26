@@ -184,6 +184,20 @@
     transition: border-color 0.2s, transform 0.15s;
   }
   .btn-secondary:hover { border-color: rgba(247,238,241,0.6); transform: translateY(-1px); }
+  .hero-member-link {
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .hero-member-link a {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(247,238,241,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-member-link a:hover { color: var(--cream); }
+
   .hero-verse {
     position: relative;
     border-top: 1px solid rgba(255,255,255,0.08);
@@ -645,7 +659,10 @@
   <p class="hero-sub">A Bible study community for women who are done with watered-down truth, church hurt, and bad theology. Real scripture. Real conversation. No performance required.</p>
   <div class="hero-actions">
     <a href="/join.html" class="btn-primary">Join the Community →</a>
-    <a href="/truth/truth-index.html" class="btn-secondary">Read The Truth</a>
+    <a href="/join.html" class="btn-secondary">Read The Truth</a>
+  </div>
+  <div class="hero-member-link">
+    <a href="/app/index.html" target="_blank">Already a member? Open the app →</a>
   </div>
   <div class="hero-verse">
     <div class="hero-verse-text">"Then you will know the truth, and the truth will set you free."</div>

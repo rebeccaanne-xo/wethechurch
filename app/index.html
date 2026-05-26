@@ -73,6 +73,29 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill{flex-shrink:0;font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid rgba(0,0,0,.1);background:white;color:#6B7A8D;cursor:pointer;font-weight:500;transition:all .15s;font-family:-apple-system,sans-serif}
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
+/* ── DESKTOP FRAME ── */
+@media(min-width:700px){
+  html,body{background:#0c1220}
+  .app{max-width:1020px;margin:0 auto;border-left:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07);box-shadow:0 0 100px rgba(0,0,0,.6)}
+  .home-hero{padding:calc(var(--st) + 60px) 60px 50px;min-height:300px}
+  .hvh-verse{font-size:34px}
+  .home-tagline{max-width:400px}
+  .home-hero-fade{height:52px}
+  .home-body{padding:28px 36px 80px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  .bottomnav{padding-bottom:0}
+  .nav-label{display:block !important}
+  .nav-btn{padding:12px 4px !important}
+  .nav-icon{font-size:22px}
+  .nav-label{font-size:12px}
+}
+
+/* ── MOBILE HOME TIGHTEN ── */
+@media(max-width:699px){
+  .home-body{padding:12px 14px 100px}
+  .home-body .section-eyebrow{margin:14px 0 8px}
+  .home-body .home-col:first-child>.section-eyebrow:first-of-type{margin-top:0}
+}
+
 /* ── HOME ── */
 #screen-home{overflow:hidden;display:flex;flex-direction:column}
 .home-hero{background:var(--navy);padding:calc(var(--st) + 44px) 28px 36px;position:relative;flex-shrink:0;background-image:radial-gradient(ellipse at 70% 0%,rgba(194,115,138,.28) 0%,transparent 50%),radial-gradient(ellipse at 20% 100%,rgba(74,124,111,.18) 0%,transparent 50%),radial-gradient(ellipse at 50% 55%,rgba(196,137,90,.07) 0%,transparent 60%);text-align:center}
@@ -84,6 +107,19 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .home-hero-fade{height:40px;background:linear-gradient(var(--navy),var(--linen));flex-shrink:0}
 
 .home-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 16px 120px}
+.home-col{display:flex;flex-direction:column}
+
+/* chapter progress */
+.ch-progress-card{background:white;border-radius:16px;padding:16px 18px;margin-bottom:14px;box-shadow:0 3px 18px rgba(0,0,0,.08)}
+.ch-progress-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6A82A0;margin-bottom:12px}
+.ch-progress-row{display:flex;gap:8px;flex-wrap:wrap}
+.ch-pip{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;flex:1;min-width:40px}
+.ch-pip-dot{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;transition:transform .1s}
+.ch-pip:active .ch-pip-dot{transform:scale(.9)}
+.ch-pip-dot.locked{background:#D4CCCA;color:#9A8E8B}
+.ch-pip-dot.done{background:var(--sage)}
+.ch-pip-dot.active{background:var(--peony)}
+.ch-pip-label{font-size:10px;color:#8A96A8;font-weight:500}
 
 .cs-strip{background:white;border-radius:14px;padding:13px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:0 2px 16px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.04)}
 .cs-strip:active{opacity:.85}
@@ -303,50 +339,70 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     <div class="home-hero-fade"></div>
     <div class="home-body">
 
-      <div class="cs-strip" id="home-current-strip" onclick="">
-        <div class="css-dot"></div>
-        <div class="css-left">
-          <div class="css-label">Currently in</div>
-          <div class="css-title" id="home-current-title">Loading…</div>
+      <!-- LEFT COL: study context + session -->
+      <div class="home-col">
+
+        <div class="cs-strip" id="home-current-strip" onclick="">
+          <div class="css-dot"></div>
+          <div class="css-left">
+            <div class="css-label">Currently in</div>
+            <div class="css-title" id="home-current-title">Loading…</div>
+          </div>
+          <div class="css-arrow">›</div>
         </div>
-        <div class="css-arrow">›</div>
+
+        <div class="section-eyebrow">This week's question</div>
+        <div class="week-q" id="home-week-q" style="display:none">
+          <div class="wq-label" id="home-wq-label">Galatians 3 · Week of May 30</div>
+          <div class="wq-text" id="home-wq-text"></div>
+        </div>
+
+        <div class="section-eyebrow">Next session</div>
+        <div class="next-session-card">
+          <div class="ns-label">Next Study Session</div>
+          <div class="ns-date" id="ns-date">Saturday, May 30 · 7:00 AM PT</div>
+          <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
+          <a class="ns-join" href="https://discord.gg/xnQQqs9tm" target="_blank">Join the conversation →</a>
+        </div>
+
       </div>
 
-      <div class="week-q" id="home-week-q" style="display:none">
-        <div class="wq-label" id="home-wq-label">Galatians 3 · Week of May 30</div>
-        <div class="wq-text" id="home-wq-text"></div>
-      </div>
+      <!-- RIGHT COL: quick access + progress + truth -->
+      <div class="home-col">
 
-      <div class="next-session-card">
-        <div class="ns-label">Next Study Session</div>
-        <div class="ns-date" id="ns-date">Saturday, May 30 · 7:00 AM PT</div>
-        <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
-        <a class="ns-join" href="https://discord.gg/xnQQqs9tm" target="_blank">Join the conversation →</a>
-      </div>
+        <div class="section-eyebrow">Quick access</div>
+        <div class="quick-grid">
+          <div class="quick-card" onclick="openLink('https://discord.gg/xnQQqs9tm')">
+            <div class="qc-icon">🤝</div>
+            <div class="qc-content"><div class="qc-title">Community</div><div class="qc-sub">Join Discord</div></div>
+          </div>
+          <div class="quick-card" onclick="showScreen('prayer',null)">
+            <div class="qc-icon">🙏</div>
+            <div class="qc-content"><div class="qc-title">Prayer</div><div class="qc-sub">Talk to Him</div></div>
+          </div>
+          <div class="quick-card" onclick="openCurrentChapter()">
+            <div class="qc-icon">📖</div>
+            <div class="qc-content"><div class="qc-title" id="qc-ch-title">Current Chapter</div><div class="qc-sub">Jump right in</div></div>
+          </div>
+          <div class="quick-card" onclick="showScreen('notes',null)">
+            <div class="qc-icon">✏️</div>
+            <div class="qc-content"><div class="qc-title">My Notes</div><div class="qc-sub">Saved on your device</div></div>
+          </div>
+        </div>
 
-      <div class="quick-grid">
-        <div class="quick-card" onclick="openLink('https://discord.gg/xnQQqs9tm')">
-          <div class="qc-icon">🤝</div>
-          <div class="qc-content"><div class="qc-title">Community</div><div class="qc-sub">Join Discord</div></div>
+        <div class="section-eyebrow">Study progress</div>
+        <div class="ch-progress-card">
+          <div class="ch-progress-label" id="ch-progress-label">Galatians · 6 Chapters</div>
+          <div class="ch-progress-row" id="ch-progress-row"></div>
         </div>
-        <div class="quick-card" onclick="showScreen('prayer',null)">
-          <div class="qc-icon">🙏</div>
-          <div class="qc-content"><div class="qc-title">Prayer</div><div class="qc-sub">Talk to Him</div></div>
-        </div>
-        <div class="quick-card" onclick="openCurrentChapter()">
-          <div class="qc-icon">📖</div>
-          <div class="qc-content"><div class="qc-title" id="qc-ch-title">Current Chapter</div><div class="qc-sub">Jump right in</div></div>
-        </div>
-        <div class="quick-card" onclick="showScreen('notes',null)">
-          <div class="qc-icon">✏️</div>
-          <div class="qc-content"><div class="qc-title">My Notes</div><div class="qc-sub">Saved on your device</div></div>
-        </div>
-      </div>
 
-      <div class="truth-article-card" id="home-truth-card" onclick="">
-        <div class="tac-eyebrow">The Truth · Featured</div>
-        <div class="tac-title" id="home-truth-title"></div>
-        <div class="tac-link">Read article →</div>
+        <div class="section-eyebrow">From The Truth</div>
+        <div class="truth-article-card" id="home-truth-card" onclick="">
+          <div class="tac-eyebrow">Featured Article</div>
+          <div class="tac-title" id="home-truth-title"></div>
+          <div class="tac-link">Read article →</div>
+        </div>
+
       </div>
 
     </div>
@@ -682,7 +738,7 @@ const ACTIVE_CHAPTER_NUM = 3;
 const FEATURED_TRUTH = {
   title: 'Zionism & Christian Zionism',
   sub: 'Current Events',
-  url: '../truth/zionism.html'
+  url: '../truth/truth-index.html'
 };
 
 // ── DATA ──────────────────────────────────────────────────────────────────
@@ -1582,6 +1638,19 @@ function renderHome() {
   if(study && ch) {
     const qcCh = document.getElementById('qc-ch-title');
     if(qcCh) qcCh.textContent = study.title+' · Ch. '+ch.num;
+  }
+  // Render chapter progress dots
+  if(study && study.chapters) {
+    const row = document.getElementById('ch-progress-row');
+    const lbl = document.getElementById('ch-progress-label');
+    if(row) {
+      if(lbl) lbl.textContent = study.title+' · '+study.chapters.length+' Chapters';
+      row.innerHTML = study.chapters.map(c=>{
+        const cls = c.locked ? 'locked' : (c.num < ACTIVE_CHAPTER_NUM ? 'done' : (c.num === ACTIVE_CHAPTER_NUM ? 'active' : 'done'));
+        const onclick = c.locked ? '' : `onclick="openCurrentChapter()"`;
+        return `<div class="ch-pip" ${onclick}><div class="ch-pip-dot ${cls}">${c.num}</div><div class="ch-pip-label">Ch ${c.num}</div></div>`;
+      }).join('');
+    }
   }
   // Show first discussion question as the weekly question
   if(ch && ch.discussion && ch.discussion.length) {
