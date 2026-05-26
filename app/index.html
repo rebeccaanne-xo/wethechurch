@@ -26,12 +26,16 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 /* BOTTOM NAV */
 /* ── TAB NAV ── */
-.tabnav{background:var(--navy);display:flex;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
-.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 2px 10px;background:none;border:none;cursor:pointer;gap:3px;border-bottom:2px solid transparent;transition:border-color .15s}
-.tab-btn.active{border-bottom-color:var(--peony)}
-.tab-icon{font-size:18px;color:rgba(255,255,255,.3);line-height:1;transition:color .15s}
-.tab-label{font-size:11px;color:rgba(255,255,255,.3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:color .15s}
-.tab-btn.active .tab-icon,.tab-btn.active .tab-label{color:var(--peony)}
+.tabnav{background:var(--navy);display:flex;align-items:flex-end;padding:6px 6px 0;gap:3px;flex-shrink:0}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 4px 9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-bottom:none;border-top-width:3px;border-top-style:solid;border-radius:8px 8px 0 0;cursor:pointer;gap:2px;transition:all .15s}
+.tab-btn.active{background:var(--linen);border-color:rgba(0,0,0,.08);border-top-width:3px;border-top-style:solid}
+.tab-btn:nth-child(1){border-top-color:var(--sage)}
+.tab-btn:nth-child(2){border-top-color:var(--peony)}
+.tab-btn:nth-child(3){border-top-color:var(--amber)}
+.tab-btn:nth-child(4){border-top-color:var(--plum)}
+.tab-icon{font-size:16px;color:rgba(255,255,255,.4);line-height:1;transition:color .15s}
+.tab-label{font-size:10px;color:rgba(255,255,255,.4);font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:color .15s}
+.tab-btn.active .tab-icon,.tab-btn.active .tab-label{color:var(--navy)}
 
 /* MORE DRAWER */
 .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
@@ -79,7 +83,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 /* ── APP FOOTER BRAND ── */
 .app-footer-brand{background:var(--navy);padding:8px 20px calc(var(--sb) + 8px);text-align:center;border-top:1px solid rgba(255,255,255,.05);flex-shrink:0}
-.afb-text{font-size:13px;font-weight:600;letter-spacing:.06em;color:rgba(247,238,241,.25)}
+.afb-text{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;color:rgba(247,238,241,.3)}
+.afb-tag{display:block;font-size:12px;color:var(--peony);opacity:.7;margin-top:2px;font-style:italic;font-family:Georgia,'Times New Roman',serif}
 
 /* ── DESKTOP FRAME ── */
 @media(min-width:700px){
@@ -330,6 +335,22 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     </svg>
   </span>
   <button class="topbar-install" id="install-btn-top">Add to Home Screen</button>
+</div>
+
+<!-- TAB NAV -->
+<div class="tabnav">
+  <button class="tab-btn active" onclick="showScreen('home',this)">
+    <span class="tab-icon">⌂</span><span class="tab-label">Home</span>
+  </button>
+  <button class="tab-btn" onclick="showScreen('studies',this)">
+    <span class="tab-icon">📖</span><span class="tab-label">Study</span>
+  </button>
+  <button class="tab-btn" onclick="showScreen('truth',this)">
+    <span class="tab-icon">🧭</span><span class="tab-label">Truth</span>
+  </button>
+  <button class="tab-btn" onclick="openMoreDrawer()">
+    <span class="tab-icon">⊞</span><span class="tab-label">More</span>
+  </button>
 </div>
 
 <!-- SCREENS -->
@@ -748,24 +769,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   </div>
 </div>
 
-<div class="tabnav">
-  <button class="tab-btn active" onclick="showScreen('home',this)">
-    <span class="tab-icon">⌂</span><span class="tab-label">Home</span>
-  </button>
-  <button class="tab-btn" onclick="showScreen('studies',this)">
-    <span class="tab-icon">📖</span><span class="tab-label">Study</span>
-  </button>
-  <button class="tab-btn" onclick="showScreen('truth',this)">
-    <span class="tab-icon">🧭</span><span class="tab-label">Truth</span>
-  </button>
-  <button class="tab-btn" onclick="openMoreDrawer()">
-    <span class="tab-icon">⊞</span><span class="tab-label">More</span>
-  </button>
-</div>
-
 <!-- FOOTER BRAND -->
 <div class="app-footer-brand">
   <span class="afb-text">We The Church · Bible Study</span>
+  <span class="afb-tag">One mind — Christ's.</span>
 </div>
 
 </div>
