@@ -65,16 +65,17 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
 /* ── TOP BAR ── */
-.topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 54px);position:relative}
+.topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 64px);position:relative}
 .topbar-brand{display:flex;flex-direction:column;align-items:center;gap:4px}
 .topbar-cross{display:flex;align-items:center;justify-content:center}
 .topbar-name{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,238,241,.45);font-family:Arial,sans-serif}
+.topbar-tag{font-size:9px;color:var(--peony);opacity:.7;font-style:italic;font-family:Georgia,'Times New Roman',serif}
 .topbar-install{position:absolute;right:14px;top:50%;transform:translateY(-50%) translateY(calc(var(--st)/2));font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
 
 /* ── APP FOOTER BRAND ── */
 .app-footer-brand{background:var(--navy);padding:8px 20px calc(var(--sb) + 8px);text-align:center;border-top:1px solid rgba(255,255,255,.05);flex-shrink:0}
 .afb-text{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;color:rgba(247,238,241,.3)}
-.afb-tag{display:block;font-size:12px;color:var(--peony);opacity:.7;margin-top:2px;font-style:italic;font-family:Georgia,'Times New Roman',serif}
+.afb-tag{display:block;font-size:14px;color:var(--peony);opacity:.8;margin-top:2px;font-style:italic;font-family:Georgia,'Times New Roman',serif}
 
 /* ── DESKTOP FRAME ── */
 @media(min-width:700px){
@@ -100,6 +101,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .hvc-ref{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony)}
 
 .home-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 16px 120px}
+.home-greeting{font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.3}
 .home-col{display:flex;flex-direction:column}
 
 /* chapter progress */
@@ -351,6 +353,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       </svg>
     </span>
     <span class="topbar-name">We The Church</span>
+    <span class="topbar-tag">One mind — Christ's.</span>
   </div>
   <button class="topbar-install" id="install-btn-top">Add to Home Screen</button>
 </div>
@@ -377,6 +380,9 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <!-- ── HOME ── -->
   <div class="screen active" id="screen-home">
     <div class="home-body">
+
+      <!-- Time-of-day greeting -->
+      <div class="home-greeting" id="home-greeting"></div>
 
       <!-- Dynamic study verse -->
       <div class="home-verse-card" id="home-key-verse" style="display:none">
@@ -417,13 +423,13 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       <!-- Quick access -->
       <div class="section-eyebrow">Resources</div>
       <div class="quick-grid">
-        <div class="quick-card" onclick="showScreen('studies',document.querySelectorAll('.tab-btn')[3])">
-          <div class="qc-icon">📚</div>
-          <div class="qc-content"><div class="qc-title">Studies</div><div class="qc-sub">All books</div></div>
+        <div class="quick-card" onclick="showScreen('community',document.querySelectorAll('.tab-btn')[2])">
+          <div class="qc-icon">💬</div>
+          <div class="qc-content"><div class="qc-title">Join Discussion</div><div class="qc-sub">Community &amp; Discord</div></div>
         </div>
-        <div class="quick-card" onclick="showScreen('thisweek',document.querySelectorAll('.tab-btn')[1])">
-          <div class="qc-icon">🗓️</div>
-          <div class="qc-content"><div class="qc-title">This Week</div><div class="qc-sub">Prep &amp; session</div></div>
+        <div class="quick-card" onclick="showScreen('resources',null)">
+          <div class="qc-icon">📚</div>
+          <div class="qc-content"><div class="qc-title">Resources</div><div class="qc-sub">Links &amp; downloads</div></div>
         </div>
         <div class="quick-card" onclick="showScreen('notes',null)">
           <div class="qc-icon">✏️</div>
@@ -1824,6 +1830,18 @@ let verseNotes = JSON.parse(localStorage.getItem('wtc-vnotes')||'[]');
 function renderHome() {
   const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
   const ch = study && study.chapters.find(c=>c.num===ACTIVE_CHAPTER_NUM);
+
+  // Time-of-day greeting
+  const greetEl = document.getElementById('home-greeting');
+  if(greetEl) {
+    const h = new Date().getHours();
+    let greeting;
+    if(h >= 5  && h < 12) greeting = 'Good morning. Welcome home.';
+    else if(h >= 12 && h < 17) greeting = 'Good afternoon. Welcome home.';
+    else if(h >= 17 && h < 21) greeting = 'Good evening. Welcome home.';
+    else greeting = 'Still here. Welcome home.';
+    greetEl.textContent = greeting;
+  }
 
   // Dynamic key verse card
   if(ch && ch.sections) {
