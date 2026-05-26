@@ -127,23 +127,23 @@ We The Church`;
 
     <p>${firstName}, we're glad you're here. Everything you need to get started is below.</p>
 
-    <div class="section">
+    <a href="https://wethechurch.pages.dev/articles/wtc-introduction.html" class="section" style="text-decoration:none;display:block">
       <div class="section-label">Start Here</div>
-      <div class="section-title">Read the Welcome Newsletter</div>
+      <div class="section-title">Read the Welcome Newsletter →</div>
       <div class="section-desc">An introduction to We The Church — what it is, who it's for, and why it exists.</div>
-    </div>
+    </a>
 
-    <div class="section">
+    <a href="https://wethechurch.pages.dev/app/" class="section" style="text-decoration:none;display:block">
       <div class="section-label">Current Study</div>
-      <div class="section-title">Galatians — Faith alone. Christ alone.</div>
+      <div class="section-title">Galatians — Faith alone. Christ alone. →</div>
       <div class="section-desc">Paul's most urgent letter. We're working through it chapter by chapter, every other Saturday.</div>
-    </div>
+    </a>
 
-    <div class="section">
+    <a href="https://discord.gg/xnQQqs9tm" class="section" style="text-decoration:none;display:block">
       <div class="section-label">The Community</div>
-      <div class="section-title">Join us on Discord</div>
+      <div class="section-title">Join us on Discord →</div>
       <div class="section-desc">This is where the Saturday sessions happen and where we talk between studies.</div>
-    </div>
+    </a>
 
     <a href="https://wethechurch.pages.dev/app/" class="cta">Open the App →</a>
 
