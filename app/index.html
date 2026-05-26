@@ -65,8 +65,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
 /* ── TOP BAR ── */
-.topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 40px);position:relative}
+.topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 54px);position:relative}
+.topbar-brand{display:flex;flex-direction:column;align-items:center;gap:4px}
 .topbar-cross{display:flex;align-items:center;justify-content:center}
+.topbar-name{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,238,241,.45);font-family:Arial,sans-serif}
 .topbar-install{position:absolute;right:14px;top:50%;transform:translateY(-50%) translateY(calc(var(--st)/2));font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
 
 /* ── APP FOOTER BRAND ── */
@@ -78,7 +80,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 @media(min-width:700px){
   html,body{background:#0c1220}
   .app{max-width:1020px;margin:0 auto;border-left:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07);box-shadow:0 0 100px rgba(0,0,0,.6)}
-  .home-body{padding:24px 36px 60px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  .home-body{padding:24px 36px 60px}
   .app-footer-brand{padding-bottom:10px}
   .tab-btn{padding:10px 4px 12px}
   .tab-icon{font-size:20px}
@@ -341,12 +343,15 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <span class="topbar-cross">
-    <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5.5" y="0" width="3" height="20" rx="1.5" fill="#C2738A"/>
-      <rect x="0" y="6" width="14" height="3" rx="1.5" fill="#C2738A"/>
-    </svg>
-  </span>
+  <div class="topbar-brand">
+    <span class="topbar-cross">
+      <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5.5" y="0" width="3" height="20" rx="1.5" fill="#C2738A"/>
+        <rect x="0" y="6" width="14" height="3" rx="1.5" fill="#C2738A"/>
+      </svg>
+    </span>
+    <span class="topbar-name">We The Church</span>
+  </div>
   <button class="topbar-install" id="install-btn-top">Add to Home Screen</button>
 </div>
 
@@ -361,8 +366,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <button class="tab-btn" onclick="showScreen('community',this)">
     <span class="tab-icon">🤝</span><span class="tab-label">Community</span>
   </button>
-  <button class="tab-btn" onclick="showScreen('resources',this)">
-    <span class="tab-icon">📚</span><span class="tab-label">Resources</span>
+  <button class="tab-btn" onclick="showScreen('studies',this)">
+    <span class="tab-icon">📖</span><span class="tab-label">Studies</span>
   </button>
 </div>
 
@@ -373,63 +378,79 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <div class="screen active" id="screen-home">
     <div class="home-body">
 
-      <!-- LEFT COL: study context + session -->
-      <div class="home-col">
-
-        <div class="home-verse-card">
-          <div class="hvc-text">"For you are all one in Christ Jesus."</div>
-          <div class="hvc-ref">Galatians 3:28</div>
-        </div>
-
-        <div class="section-eyebrow">Newsletter</div>
-        <p class="section-subdesc">Community updates, study introductions, and what we're working through together.</p>
-        <div class="truth-article-card" id="home-newsletter-card" onclick="">
-          <div class="tac-eyebrow" id="home-newsletter-eyebrow">Newsletter</div>
-          <div class="tac-title" id="home-newsletter-title"></div>
-          <div class="tac-hook" id="home-newsletter-hook"></div>
-          <div class="tac-link">Read →</div>
-        </div>
-
-        <div class="section-eyebrow">The Truth</div>
-        <p class="section-subdesc">Hard questions. Real scripture. We go to the Word and let it speak.</p>
-        <div class="truth-article-card" id="home-truth-card" onclick="" style="border-top-color:var(--amber)">
-          <div class="tac-eyebrow" style="color:var(--amber)">The Truth</div>
-          <div class="tac-title" id="home-truth-title"></div>
-          <div class="tac-hook" id="home-truth-hook" style="color:#6B7A8D"></div>
-          <div class="tac-link" style="color:var(--amber)">Read →</div>
-        </div>
-
+      <!-- Dynamic study verse -->
+      <div class="home-verse-card" id="home-key-verse" style="display:none">
+        <div class="hvc-text" id="home-kv-text"></div>
+        <div class="hvc-ref" id="home-kv-ref"></div>
       </div>
 
-      <!-- RIGHT COL: progress + quick access + truth -->
-      <div class="home-col">
-
-        <div class="section-eyebrow">Study progress</div>
-        <div class="ch-progress-card">
-          <div class="ch-progress-label" id="ch-progress-label">Galatians · 6 Chapters</div>
-          <div class="ch-progress-row" id="ch-progress-row"></div>
+      <!-- Currently In -->
+      <div class="cs-strip" id="home-current-strip" onclick="openCurrentChapter()">
+        <div class="css-dot"></div>
+        <div class="css-left">
+          <div class="css-label">Currently in</div>
+          <div class="css-title" id="home-current-title">Galatians · Chapter 3</div>
         </div>
+        <div class="css-arrow">›</div>
+      </div>
 
-        <div class="section-eyebrow">Quick access</div>
-        <div class="quick-grid">
-          <div class="quick-card" onclick="showScreen('studies',null)">
-            <div class="qc-icon">📖</div>
-            <div class="qc-content"><div class="qc-title">Study</div><div class="qc-sub">All books</div></div>
-          </div>
-          <div class="quick-card" onclick="showScreen('prayer',null)">
-            <div class="qc-icon">🙏</div>
-            <div class="qc-content"><div class="qc-title">Prayer</div><div class="qc-sub">Talk to Him</div></div>
-          </div>
-          <div class="quick-card" onclick="showScreen('notes',null)">
-            <div class="qc-icon">✏️</div>
-            <div class="qc-content"><div class="qc-title">My Notes</div><div class="qc-sub">Saved on your device</div></div>
-          </div>
-          <div class="quick-card" onclick="showScreen('community',document.querySelectorAll(\'.tab-btn\')[2])">
-            <div class="qc-icon">💬</div>
-            <div class="qc-content"><div class="qc-title">Join Discussion</div><div class="qc-sub">Community board</div></div>
-          </div>
+      <!-- Study progress -->
+      <div class="ch-progress-card">
+        <div class="ch-progress-label" id="ch-progress-label">Galatians · 6 Chapters</div>
+        <div class="ch-progress-row" id="ch-progress-row"></div>
+      </div>
+
+      <!-- This week's question -->
+      <div class="week-q" id="home-week-q" style="display:none">
+        <div class="wq-label">This Week · Ponder</div>
+        <div class="wq-text" id="home-wq-text"></div>
+      </div>
+
+      <!-- Community preview -->
+      <div class="section-eyebrow">What's happening</div>
+      <div class="truth-article-card" id="home-community-card" onclick="showScreen('community',document.querySelectorAll('.tab-btn')[2])" style="border-top-color:var(--sage);cursor:pointer">
+        <div class="tac-eyebrow" style="color:var(--sage)">Community</div>
+        <div class="tac-title" id="home-community-title"></div>
+        <div class="tac-link" style="color:var(--sage)">See what's happening →</div>
+      </div>
+
+      <!-- Quick access -->
+      <div class="section-eyebrow">Resources</div>
+      <div class="quick-grid">
+        <div class="quick-card" onclick="showScreen('studies',document.querySelectorAll('.tab-btn')[3])">
+          <div class="qc-icon">📚</div>
+          <div class="qc-content"><div class="qc-title">Studies</div><div class="qc-sub">All books</div></div>
         </div>
+        <div class="quick-card" onclick="showScreen('thisweek',document.querySelectorAll('.tab-btn')[1])">
+          <div class="qc-icon">🗓️</div>
+          <div class="qc-content"><div class="qc-title">This Week</div><div class="qc-sub">Prep &amp; session</div></div>
+        </div>
+        <div class="quick-card" onclick="showScreen('notes',null)">
+          <div class="qc-icon">✏️</div>
+          <div class="qc-content"><div class="qc-title">My Notes</div><div class="qc-sub">Saved on device</div></div>
+        </div>
+        <div class="quick-card" onclick="showScreen('prayer',null)">
+          <div class="qc-icon">🙏</div>
+          <div class="qc-content"><div class="qc-title">Prayer</div><div class="qc-sub">Talk to Him</div></div>
+        </div>
+      </div>
 
+      <!-- Newsletter featured -->
+      <div class="section-eyebrow">Newsletter</div>
+      <div class="truth-article-card" id="home-newsletter-card" onclick="">
+        <div class="tac-eyebrow" id="home-newsletter-eyebrow">Newsletter</div>
+        <div class="tac-title" id="home-newsletter-title"></div>
+        <div class="tac-hook" id="home-newsletter-hook"></div>
+        <div class="tac-link">Read →</div>
+      </div>
+
+      <!-- Truth featured -->
+      <div class="section-eyebrow">The Truth</div>
+      <div class="truth-article-card" id="home-truth-card" onclick="" style="border-top-color:var(--amber)">
+        <div class="tac-eyebrow" style="color:var(--amber)">The Truth</div>
+        <div class="tac-title" id="home-truth-title"></div>
+        <div class="tac-hook" id="home-truth-hook" style="color:#6B7A8D"></div>
+        <div class="tac-link" style="color:var(--amber)">Read →</div>
       </div>
 
     </div>
@@ -542,13 +563,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       <div class="sh-title">Resources</div>
     </div>
     <div class="screen-body" style="padding-top:16px">
-      <div class="pill-row" id="res-filter-row">
-        <button class="pill active" onclick="filterRes('all',this)">All</button>
-        <button class="pill" onclick="filterRes('galatians',this)">Galatians</button>
-        <button class="pill" onclick="filterRes('truth',this)">The Truth</button>
-        <button class="pill" onclick="filterRes('newsletter',this)">Newsletter</button>
-        <button class="pill" onclick="filterRes('source',this)">Sources</button>
-      </div>
       <div id="resources-list"></div>
     </div>
   </div>
@@ -878,8 +892,8 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 <!-- FOOTER BRAND -->
 <div class="app-footer-brand">
-  <span class="afb-text">We The Church · Bible Study</span>
-  <span class="afb-tag">One mind — Christ's.</span>
+  <span class="afb-tag">"Where two or three are gathered in my name, there I am among them." — Matt. 18:20</span>
+  <span class="afb-text">© 2026 We The Church · v1.3</span>
 </div>
 
 </div>
@@ -1808,26 +1822,34 @@ let verseNotes = JSON.parse(localStorage.getItem('wtc-vnotes')||'[]');
 
 // ── HOME ──────────────────────────────────────────────────────────────────
 function renderHome() {
-  // Featured newsletter card
-  const nlCard = document.getElementById('home-newsletter-card');
-  if(nlCard) {
-    document.getElementById('home-newsletter-eyebrow').textContent = FEATURED_NEWSLETTER.sub;
-    document.getElementById('home-newsletter-title').textContent = FEATURED_NEWSLETTER.title;
-    const nlHook = document.getElementById('home-newsletter-hook');
-    if(nlHook) nlHook.textContent = FEATURED_NEWSLETTER.hook || '';
-    nlCard.onclick = ()=>openLink(FEATURED_NEWSLETTER.url);
-  }
-  // Featured truth article card
-  const tacCard = document.getElementById('home-truth-card');
-  if(tacCard) {
-    document.getElementById('home-truth-title').textContent = FEATURED_TRUTH.title;
-    const tHook = document.getElementById('home-truth-hook');
-    if(tHook) tHook.textContent = FEATURED_TRUTH.hook || '';
-    tacCard.onclick = ()=>openLink(FEATURED_TRUTH.url);
-  }
-  // Render chapter progress dots
   const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
   const ch = study && study.chapters.find(c=>c.num===ACTIVE_CHAPTER_NUM);
+
+  // Dynamic key verse card
+  if(ch && ch.sections) {
+    let keyVerse = null;
+    for(const sec of ch.sections) {
+      if(sec.verses) { keyVerse = sec.verses.find(v=>v.key); if(keyVerse) break; }
+    }
+    if(keyVerse) {
+      const kvCard = document.getElementById('home-key-verse');
+      const kvText = document.getElementById('home-kv-text');
+      const kvRef  = document.getElementById('home-kv-ref');
+      if(kvCard && kvText && kvRef) {
+        kvText.textContent = keyVerse.full.replace(/<[^>]+>/g,'');
+        kvRef.textContent  = study.title + ' ' + ch.num + ':' + keyVerse.ref.replace('vv. ','').replace('v.','').trim();
+        kvCard.style.display = 'block';
+      }
+    }
+  }
+
+  // Currently In strip
+  const homeCurrentTitle = document.getElementById('home-current-title');
+  if(homeCurrentTitle && study && ch) {
+    homeCurrentTitle.textContent = study.title + ' · Ch. ' + ch.num + ' — ' + ch.title;
+  }
+
+  // Chapter progress dots
   if(study && study.chapters) {
     const row = document.getElementById('ch-progress-row');
     const lbl = document.getElementById('ch-progress-label');
@@ -1839,6 +1861,41 @@ function renderHome() {
         return `<div class="ch-pip" ${onclick}><div class="ch-pip-dot ${cls}">${c.num}</div><div class="ch-pip-label">Ch ${c.num}</div></div>`;
       }).join('');
     }
+  }
+
+  // This week's question (first discussion question of active chapter)
+  if(ch && ch.discussion && ch.discussion.length) {
+    const wqEl = document.getElementById('home-week-q');
+    const wqText = document.getElementById('home-wq-text');
+    if(wqEl && wqText) {
+      wqText.textContent = ch.discussion[0].q;
+      wqEl.style.display = 'block';
+    }
+  }
+
+  // Community preview (first post headline)
+  const commTitle = document.getElementById('home-community-title');
+  if(commTitle && COMMUNITY_POSTS && COMMUNITY_POSTS.length) {
+    commTitle.textContent = COMMUNITY_POSTS[0].title;
+  }
+
+  // Featured newsletter card
+  const nlCard = document.getElementById('home-newsletter-card');
+  if(nlCard) {
+    document.getElementById('home-newsletter-eyebrow').textContent = FEATURED_NEWSLETTER.sub;
+    document.getElementById('home-newsletter-title').textContent = FEATURED_NEWSLETTER.title;
+    const nlHook = document.getElementById('home-newsletter-hook');
+    if(nlHook) nlHook.textContent = FEATURED_NEWSLETTER.hook || '';
+    nlCard.onclick = ()=>openLink(FEATURED_NEWSLETTER.url);
+  }
+
+  // Featured truth article card
+  const tacCard = document.getElementById('home-truth-card');
+  if(tacCard) {
+    document.getElementById('home-truth-title').textContent = FEATURED_TRUTH.title;
+    const tHook = document.getElementById('home-truth-hook');
+    if(tHook) tHook.textContent = FEATURED_TRUTH.hook || '';
+    tacCard.onclick = ()=>openLink(FEATURED_TRUTH.url);
   }
 }
 

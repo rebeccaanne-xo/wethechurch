@@ -5,7 +5,7 @@
 // SETUP:
 //   1. Replace SHEET_ID below with your Google Sheet ID (from the URL)
 //   2. Make sure your sheet has these headers in row 1:
-//      Timestamp | First Name | Email | Source
+//      Timestamp | Name | Email | Source | Membership
 //   3. Deploy → New Deployment → Web App → Anyone → Deploy
 //   4. Paste the Web App URL into join.html as SCRIPT_URL
 
@@ -18,19 +18,23 @@ const FROM_NAME  = 'We The Church';
 function doPost(e) {
   try {
     const data   = JSON.parse(e.postData.contents);
-    const name   = (data.name   || '').trim();
-    const email  = (data.email  || '').trim();
-    const source = (data.source || 'join-page').trim();
+    const name       = (data.name   || '').trim();
+    const email      = (data.email  || '').trim();
+    const source     = (data.source || 'join-page').trim();
+    const newsletter = !!data.newsletter;
 
     if (!email) {
       return respond({ success: false, error: 'Email is required.' });
     }
 
     // Write to sheet
-    writeToSheet(name, email, source);
+    writeToSheet(name, email, source, newsletter);
 
     // Send welcome email to new member
     sendWelcomeEmail(name, email);
+
+    // Notify Rebecca of new signup
+    notifyAdmin(name, email, source);
 
     return respond({ success: true });
 
@@ -40,14 +44,15 @@ function doPost(e) {
 }
 
 // ── WRITE TO GOOGLE SHEET ──────────────────────────────────────────────────
-function writeToSheet(name, email, source) {
+function writeToSheet(name, email, source, newsletter) {
   const ss    = SpreadsheetApp.openById(SHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
   sheet.appendRow([
     new Date(),
     name,
     email,
-    source
+    source,
+    newsletter ? 'Member + Newsletter' : 'Member'
   ]);
 }
 
@@ -158,6 +163,50 @@ We The Church`;
     htmlBody: html,
     name:     FROM_NAME,
     replyTo:  FROM_EMAIL
+  });
+}
+
+// ── NOTIFY ADMIN ──────────────────────────────────────────────────────────
+function notifyAdmin(name, email, source) {
+  const time = new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' });
+  const html = `
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>
+  body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+  .wrap { max-width: 480px; margin: 32px auto; background: #fff; border: 1px solid #d9d0bc; border-radius: 4px; overflow: hidden; }
+  .header { background: #1B2A4A; padding: 20px 28px; display: flex; align-items: center; }
+  .header p { margin: 0; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,238,241,0.6); }
+  .header h2 { margin: 4px 0 0; font-size: 18px; color: #F7EEF1; font-weight: 600; }
+  .body { padding: 28px; }
+  .row { display: flex; border-bottom: 1px solid #f0ead8; padding: 12px 0; }
+  .row:last-child { border-bottom: none; }
+  .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #b5892a; font-weight: 700; width: 80px; flex-shrink: 0; padding-top: 2px; }
+  .value { font-size: 15px; color: #1B2A4A; font-weight: 600; }
+  .footer { background: #faf8f4; padding: 14px 28px; border-top: 1px solid #d9d0bc; }
+  .footer p { font-size: 11px; color: #9a9080; margin: 0; }
+</style></head>
+<body><div class="wrap">
+  <div class="header">
+    <div>
+      <p>We The Church</p>
+      <h2>Someone new found their way home.</h2>
+    </div>
+  </div>
+  <div class="body">
+    <div class="row"><span class="label">Name</span><span class="value">${name || '—'}</span></div>
+    <div class="row"><span class="label">Email</span><span class="value">${email}</span></div>
+    <div class="row"><span class="label">Source</span><span class="value">${source}</span></div>
+    <div class="row"><span class="label">Time</span><span class="value">${time}</span></div>
+  </div>
+  <div class="footer"><p>View all members in your <a href="https://docs.google.com/spreadsheets/d/${SHEET_ID}" style="color:#b5892a">Google Sheet</a></p></div>
+</div></body></html>`;
+
+  MailApp.sendEmail({
+    to:       FROM_EMAIL,
+    subject:  (name || 'Someone') + ' just joined We The Church.',
+    body:     'New signup\n\nName: ' + name + '\nEmail: ' + email + '\nSource: ' + source + '\nTime: ' + time,
+    htmlBody: html,
+    name:     'We The Church'
   });
 }
 
