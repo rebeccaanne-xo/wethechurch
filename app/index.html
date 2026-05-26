@@ -25,12 +25,13 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .screen.active{display:block}
 
 /* BOTTOM NAV */
-.bottomnav{background:var(--navy);display:flex;border-top:1px solid rgba(255,255,255,.08);flex-shrink:0;padding-bottom:var(--sb)}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 2px 7px;background:none;border:none;cursor:pointer;gap:3px}
-.nav-icon{font-size:20px;color:rgba(255,255,255,.35);line-height:1;transition:color .15s}
-.nav-label{font-size:11px;color:rgba(255,255,255,.35);font-weight:500;letter-spacing:.02em;transition:color .15s}
-@media(max-width:430px){.nav-btn{padding:10px 2px}}
-.nav-btn.active .nav-icon,.nav-btn.active .nav-label{color:var(--peony)}
+/* ── TAB NAV ── */
+.tabnav{background:var(--navy);display:flex;border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 2px 10px;background:none;border:none;cursor:pointer;gap:3px;border-bottom:2px solid transparent;transition:border-color .15s}
+.tab-btn.active{border-bottom-color:var(--peony)}
+.tab-icon{font-size:18px;color:rgba(255,255,255,.3);line-height:1;transition:color .15s}
+.tab-label{font-size:11px;color:rgba(255,255,255,.3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:color .15s}
+.tab-btn.active .tab-icon,.tab-btn.active .tab-label{color:var(--peony)}
 
 /* MORE DRAWER */
 .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
@@ -72,25 +73,23 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .pill.active{background:var(--navy);border-color:var(--navy);color:white}
 
 /* ── TOP BAR ── */
-.topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 44px);position:relative}
-.topbar-cross{font-size:18px;color:var(--peony);line-height:1}
+.topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 40px);position:relative}
+.topbar-cross{display:flex;align-items:center;justify-content:center}
 .topbar-install{position:absolute;right:14px;top:50%;transform:translateY(-50%) translateY(calc(var(--st)/2));font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
 
 /* ── APP FOOTER BRAND ── */
-.app-footer-brand{background:var(--navy);padding:10px 20px calc(var(--sb) + 10px);text-align:center;border-top:1px solid rgba(255,255,255,.05);flex-shrink:0}
-.afb-name{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,238,241,.3)}
-.afb-tag{font-size:11px;color:rgba(138,160,188,.35);margin-top:2px}
+.app-footer-brand{background:var(--navy);padding:8px 20px calc(var(--sb) + 8px);text-align:center;border-top:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.afb-text{font-size:13px;font-weight:600;letter-spacing:.06em;color:rgba(247,238,241,.25)}
 
 /* ── DESKTOP FRAME ── */
 @media(min-width:700px){
   html,body{background:#0c1220}
   .app{max-width:1020px;margin:0 auto;border-left:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07);box-shadow:0 0 100px rgba(0,0,0,.6)}
   .home-body{padding:24px 36px 60px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-  .bottomnav{padding-bottom:0}
   .app-footer-brand{padding-bottom:10px}
-  .nav-btn{padding:12px 4px}
-  .nav-icon{font-size:22px}
-  .nav-label{font-size:12px}
+  .tab-btn{padding:10px 4px 12px}
+  .tab-icon{font-size:20px}
+  .tab-label{font-size:12px}
 }
 
 /* ── MOBILE HOME TIGHTEN ── */
@@ -324,7 +323,12 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <span class="topbar-cross">✝</span>
+  <span class="topbar-cross">
+    <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5.5" y="0" width="3" height="20" rx="1.5" fill="#C2738A"/>
+      <rect x="0" y="6" width="14" height="3" rx="1.5" fill="#C2738A"/>
+    </svg>
+  </span>
   <button class="topbar-install" id="install-btn-top">Add to Home Screen</button>
 </div>
 
@@ -744,25 +748,24 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   </div>
 </div>
 
-<div class="bottomnav">
-  <button class="nav-btn active" onclick="showScreen('home',this)">
-    <span class="nav-icon">⌂</span><span class="nav-label">Home</span>
+<div class="tabnav">
+  <button class="tab-btn active" onclick="showScreen('home',this)">
+    <span class="tab-icon">⌂</span><span class="tab-label">Home</span>
   </button>
-  <button class="nav-btn" onclick="showScreen('studies',this)">
-    <span class="nav-icon">📖</span><span class="nav-label">Study</span>
+  <button class="tab-btn" onclick="showScreen('studies',this)">
+    <span class="tab-icon">📖</span><span class="tab-label">Study</span>
   </button>
-  <button class="nav-btn" onclick="showScreen('truth',this)">
-    <span class="nav-icon">🧭</span><span class="nav-label">Truth</span>
+  <button class="tab-btn" onclick="showScreen('truth',this)">
+    <span class="tab-icon">🧭</span><span class="tab-label">Truth</span>
   </button>
-  <button class="nav-btn" onclick="openMoreDrawer()">
-    <span class="nav-icon">⊞</span><span class="nav-label">More</span>
+  <button class="tab-btn" onclick="openMoreDrawer()">
+    <span class="tab-icon">⊞</span><span class="tab-label">More</span>
   </button>
 </div>
 
 <!-- FOOTER BRAND -->
 <div class="app-footer-brand">
-  <div class="afb-name">We The Church · Bible Study</div>
-  <div class="afb-tag">One mind — Christ's.</div>
+  <span class="afb-text">We The Church · Bible Study</span>
 </div>
 
 </div>
@@ -1703,7 +1706,7 @@ function renderHome() {
 }
 
 function openCurrentChapter() {
-  showScreen('studies', document.querySelectorAll('.nav-btn')[1]);
+  showScreen('studies', document.querySelectorAll('.tab-btn')[1]);
   goToStudy(ACTIVE_STUDY_ID);
   setTimeout(()=>openChapter(ACTIVE_CHAPTER_NUM), 50);
 }
@@ -1711,7 +1714,7 @@ function openCurrentChapter() {
 // ── NAVIGATION ─────────────────────────────────────────────────────────────
 function showScreen(id, btn) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('screen-'+id).classList.add('active');
   if(btn) btn.classList.add('active');
   currentScreen = id;
@@ -1724,7 +1727,7 @@ function goToStudy(studyId) {
   const study = STUDIES.find(s=>s.id===studyId);
   if(!study) return;
   currentStudy = study;
-  showScreen('studies', document.querySelectorAll('.nav-btn')[1]);
+  showScreen('studies', document.querySelectorAll('.tab-btn')[1]);
   showChapterList(study);
 }
 
