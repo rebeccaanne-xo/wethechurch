@@ -57,20 +57,6 @@ body::before {
   overflow: hidden;
 }
 
-/* Cross watermark */
-.hero::after {
-  content: '✝';
-  position: absolute;
-  right: -40px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 420px;
-  color: rgba(255,255,255,.025);
-  pointer-events: none;
-  line-height: 1;
-  z-index: 0;
-}
-@media(max-width:700px){ .hero::after { display: none; } }
 
 .hero-inner {
   position: relative;
@@ -250,7 +236,8 @@ body::before {
   color: #3A4A5A;
 }
 .truth-list li::before {
-  content: '✝';
+  content: '\271D\FE0E';
+  font-family: Georgia, serif;
   color: var(--peony);
   font-size: 12px;
   flex-shrink: 0;
@@ -345,16 +332,6 @@ body::before {
   padding: 80px 28px 100px;
   position: relative;
   overflow: hidden;
-}
-.form-section::after {
-  content: '✝';
-  position: absolute;
-  left: -60px;
-  bottom: -60px;
-  font-size: 400px;
-  color: rgba(255,255,255,.02);
-  pointer-events: none;
-  line-height: 1;
 }
 .form-inner { max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
 .form-heading {
@@ -676,7 +653,7 @@ footer {
     </div>
 
     <div class="success-msg" id="success-msg">
-      <div class="success-icon">✝</div>
+      <div class="success-icon">&#x271D;&#xFE0E;</div>
       <h3>You're in. Welcome home.</h3>
       <p>We'll see you Saturday. In the meantime — get into the app, meet the community, and start in the Word.</p>
       <a href="/app/index.html" class="success-app-btn">Open the App →</a>
@@ -686,7 +663,7 @@ footer {
 
 <!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-cross">✝</div>
+  <div class="footer-cross">&#x271D;&#xFE0E;</div>
   <div class="footer-name">We The Church</div>
   <div class="footer-note">A Bible study community · Saturdays · wethechurch.pages.dev</div>
 </footer>
