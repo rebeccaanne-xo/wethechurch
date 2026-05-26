@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="apple-touch-icon" href="/icons/icon.svg" type="image/svg+xml">
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<title>The Truth — Women in the Church | We The Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #111111; --warm-white: #faf8f4; --parchment: #f0ead8; --gold: #b5892a; --rust: #7a2e1e; --muted: #4a4540; --border: #d9d0bc; --claim-bg: #f7f0f0; --claim-border: #b07070; --truth-bg: #f0f5ee; --truth-border: #5a8a52; }
+  body { font-family: 'Lato', sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.75; font-size: 17px; }
+  .breadcrumb { padding: 20px 40px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb span { margin: 0 8px; }
+  .hero { background: var(--ink); color: var(--warm-white); padding: 70px 40px 60px; position: relative; overflow: hidden; }
+  .hero::before { content: '\201C'; font-family: 'Playfair Display', serif; font-size: 300px; color: rgba(181,137,42,0.08); position: absolute; top: -60px; left: 20px; line-height: 1; pointer-events: none; }
+  .hero-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 600; line-height: 1.15; max-width: 680px; margin-bottom: 24px; }
+  .hero-intro { font-size: 17px; font-weight: 400; color: rgba(250,248,244,0.90); max-width: 580px; line-height: 1.8; }
+  .main { max-width: 820px; margin: 0 auto; padding: 60px 40px 100px; }
+  .sister-note { background: var(--parchment); border-left: 3px solid var(--gold); padding: 28px 32px; margin-bottom: 52px; font-style: italic; color: #2a2420; font-size: 16px; line-height: 1.85; border-radius: 0 4px 4px 0; }
+  .sister-note strong { font-style: normal; font-weight: 700; color: var(--ink); }
+  .section { margin-bottom: 56px; }
+  .section-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 700; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-bottom: 24px; color: var(--ink); }
+  .section p { font-size: 16px; color: #2a2420; line-height: 1.85; margin-bottom: 18px; }
+  .section p:last-child { margin-bottom: 0; }
+  .comparison { display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+  .claim { background: var(--claim-bg); border-left: 4px solid var(--claim-border); padding: 22px 26px; }
+  .claim-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); font-weight: 700; margin-bottom: 8px; }
+  .claim p { font-size: 15px; color: #2e1e1e; line-height: 1.75; font-weight: 400; }
+  .truth { background: var(--truth-bg); border-left: 4px solid var(--truth-border); padding: 22px 26px; }
+  .truth-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #2a5224; font-weight: 700; margin-bottom: 8px; }
+  .truth p { font-size: 15px; color: #1a2e18; line-height: 1.75; font-weight: 400; margin-bottom: 16px; }
+  .truth p:last-child { margin-bottom: 0; }
+  .scripture { background: #fff; border: 1px solid #b8d0b4; border-radius: 3px; padding: 18px 22px; margin-top: 14px; }
+  .scripture-ref { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #2a5224; font-weight: 700; margin-bottom: 7px; }
+  .scripture-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: #111111; line-height: 1.7; margin-bottom: 9px; }
+  .scripture-note { font-size: 13px; color: #2e2a26; font-weight: 400; line-height: 1.65; }
+
+  /* WOMEN ROLL CALL */
+  .women-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .woman-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 22px 26px; border-left: 4px solid var(--gold); }
+  .woman-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .woman-ref { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .woman-body { font-size: 15px; color: #2a2420; line-height: 1.75; }
+  .woman-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: #4a4540; margin-top: 10px; padding-left: 14px; border-left: 2px solid var(--border); line-height: 1.65; }
+
+  /* WORD STUDY */
+  .word-study { background: #1a1a2e; color: #e8e4dc; border-radius: 4px; padding: 28px 32px; margin: 24px 0; }
+  .word-study-term { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--gold); margin-bottom: 4px; }
+  .word-study-transliteration { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232,228,220,0.5); margin-bottom: 14px; }
+  .word-study-body { font-size: 15px; line-height: 1.8; color: rgba(232,228,220,0.88); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+  .bottom-line { background: var(--ink); color: var(--warm-white); padding: 36px 40px; border-radius: 4px; margin-top: 52px; }
+  .bottom-line .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 700; }
+  .bottom-line p { font-size: 17px; font-weight: 400; line-height: 1.8; color: rgba(250,248,244,0.95); margin-bottom: 16px; }
+  .bottom-line p:last-child { margin-bottom: 0; }
+  .dig-deeper { margin-top: 60px; }
+  .dig-deeper h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 6px; color: var(--ink); }
+  .dig-deeper-sub { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+  .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .topic-card { background: #fff; border: 1px solid var(--border); padding: 18px 22px; border-radius: 4px; text-decoration: none; color: var(--ink); display: flex; align-items: center; justify-content: space-between; transition: border-color 0.2s, box-shadow 0.2s; font-size: 15px; font-weight: 400; }
+  .topic-card:hover { border-color: var(--gold); box-shadow: 0 2px 12px rgba(181,137,42,0.12); }
+  .topic-card-arrow { color: var(--gold); font-size: 18px; }
+  /* COMING SOON */
+  .topic-card-wrap { display: flex; flex-direction: column; gap: 6px; }
+  .topic-card.soon { opacity: 0.6; pointer-events: none; }
+  .soon-note { font-size: 12px; color: var(--muted); padding: 0 4px; letter-spacing: 0.03em; }
+
+  .ask-section { margin-top: 60px; background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 40px; }
+  .ask-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .ask-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+  .ask-desc { font-size: 15px; color: #3a3530; line-height: 1.75; margin-bottom: 24px; }
+  .ask-link { display: inline-block; background: var(--ink); color: var(--warm-white); padding: 14px 28px; border-radius: 3px; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; transition: background 0.2s; }
+  .ask-link:hover { background: #2a2420; }
+  @media (max-width: 600px) { .breadcrumb { padding: 16px 20px; } .hero { padding: 50px 20px 44px; } .main { padding: 40px 20px 80px; } .bottom-line { padding: 28px 24px; } .sister-note { padding: 22px 22px; } .ask-section { padding: 28px 24px; } .word-study { padding: 22px 22px; } }
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="/index.html">We The Church</a>
+  <span>›</span>
+  <a href="/truth/truth-index.html">The Truth</a>
+  <span>›</span>
+  Women in the Church
+</nav>
+
+<div class="hero">
+  <div class="hero-label">The Truth · Church Structure</div>
+  <h1>Women in the Church</h1>
+  <p class="hero-intro">She led an army. She was named an apostle. She ran a church out of her house. Then centuries later, the institution decided she couldn't speak.</p>
+</div>
+
+<div class="main">
+
+  <div class="sister-note">
+    <strong>Before we start.</strong> This is not a feminist argument. This is not a political argument. This is an argument from the text — all of it, not the two verses that get weaponized and the thirty that get ignored. If you've been told to sit down and be quiet because you're a woman, you deserve to know what your Bible actually says. So let's look at it.
+  </div>
+
+  <!-- THE CLAIM -->
+  <div class="section">
+    <div class="section-label">The Claim</div>
+    <h2>Women cannot teach men, hold authority, or lead in the church.</h2>
+
+    <div class="comparison">
+      <div class="claim">
+        <div class="claim-label">What the church has taught</div>
+        <p>Women are to be silent in church. They cannot teach men, cannot preach from a pulpit, cannot hold positions of authority over a man. This is God's design — men lead, women support. The two passages that establish this are 1 Timothy 2:12 and 1 Corinthians 14:34, and they settle the question.</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the text actually shows</div>
+        <p>Those two passages are real and they deserve honest engagement — not dismissal. But they are two specific instructions written into two specific situations, and they do not represent the full counsel of scripture on what God does with women. The Bible names women as prophets, judges, deacons, apostles, and church leaders from Genesis to Romans. You cannot build a theology of female silence on two verses while ignoring the rest of the record.</p>
+        <p>God has never once stopped to ask if the vessel was male before he used it.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- THE WOMEN -->
+  <div class="section">
+    <div class="section-label">The Record</div>
+    <h2>The women the Bible actually names.</h2>
+    <p style="font-size:15px;color:#4a4540;margin-bottom:24px;">These are not obscure footnotes. These are central figures in the biblical narrative, named and described in the text. Read them slowly.</p>
+
+    <div class="women-grid">
+
+      <div class="woman-card">
+        <div class="woman-name">Miriam</div>
+        <div class="woman-ref">Exodus 15:20 · Numbers 12:2</div>
+        <div class="woman-body">Called a prophet. Led Israel in worship at the Red Sea alongside Moses and Aaron. In Numbers 12, she and Aaron say "Has the Lord spoken only through Moses? Has he not spoken through us also?" — and God does not correct the premise. He corrects the attitude. God had spoken through her.</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Deborah</div>
+        <div class="woman-ref">Judges 4–5</div>
+        <div class="woman-body">Prophet. Judge. The leader of all Israel during one of the most critical military crises in the nation's history. She didn't lead in the absence of men — Barak was right there. God chose to speak through her anyway. She called him to battle. She went with him. She prophesied the outcome. The text does not apologize for any of this.</div>
+        <div class="woman-quote">"She held court under the Palm of Deborah… and the Israelites went up to her to have their disputes decided." — Judges 4:5 NIV</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Huldah</div>
+        <div class="woman-ref">2 Kings 22:14–20</div>
+        <div class="woman-body">When King Josiah found the lost Book of the Law and needed it interpreted, he sent his priests and officials to a prophet. They went to Huldah. The king's men — priests, scribes, high officials — came to a woman to receive the Word of God. She gave it to them and they brought it back to the king. Jeremiah was alive. Isaiah had just died. God directed them to her.</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Mary Magdalene</div>
+        <div class="woman-ref">John 20:11–18 · Matthew 28:1–10</div>
+        <div class="woman-body">The first person to witness the resurrected Christ. The first person commissioned by Jesus himself to go and tell. "Go to my brothers and tell them" — that is a direct command from the risen Lord to a woman to preach the central message of the Christian faith to the apostles. The early church fathers called her the Apostola Apostolorum — the Apostle to the Apostles. Jesus chose her for that. He didn't ask permission from the institution first.</div>
+        <div class="woman-quote">"Jesus said to her, 'Go to my brothers and say to them, I am ascending to my Father and your Father, to my God and your God.'" — John 20:17 ESV</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Priscilla</div>
+        <div class="woman-ref">Acts 18:26 · Romans 16:3</div>
+        <div class="woman-body">She and her husband Aquila pulled Apollos aside — one of the most gifted preachers in the early church — and "explained to him the way of God more accurately." She taught a man. A prominent man. About the gospel. Paul calls her a "fellow worker in Christ Jesus" — the same language he uses for male ministers. In four of the six times she and Aquila are mentioned, her name comes first. In that culture, that was not an accident.</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Phoebe</div>
+        <div class="woman-ref">Romans 16:1–2</div>
+        <div class="woman-body">Paul calls her a <em>diakonos</em> — the exact same Greek word translated "deacon" everywhere else in the New Testament when referring to men. He also calls her a <em>prostatis</em>, which means patron, protector, leader — a word carrying real authority. Paul commends her to the entire church at Rome and asks them to help her with "whatever she needs." He trusted her to hand-carry his letter to the Romans. She was not a helper. She was a minister.</div>
+        <div class="woman-quote">"I commend to you our sister Phoebe, a deacon of the church at Cenchreae." — Romans 16:1 ESV</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Junia</div>
+        <div class="woman-ref">Romans 16:7</div>
+        <div class="woman-body">Paul calls her "outstanding among the apostles." Junia is a woman's name — this was universally recognized by the early church fathers for over a thousand years until medieval scribes started changing it to a male name "Junias" — a name that does not appear anywhere else in any ancient text. The original manuscript says what it says: a woman, called an apostle, described as outstanding among them. Some translations still try to hide this. The Greek does not.</div>
+        <div class="woman-quote">"Greet Andronicus and Junia, my fellow Jews who have been in prison with me. They are outstanding among the apostles." — Romans 16:7 NIV</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Lydia & Nympha</div>
+        <div class="woman-ref">Acts 16:40 · Colossians 4:15</div>
+        <div class="woman-body">Both women had churches meeting in their homes — which in the first century meant they were the hosts, the leaders, and the responsible parties for those gatherings. The church at Colossae is explicitly described as "the church in her house." Home churches were not informal — they were the church. These women were not assistants. They were overseers.</div>
+      </div>
+
+      <div class="woman-card">
+        <div class="woman-name">Philip's Four Daughters</div>
+        <div class="woman-ref">Acts 21:9</div>
+        <div class="woman-body">Four women who prophesied. Luke records it without commentary, without exception, without apology. In the New Testament church, prophesying is not a lesser gift — Paul says in 1 Corinthians 14:1 to "eagerly desire" it above the others because it "builds up the church." These women were building up the church.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- THE RESTRICTIVE PASSAGES -->
+  <div class="section">
+    <div class="section-label">The Hard Passages</div>
+    <h2>1 Timothy 2 and 1 Corinthians 14 — what they actually say.</h2>
+    <p>These passages are real. They are in the text. We don't skip them. But we read them the same way we read every other passage — in context, in the original language, against the full witness of scripture.</p>
+
+    <div class="comparison" style="margin-top:28px">
+      <div class="claim">
+        <div class="claim-label">1 Corinthians 14:34–35 — "Women should be silent"</div>
+        <p>"Women should be silent in the churches. They are not allowed to speak, but must be in submission, as the law says. If they want to inquire about something, they should ask their own husbands at home."</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">The context</div>
+        <p>Three chapters earlier — in 1 Corinthians 11 — Paul gives explicit instructions for women <em>when they pray and prophesy</em> in the gathered assembly. He does not say "do not do this." He gives them guidelines for how to do it. You cannot have a blanket prohibition on women speaking in chapter 14 when chapter 11 already assumed they were speaking.</p>
+        <p>The word translated "silent" here (σιγάτω / sigatō) is the same word used earlier in the same chapter for men — "if there is no interpreter, let them be silent in church" (v.28) and "the first speaker should be silent" (v.30). It is a contextual instruction about order in a specific kind of disruption, not a categorical ban on women's voices.</p>
+        <p>The most likely explanation: wives were calling out to ask their husbands questions during teaching — a disruptive practice in that cultural context. Paul tells them to ask at home instead. He is not silencing women from ministry. He is addressing a specific disorder in a specific church.</p>
+        <div class="scripture">
+          <div class="scripture-ref">1 Corinthians 11:5 ESV</div>
+          <div class="scripture-text">"Every wife who prays or prophesies with her head uncovered dishonors her head."</div>
+          <div class="scripture-note">Paul's assumption here is that women are praying and prophesying in the gathered church. He does not prohibit it. He regulates it. These two passages exist in the same letter. Read both.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comparison" style="margin-top:20px">
+      <div class="claim">
+        <div class="claim-label">1 Timothy 2:12 — "I do not permit a woman to teach"</div>
+        <p>"I do not permit a woman to teach or to assume authority over a man; she must be quiet."</p>
+      </div>
+      <div class="truth">
+        <div class="truth-label">What the text actually says</div>
+        <p>"I do not permit" — this is present active indicative in the Greek. It is a personal statement from Paul about a current practice in a current situation, not a universal command for all churches for all time. Compare how Paul uses universal commands elsewhere — the language is different.</p>
+        <p>The word translated "authority" here is the key. It is the word <em>authentein</em>.</p>
+      </div>
+    </div>
+
+    <div class="word-study">
+      <div class="word-study-term">authentein</div>
+      <div class="word-study-transliteration">αὐθεντεῖν · 1 Timothy 2:12</div>
+      <div class="word-study-body">This word appears exactly once in the entire New Testament. That is significant. Paul had a full vocabulary for legitimate authority — <em>exousia</em>, <em>archē</em>, <em>epitagē</em> — and he used none of them here. <em>Authentein</em> is rare and carries a darker shade: it means to domineer, to usurp, to act with self-appointed force. It does not mean "to simply hold authority." It means to seize it or wield it abusively. Paul was almost certainly addressing a specific problem of women in Ephesus who were teaching false doctrine aggressively — not establishing a permanent ban on women in ministry. The Artemis cult in Ephesus centered on female religious authority. Paul was addressing a real corruption, not drawing a universal line.</div>
+    </div>
+
+    <div class="scripture" style="margin-top:20px;border-color:var(--border)">
+      <div class="scripture-ref">Acts 2:17–18 ESV — quoting Joel 2:28–29</div>
+      <div class="scripture-text">"In the last days, God says, I will pour out my Spirit on all people. Your sons and daughters will prophesy… Even on my servants, both men and women, I will pour out my Spirit in those days, and they will prophesy."</div>
+      <div class="scripture-note">This is Peter on Pentecost. The outpouring of the Spirit — the defining event of the New Testament church — is described by God himself as gender-inclusive. Daughters. Women. Prophesying. This is not a footnote. This is the founding charter of the church age.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- GALATIANS 3:28 -->
+  <div class="section">
+    <div class="section-label">The Foundation</div>
+    <h2>There is no male and female in Christ.</h2>
+
+    <div class="scripture">
+      <div class="scripture-ref">Galatians 3:28 ESV</div>
+      <div class="scripture-text">"There is neither Jew nor Greek, there is neither slave nor free, there is no male and female, for you are all one in Christ Jesus."</div>
+      <div class="scripture-note">Paul wrote this. The same Paul who wrote 1 Timothy 2. He is not contradicting himself — he is establishing the new creation reality and then addressing the messy situations of specific local churches that haven't fully caught up to it yet. The trajectory of the New Testament moves toward inclusion, not restriction. Every wall that divided human beings before Christ — race, class, sex — is identified here as broken down in him.</div>
+    </div>
+  </div>
+
+  <div class="bottom-line">
+    <div class="label">The bottom line</div>
+    <p>The church has built a theology of female silence on two contextual passages while spending centuries explaining away Deborah, Junia, Phoebe, Priscilla, Mary, Huldah, and every other woman God put in front of his people to lead, speak, and carry his Word.</p>
+    <p>The question was never whether women could hear from God and deliver it. The Bible answers that question on nearly every page. The question is what we do with the record — do we let the text speak, or do we keep selecting the two verses that protect the structure we've already built?</p>
+    <p>God used who he wanted, when he wanted, for what he needed done. He still does.</p>
+  </div>
+
+  <div class="dig-deeper" style="margin-top:60px">
+    <h3>Keep Reading</h3>
+    <p class="dig-deeper-sub">Related topics in The Truth</p>
+    <div class="topic-grid">
+
+      <div class="topic-card-wrap">
+        <div class="topic-card soon">Are Pastors Biblical? <span class="topic-card-arrow">→</span></div>
+        <span class="soon-note">In progress — coming soon</span>
+      </div>
+
+      <div class="topic-card-wrap">
+        <div class="topic-card soon">Biblical Womanhood <span class="topic-card-arrow">→</span></div>
+        <span class="soon-note">In progress — coming soon</span>
+      </div>
+
+      <div class="topic-card-wrap">
+        <a href="progressive-christianity.html" class="topic-card">Progressive Christianity <span class="topic-card-arrow">→</span></a>
+      </div>
+
+      <div class="topic-card-wrap">
+        <a href="catholic-church.html" class="topic-card">The Catholic Church <span class="topic-card-arrow">→</span></a>
+      </div>
+
+      <div class="topic-card-wrap">
+        <a href="truth-index.html" class="topic-card">All Topics <span class="topic-card-arrow">→</span></a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ask-section">
+    <div class="ask-label">Have a question?</div>
+    <div class="ask-title">Bring it to the table.</div>
+    <p class="ask-desc">This is what we do — open the Word together and let it speak. If you have a question we haven't covered, or you want to talk through something you read here, come into the community.</p>
+    <a href="/join.html" class="ask-link">Join the Study →</a>
+  </div>
+
+</div>
+
+<footer style="background:#0F1A2E;padding:32px 40px;text-align:center;margin-top:80px">
+  <p style="font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.06em">We The Church · Bible Study Community · <a href="/index.html" style="color:#C2738A;text-decoration:none">wethechurch.pages.dev</a></p>
+</footer>
+
+</body>
+</html>
