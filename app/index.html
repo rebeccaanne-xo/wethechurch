@@ -31,7 +31,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 2px 7px;background:none;border:none;cursor:pointer;gap:3px}
 .nav-icon{font-size:20px;color:rgba(255,255,255,.35);line-height:1;transition:color .15s}
 .nav-label{font-size:11px;color:rgba(255,255,255,.35);font-weight:500;letter-spacing:.02em;transition:color .15s}
-@media(max-width:430px){.nav-label{display:none}.nav-btn{padding:12px 2px}}
+@media(max-width:430px){.nav-btn{padding:10px 2px}}
 .nav-btn.active .nav-icon,.nav-btn.active .nav-label{color:var(--peony)}
 
 /* MORE DRAWER */
@@ -98,13 +98,13 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 /* ── HOME ── */
 #screen-home{overflow:hidden;display:flex;flex-direction:column}
-.home-hero{background:var(--navy);padding:calc(var(--st) + 44px) 28px 36px;position:relative;flex-shrink:0;background-image:radial-gradient(ellipse at 70% 0%,rgba(194,115,138,.28) 0%,transparent 50%),radial-gradient(ellipse at 20% 100%,rgba(74,124,111,.18) 0%,transparent 50%),radial-gradient(ellipse at 50% 55%,rgba(196,137,90,.07) 0%,transparent 60%);text-align:center}
-.home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--peony);margin-bottom:22px}
-.hvh-divider{width:28px;height:1px;background:rgba(194,115,138,.4);margin:0 auto 22px}
-.hvh-verse{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:27px;color:var(--cream);line-height:1.65;margin-bottom:12px;letter-spacing:-.01em}
-.hvh-ref{font-size:11px;color:var(--peony);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
-.home-tagline{font-size:12px;color:rgba(138,160,188,.7);line-height:1.65;margin-bottom:0;max-width:260px;margin-left:auto;margin-right:auto}
-.home-hero-fade{height:40px;background:linear-gradient(var(--navy),var(--linen));flex-shrink:0}
+.home-hero{background:var(--navy);padding:calc(var(--st) + 28px) 28px 20px;position:relative;flex-shrink:0;background-image:radial-gradient(ellipse at 70% 0%,rgba(194,115,138,.28) 0%,transparent 50%),radial-gradient(ellipse at 20% 100%,rgba(74,124,111,.18) 0%,transparent 50%),radial-gradient(ellipse at 50% 55%,rgba(196,137,90,.07) 0%,transparent 60%);text-align:center}
+.home-eyebrow{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--peony);margin-bottom:6px}
+.home-tagline{font-size:12px;color:rgba(138,160,188,.6);line-height:1.55;margin-bottom:0;max-width:260px;margin-left:auto;margin-right:auto}
+.home-hero-fade{height:32px;background:linear-gradient(var(--navy),var(--linen));flex-shrink:0}
+.home-verse-card{background:white;border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 3px 18px rgba(0,0,0,.07);border-left:3px solid var(--peony);text-align:left}
+.hvc-text{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:16px;color:var(--navy);line-height:1.65;margin-bottom:8px}
+.hvc-ref{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony)}
 
 .home-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 16px 120px}
 .home-col{display:flex;flex-direction:column}
@@ -331,9 +331,6 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     <div class="home-hero">
       <button class="install-btn-top" id="install-btn-top">Add to Home Screen</button>
       <div class="home-eyebrow">We the Church · Bible Study</div>
-      <div class="hvh-divider"></div>
-      <div class="hvh-verse">"For you are all one in Christ Jesus."</div>
-      <div class="hvh-ref">Galatians 3:28</div>
       <div class="home-tagline">One mind — Christ's. Figuring out what that means and how to live it.</div>
     </div>
     <div class="home-hero-fade"></div>
@@ -341,6 +338,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
       <!-- LEFT COL: study context + session -->
       <div class="home-col">
+
+        <div class="home-verse-card">
+          <div class="hvc-text">"For you are all one in Christ Jesus."</div>
+          <div class="hvc-ref">Galatians 3:28</div>
+        </div>
 
         <div class="cs-strip" id="home-current-strip" onclick="">
           <div class="css-dot"></div>
@@ -720,7 +722,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <button class="nav-btn" onclick="showScreen('studies',this)">
     <span class="nav-icon">📖</span><span class="nav-label">Study</span>
   </button>
-  <button class="nav-btn" onclick="openLink('../truth/truth-index.html')">
+  <button class="nav-btn" onclick="showScreen('truth',this)">
     <span class="nav-icon">🧭</span><span class="nav-label">Truth</span>
   </button>
   <button class="nav-btn" onclick="openMoreDrawer()">
@@ -738,7 +740,7 @@ const ACTIVE_CHAPTER_NUM = 3;
 const FEATURED_TRUTH = {
   title: 'Zionism & Christian Zionism',
   sub: 'Current Events',
-  url: '../truth/truth-index.html'
+  url: '../truth/zionism.html'
 };
 
 // ── DATA ──────────────────────────────────────────────────────────────────

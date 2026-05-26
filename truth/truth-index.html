@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Truth | We The Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111111;
+    --warm-white: #faf8f4;
+    --parchment: #f0ead8;
+    --gold: #b5892a;
+    --rust: #7a2e1e;
+    --muted: #4a4540;
+    --border: #d9d0bc;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  /* NAV */
+  .breadcrumb {
+    padding: 20px 40px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 8px; }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 80px 40px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'TRUTH';
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(181,137,42,0.06);
+    position: absolute;
+    top: 0;
+    right: -20px;
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 600;
+    line-height: 1.1;
+    max-width: 600px;
+    margin-bottom: 24px;
+  }
+  .hero-intro {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(250,248,244,0.88);
+    max-width: 560px;
+    line-height: 1.85;
+    margin-bottom: 36px;
+  }
+  .hero-verse {
+    display: inline-block;
+    border-left: 3px solid var(--gold);
+    padding-left: 18px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(250,248,244,0.70);
+    max-width: 480px;
+    line-height: 1.7;
+  }
+  .hero-verse cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px;
+  }
+  .search-inner {
+    max-width: 600px;
+    position: relative;
+  }
+  .search-inner input {
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 13px 44px 13px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-inner input:focus { border-color: var(--gold); }
+  .search-inner svg {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* CATEGORY */
+  .category { margin-bottom: 60px; }
+  .category-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* TOPIC CARD */
+  .topic-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 26px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    position: relative;
+  }
+  .topic-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 18px rgba(181,137,42,0.13);
+    transform: translateY(-2px);
+  }
+  .topic-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .topic-card-desc {
+    font-size: 14px;
+    color: #3a3530;
+    line-height: 1.65;
+    font-weight: 400;
+    flex: 1;
+  }
+  .topic-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .topic-card-tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .topic-card-arrow {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 700;
+    transition: transform 0.15s;
+  }
+  .topic-card:hover .topic-card-arrow { transform: translateX(4px); }
+  .topic-card.new::after {
+    content: 'NEW';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--gold);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 7px;
+    border-radius: 2px;
+  }
+
+  /* COMING SOON CARD */
+  .topic-card.coming-soon {
+    opacity: 0.55;
+    pointer-events: none;
+    background: var(--warm-white);
+  }
+  .topic-card.coming-soon::after {
+    content: 'COMING SOON';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--muted);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 7px;
+    border-radius: 2px;
+  }
+
+  /* INTRO NOTE */
+  .intro-note {
+    background: var(--parchment);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    margin-bottom: 52px;
+    font-size: 15px;
+    color: #2a2420;
+    line-height: 1.8;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+  }
+  .intro-note strong { font-style: normal; font-weight: 700; color: var(--ink); }
+
+  /* NO RESULTS */
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .breadcrumb { padding: 16px 20px; }
+    .hero { padding: 56px 20px 50px; }
+    .hero::before { font-size: 100px; }
+    .search-wrap { padding: 18px 20px; }
+    .main { padding: 40px 20px 80px; }
+    .topic-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="/index.html">We The Church</a>
+  <span>›</span>
+  The Truth
+</nav>
+
+<div class="hero">
+  <div class="hero-label">We The Church</div>
+  <h1>The Truth</h1>
+  <p class="hero-intro">The world is loud right now. Everyone has an opinion, a hot take, a movement. We have one source. Find your topic, open the Word, and get clear.</p>
+  <div class="hero-verse">
+    "Then you will know the truth, and the truth will set you free."
+    <cite>John 8:32</cite>
+  </div>
+</div>
+
+<div class="search-wrap">
+  <div class="search-inner">
+    <input type="text" id="topic-search" placeholder="Search topics — e.g. Catholic Church, prosperity gospel, Zionism..." />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="intro-note">
+    <strong>How this works.</strong> Every topic below shows you what is being taught or believed — and then what the Bible actually says about it. We're not here to win arguments. We're here to know the Word. Pick a topic, read it, share it, bring it to the table.
+  </div>
+
+  <!-- FALSE DOCTRINE & BAD THEOLOGY -->
+  <div class="category" data-category>
+    <div class="category-label">False Doctrine & Bad Theology</div>
+    <div class="topic-grid">
+
+      <a href="catholic-church.html" class="topic-card new" data-title="The Catholic Church">
+        <div class="topic-card-title">The Catholic Church</div>
+        <div class="topic-card-desc">The papacy, Mary, confession, tradition over scripture — what the institution teaches vs. what the Word says.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Doctrine</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="prosperity-gospel.html" class="topic-card new" data-title="The Prosperity Gospel">
+        <div class="topic-card-title">The Prosperity Gospel</div>
+        <div class="topic-card-desc">God wants you rich, healthy, and blessed — or does he? Name it, claim it, and what scripture actually says.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Doctrine</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="progressive-christianity.html" class="topic-card new" data-title="Progressive Christianity">
+        <div class="topic-card-title">Progressive Christianity</div>
+        <div class="topic-card-desc">God is love, so everything is affirmed — right? What the deconstruction movement gets wrong about love, scripture, and Jesus.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Doctrine</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </a>
+
+      <div class="topic-card coming-soon" data-title="Hyper Grace">
+        <div class="topic-card-title">Hyper Grace</div>
+        <div class="topic-card-desc">Once saved, sin doesn't matter — is that biblical? What grace actually means and what it doesn't excuse.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Doctrine</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="New Apostolic Reformation">
+        <div class="topic-card-title">New Apostolic Reformation</div>
+        <div class="topic-card-desc">Modern apostles and prophets with authority equal to scripture — what does the Bible say about that claim?</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Doctrine</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CURRENT EVENTS & CULTURE -->
+  <div class="category" data-category>
+    <div class="category-label">Current Events & Culture</div>
+    <div class="topic-grid">
+
+      <a href="zionism.html" class="topic-card new" data-title="Zionism & Christian Zionism">
+        <div class="topic-card-title">Zionism & Christian Zionism</div>
+        <div class="topic-card-desc">Is modern Israel biblical prophecy fulfilled? What the Bible actually says about the covenant, the land, and the church.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Current Events</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </a>
+
+      <div class="topic-card coming-soon" data-title="Homosexuality & Same-Sex Marriage">
+        <div class="topic-card-title">Homosexuality & Same-Sex Marriage</div>
+        <div class="topic-card-desc">What does love actually require us to say? What the Word says — clearly, and with compassion.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Culture</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="Transgenderism">
+        <div class="topic-card-title">Transgenderism</div>
+        <div class="topic-card-desc">What does God say about identity and the body? What scripture says about how we were made and who we are.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Culture</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="Abortion">
+        <div class="topic-card-title">Abortion</div>
+        <div class="topic-card-desc">What does the Bible say about life, the unborn, and what we're called to stand for?</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Culture</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="Witchcraft & Manifestation">
+        <div class="topic-card-title">Witchcraft & Manifestation</div>
+        <div class="topic-card-desc">It's everywhere on social media and creeping into the church. What does God actually say about it?</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Culture</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="Astrology & Horoscopes">
+        <div class="topic-card-title">Astrology & Horoscopes</div>
+        <div class="topic-card-desc">Why do so many Christians justify it? What the Word says — and why it matters more than we think.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Culture</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- END TIMES -->
+  <div class="category" data-category>
+    <div class="category-label">End Times & Prophecy</div>
+    <div class="topic-grid">
+
+      <div class="topic-card coming-soon" data-title="Is the Rapture Real?">
+        <div class="topic-card-title">Is the Rapture Real?</div>
+        <div class="topic-card-desc">Pre-trib, post-trib, no-trib — what does the Bible actually say and where did rapture theology come from?</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">End Times</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="The Book of Revelation">
+        <div class="topic-card-title">The Book of Revelation</div>
+        <div class="topic-card-desc">It's the most misread book in the Bible. What it actually says and how to read it without fear.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">End Times</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HEART & CHARACTER -->
+  <div class="category" data-category>
+    <div class="category-label">Heart & Character</div>
+    <div class="topic-grid">
+
+      <div class="topic-card coming-soon" data-title="Pride">
+        <div class="topic-card-title">Pride</div>
+        <div class="topic-card-desc">The one sin the church rarely preaches on. What God says about it and why it matters so much.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Heart</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="Anxiety & Fear">
+        <div class="topic-card-title">Anxiety & Fear</div>
+        <div class="topic-card-desc">What the Bible says vs. what therapy culture says — and how to hold both honestly.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Heart</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="Forgiveness">
+        <div class="topic-card-title">Forgiveness</div>
+        <div class="topic-card-desc">What it actually is, what it isn't, and why the church gets this wrong more often than we admit.</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Heart</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+      <div class="topic-card coming-soon" data-title="Biblical Womanhood">
+        <div class="topic-card-title">Biblical Womanhood</div>
+        <div class="topic-card-desc">What does the Bible actually say about being a woman — and what has the church added that isn't there?</div>
+        <div class="topic-card-footer">
+          <span class="topic-card-tag">Heart</span>
+          <span class="topic-card-arrow">→</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="no-results" id="no-results">
+    No topics found for that search. <a href="#" onclick="clearSearch()" style="color:var(--gold);">Clear search</a> or <a href="/join.html" style="color:var(--gold);">submit a question</a> and we'll add it.
+  </div>
+
+</div>
+
+<script>
+  const searchInput = document.getElementById('topic-search');
+  const noResults = document.getElementById('no-results');
+
+  searchInput.addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.topic-card');
+    const categories = document.querySelectorAll('.category');
+    let totalVisible = 0;
+
+    cards.forEach(function(card) {
+      const title = (card.getAttribute('data-title') || '').toLowerCase();
+      const desc = (card.querySelector('.topic-card-desc') || {}).innerText || '';
+      const tag = (card.querySelector('.topic-card-tag') || {}).innerText || '';
+      const match = !query || title.includes(query) || desc.toLowerCase().includes(query) || tag.toLowerCase().includes(query);
+      card.style.display = match ? '' : 'none';
+      if (match) totalVisible++;
+    });
+
+    categories.forEach(function(cat) {
+      const visibleCards = cat.querySelectorAll('.topic-card:not([style*="display: none"])');
+      cat.style.display = visibleCards.length ? '' : 'none';
+    });
+
+    noResults.style.display = totalVisible === 0 ? 'block' : 'none';
+  });
+
+  function clearSearch() {
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
+  }
+</script>
+
+</body>
+</html>
