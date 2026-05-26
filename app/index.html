@@ -68,14 +68,15 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .topbar{background:var(--navy);flex-shrink:0;padding-top:var(--st);display:flex;align-items:center;justify-content:center;height:calc(var(--st) + 64px);position:relative}
 .topbar-brand{display:flex;flex-direction:column;align-items:center;gap:4px}
 .topbar-cross{display:flex;align-items:center;justify-content:center}
-.topbar-name{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,238,241,.45);font-family:Arial,sans-serif}
-.topbar-tag{font-size:9px;color:var(--peony);opacity:.7;font-style:italic;font-family:Georgia,'Times New Roman',serif}
+.topbar-name{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,238,241,.55);font-family:Arial,sans-serif}
+.topbar-tag{font-size:11px;color:var(--peony);opacity:.8;font-style:italic;font-family:Georgia,'Times New Roman',serif}
 .topbar-install{position:absolute;right:14px;top:50%;transform:translateY(-50%) translateY(calc(var(--st)/2));font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(194,115,138,.4);background:rgba(194,115,138,.1);color:var(--peony);cursor:pointer;font-weight:500;display:none}
 
 /* ── APP FOOTER BRAND ── */
 .app-footer-brand{background:var(--navy);padding:8px 20px calc(var(--sb) + 8px);text-align:center;border-top:1px solid rgba(255,255,255,.05);flex-shrink:0}
 .afb-text{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;color:rgba(247,238,241,.3)}
-.afb-tag{display:block;font-size:14px;color:var(--peony);opacity:.8;margin-top:2px;font-style:italic;font-family:Georgia,'Times New Roman',serif}
+.afb-tag{display:block;font-size:14px;color:rgba(255,255,255,.9);margin-top:2px;font-style:italic;font-family:Georgia,'Times New Roman',serif}
+.afb-ref{color:var(--peony);font-style:normal;font-size:12px}
 
 /* ── DESKTOP FRAME ── */
 @media(min-width:700px){
@@ -360,17 +361,17 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 <!-- TAB NAV -->
 <div class="tabnav">
-  <button class="tab-btn active" onclick="showScreen('home',this)">
+  <button class="tab-btn active" data-tab="home" onclick="showScreen('home',this)">
     <span class="tab-icon">⌂</span><span class="tab-label">Home</span>
   </button>
-  <button class="tab-btn" onclick="showScreen('thisweek',this)">
+  <button class="tab-btn" data-tab="thisweek" onclick="showScreen('thisweek',this)">
     <span class="tab-icon">📖</span><span class="tab-label">This Week</span>
   </button>
-  <button class="tab-btn" onclick="showScreen('community',this)">
+  <button class="tab-btn" data-tab="community" onclick="showScreen('community',this)">
     <span class="tab-icon">🤝</span><span class="tab-label">Community</span>
   </button>
-  <button class="tab-btn" onclick="showScreen('studies',this)">
-    <span class="tab-icon">📖</span><span class="tab-label">Studies</span>
+  <button class="tab-btn" data-tab="studies" onclick="showScreen('studies',this)">
+    <span class="tab-icon">📚</span><span class="tab-label">Studies</span>
   </button>
 </div>
 
@@ -414,7 +415,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
       <!-- Community preview -->
       <div class="section-eyebrow">What's happening</div>
-      <div class="truth-article-card" id="home-community-card" onclick="showScreen('community',document.querySelectorAll('.tab-btn')[2])" style="border-top-color:var(--sage);cursor:pointer">
+      <div class="truth-article-card" id="home-community-card" onclick="showScreen('community',null)" style="border-top-color:var(--sage);cursor:pointer">
         <div class="tac-eyebrow" style="color:var(--sage)">Community</div>
         <div class="tac-title" id="home-community-title"></div>
         <div class="tac-link" style="color:var(--sage)">See what's happening →</div>
@@ -423,7 +424,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       <!-- Quick access -->
       <div class="section-eyebrow">Resources</div>
       <div class="quick-grid">
-        <div class="quick-card" onclick="showScreen('community',document.querySelectorAll('.tab-btn')[2])">
+        <div class="quick-card" onclick="showScreen('community',null)">
           <div class="qc-icon">💬</div>
           <div class="qc-content"><div class="qc-title">Join Discussion</div><div class="qc-sub">Community &amp; Discord</div></div>
         </div>
@@ -502,7 +503,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="ns-label">Next Study Session</div>
         <div class="ns-date" id="ns-date">Saturday, May 30</div>
         <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
-        <button class="ns-join" onclick="showScreen('community',document.querySelectorAll('.tab-btn')[2])" style="border:none;cursor:pointer;width:100%">Join the conversation →</button>
+        <button class="ns-join" onclick="showScreen('community',null)" style="border:none;cursor:pointer;width:100%">Join the conversation →</button>
       </div>
 
     </div>
@@ -905,7 +906,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
 <!-- FOOTER BRAND -->
 <div class="app-footer-brand">
-  <span class="afb-tag">"Where two or three are gathered in my name, there I am among them." — Matt. 18:20</span>
+  <span class="afb-tag">"Where two or three are gathered in my name, there I am among them." <span class="afb-ref">— Matt. 18:20</span></span>
   <span class="afb-text">© 2026 We The Church · v1.3</span>
 </div>
 
@@ -2018,7 +2019,11 @@ function showScreen(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   const screen = document.getElementById('screen-'+id);
   if(screen) screen.classList.add('active');
-  if(btn) btn.classList.add('active');
+  // Auto-find the matching tab; fall back to Home for non-tab screens
+  const activeTab = btn
+    || document.querySelector('[data-tab="'+id+'"]')
+    || document.querySelector('[data-tab="home"]');
+  if(activeTab) activeTab.classList.add('active');
   currentScreen = id;
   if(id==='thisweek') renderThisWeek();
   if(id==='community') renderCommunity();
