@@ -137,6 +137,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .truth-article-card:active{opacity:.8}
 .tac-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peony);margin-bottom:7px}
 .tac-title{font-size:16px;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:10px}
+.tac-desc{font-size:13px;color:#6B7A8D;line-height:1.55;margin-bottom:10px}
 .tac-link{font-size:13px;font-weight:700;color:var(--peony)}
 .qc-icon{font-size:26px;flex-shrink:0}
 .qc-content{flex:1;min-width:0}
@@ -146,6 +147,16 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .week-q{background:white;border-radius:16px;padding:20px;margin-bottom:16px;border-left:5px solid var(--peony);box-shadow:0 3px 18px rgba(0,0,0,.08)}
 .wq-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--peony);margin-bottom:10px}
 .wq-text{font-size:17px;font-weight:600;color:var(--navy);line-height:1.6;font-family:Georgia,'Times New Roman',serif;font-style:italic}
+
+/* ── THIS WEEK PREP ── */
+.tw-scripture-card{background:var(--navy);border-radius:16px;padding:20px 22px;margin-bottom:14px;box-shadow:0 6px 28px rgba(27,42,74,.35);background-image:radial-gradient(ellipse at 90% 10%,rgba(194,115,138,.25) 0%,transparent 55%)}
+.tw-sc-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--peony);margin-bottom:10px}
+.tw-sc-text{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:17px;color:var(--cream);line-height:1.75}
+.tw-dq{background:white;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.07);border-left:3px solid var(--sage)}
+.tw-dq-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:6px}
+.tw-dq-text{font-size:15px;font-weight:600;color:var(--navy);line-height:1.55}
+.tw-dq-ctx{font-size:13px;color:#6B7A8D;line-height:1.65;margin-top:10px;padding-top:10px;border-top:1px solid #F0EAE0;display:none}
+.tw-dq-toggle{font-size:12px;color:var(--sage);font-weight:600;cursor:pointer;margin-top:8px;display:inline-block}
 
 .btms-card{background:white;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer}
 .btms-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
@@ -248,6 +259,18 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .res-desc{font-size:12px;color:#6B7A8D;line-height:1.4}
 .res-arrow{margin-left:auto;font-size:16px;color:#C0B8B0;flex-shrink:0;padding-top:2px}
 
+/* ── COMMUNITY BILLBOARD ── */
+.billboard-post{background:white;border-radius:16px;margin-bottom:12px;overflow:hidden;box-shadow:0 3px 18px rgba(0,0,0,.08);cursor:pointer}
+.billboard-post:active{opacity:.85}
+.bp-img{width:100%;height:160px;object-fit:cover;display:block;background:var(--navy)}
+.bp-img-placeholder{width:100%;height:120px;background:linear-gradient(135deg,var(--navy),#2D3F62);display:flex;align-items:center;justify-content:center;font-size:36px}
+.bp-body{padding:14px 16px 16px}
+.bp-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--peony);margin-bottom:6px}
+.bp-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px;line-height:1.3}
+.bp-text{font-size:13px;color:#4A5568;line-height:1.6;margin-bottom:10px}
+.bp-link{font-size:13px;font-weight:700;color:var(--peony)}
+.bp-meta{font-size:11px;color:#9AA0A8;margin-top:8px}
+
 /* ── COMMUNITY ── */
 .comm-discord{background:var(--navy);border-radius:14px;padding:18px;margin-bottom:12px}
 .cd-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
@@ -328,11 +351,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
   <button class="tab-btn active" onclick="showScreen('home',this)">
     <span class="tab-icon">⌂</span><span class="tab-label">Home</span>
   </button>
-  <button class="tab-btn" onclick="showScreen('studies',this)">
-    <span class="tab-icon">📖</span><span class="tab-label">Study</span>
+  <button class="tab-btn" onclick="showScreen('thisweek',this)">
+    <span class="tab-icon">📖</span><span class="tab-label">This Week</span>
   </button>
-  <button class="tab-btn" onclick="showScreen('truth',this)">
-    <span class="tab-icon">🧭</span><span class="tab-label">Truth</span>
+  <button class="tab-btn" onclick="showScreen('community',this)">
+    <span class="tab-icon">🤝</span><span class="tab-label">Community</span>
   </button>
   <button class="tab-btn" onclick="showScreen('resources',this)">
     <span class="tab-icon">📚</span><span class="tab-label">Resources</span>
@@ -354,27 +377,20 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
           <div class="hvc-ref">Galatians 3:28</div>
         </div>
 
-        <div class="cs-strip" id="home-current-strip" onclick="">
-          <div class="css-dot"></div>
-          <div class="css-left">
-            <div class="css-label">Currently in</div>
-            <div class="css-title" id="home-current-title">Loading…</div>
-          </div>
-          <div class="css-arrow">›</div>
+        <div class="section-eyebrow">Newsletter</div>
+        <div class="truth-article-card" id="home-newsletter-card" onclick="">
+          <div class="tac-eyebrow" id="home-newsletter-eyebrow">Newsletter</div>
+          <div class="tac-title" id="home-newsletter-title"></div>
+          <div class="tac-desc">Community updates, study introductions, and what we're working through together.</div>
+          <div class="tac-link">Read →</div>
         </div>
 
-        <div class="section-eyebrow">This week's question</div>
-        <div class="week-q" id="home-week-q" style="display:none">
-          <div class="wq-label" id="home-wq-label">Galatians 3 · Week of May 30</div>
-          <div class="wq-text" id="home-wq-text"></div>
-        </div>
-
-        <div class="section-eyebrow">Next session</div>
-        <div class="next-session-card">
-          <div class="ns-label">Next Study Session</div>
-          <div class="ns-date" id="ns-date">Saturday, May 30</div>
-          <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
-          <a class="ns-join" href="https://discord.gg/xnQQqs9tm" target="_blank">Join the conversation →</a>
+        <div class="section-eyebrow">The Truth</div>
+        <div class="truth-article-card" id="home-truth-card" onclick="" style="border-top-color:var(--amber)">
+          <div class="tac-eyebrow" style="color:var(--amber)">The Truth</div>
+          <div class="tac-title" id="home-truth-title"></div>
+          <div class="tac-desc">Hard questions. Real scripture. We go to the Word and let it speak.</div>
+          <div class="tac-link" style="color:var(--amber)">Read →</div>
         </div>
 
       </div>
@@ -390,31 +406,70 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 
         <div class="section-eyebrow">Quick access</div>
         <div class="quick-grid">
-          <div class="quick-card" onclick="openLink('https://discord.gg/xnQQqs9tm')">
-            <div class="qc-icon">🤝</div>
-            <div class="qc-content"><div class="qc-title">Community</div><div class="qc-sub">Join Discord</div></div>
+          <div class="quick-card" onclick="showScreen('studies',null)">
+            <div class="qc-icon">📖</div>
+            <div class="qc-content"><div class="qc-title">Study</div><div class="qc-sub">All books</div></div>
           </div>
           <div class="quick-card" onclick="showScreen('prayer',null)">
             <div class="qc-icon">🙏</div>
             <div class="qc-content"><div class="qc-title">Prayer</div><div class="qc-sub">Talk to Him</div></div>
           </div>
-          <div class="quick-card" onclick="openCurrentChapter()">
-            <div class="qc-icon">📖</div>
-            <div class="qc-content"><div class="qc-title" id="qc-ch-title">Current Chapter</div><div class="qc-sub">Jump right in</div></div>
-          </div>
           <div class="quick-card" onclick="showScreen('notes',null)">
             <div class="qc-icon">✏️</div>
             <div class="qc-content"><div class="qc-title">My Notes</div><div class="qc-sub">Saved on your device</div></div>
           </div>
+          <div class="quick-card" onclick="showScreen('community',document.querySelectorAll(\'.tab-btn\')[2])">
+            <div class="qc-icon">💬</div>
+            <div class="qc-content"><div class="qc-title">Join Discussion</div><div class="qc-sub">Community board</div></div>
+          </div>
         </div>
 
-        <div class="section-eyebrow">From The Truth</div>
-        <div class="truth-article-card" id="home-truth-card" onclick="">
-          <div class="tac-eyebrow">Featured Article</div>
-          <div class="tac-title" id="home-truth-title"></div>
-          <div class="tac-link">Read article →</div>
-        </div>
+      </div>
 
+    </div>
+  </div>
+
+  <!-- ── THIS WEEK ── -->
+  <div class="screen" id="screen-thisweek">
+    <div class="screen-header" style="background:var(--navy)">
+      <div class="sh-title">This Week</div>
+    </div>
+    <div class="screen-body" style="padding-top:16px">
+
+      <!-- Currently in -->
+      <div class="cs-strip" id="tw-current-strip" onclick="openCurrentChapter()">
+        <div class="css-dot"></div>
+        <div class="css-left">
+          <div class="css-label">Currently in</div>
+          <div class="css-title" id="tw-current-title">Loading…</div>
+        </div>
+        <div class="css-arrow">›</div>
+      </div>
+
+      <!-- Key scripture -->
+      <div class="section-eyebrow">Read before you come</div>
+      <div class="tw-scripture-card" id="tw-key-verse" style="display:none">
+        <div class="tw-sc-label" id="tw-kv-ref"></div>
+        <div class="tw-sc-text" id="tw-kv-text"></div>
+      </div>
+
+      <!-- Context -->
+      <div class="section-eyebrow" id="tw-context-eyebrow" style="display:none">Context</div>
+      <div class="card" id="tw-context-card" style="display:none;margin-bottom:12px">
+        <div class="card-body" id="tw-context-text" style="font-size:14px;line-height:1.75;color:#2a2a3a"></div>
+      </div>
+
+      <!-- Discussion questions -->
+      <div class="section-eyebrow">Come ready to discuss</div>
+      <div id="tw-discussion-list"></div>
+
+      <!-- Session -->
+      <div class="section-eyebrow">Next session</div>
+      <div class="next-session-card">
+        <div class="ns-label">Next Study Session</div>
+        <div class="ns-date" id="ns-date">Saturday, May 30</div>
+        <div class="ns-chapter">Galatians 3 · Abraham's Faith</div>
+        <button class="ns-join" onclick="showScreen('community',document.querySelectorAll('.tab-btn')[2])" style="border:none;cursor:pointer;width:100%">Join the conversation →</button>
       </div>
 
     </div>
@@ -483,9 +538,9 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     <div class="screen-body" style="padding-top:16px">
       <div class="pill-row" id="res-filter-row">
         <button class="pill active" onclick="filterRes('all',this)">All</button>
-        <button class="pill" onclick="filterRes('video',this)">Videos</button>
-        <button class="pill" onclick="filterRes('pdf',this)">PDFs</button>
-        <button class="pill" onclick="filterRes('article',this)">Articles</button>
+        <button class="pill" onclick="filterRes('galatians',this)">Galatians</button>
+        <button class="pill" onclick="filterRes('truth',this)">The Truth</button>
+        <button class="pill" onclick="filterRes('newsletter',this)">Newsletter</button>
         <button class="pill" onclick="filterRes('source',this)">Sources</button>
       </div>
       <div id="resources-list"></div>
@@ -523,14 +578,31 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     </div>
     <div class="screen-body" style="padding-top:16px">
 
-      <div class="section-eyebrow">This week's discussion</div>
-      <div class="comm-q">
-        <div class="cq-label">Galatians 3 · Week of May 30</div>
-        <div class="cq-text">Did you receive the Spirit by works of the law or by hearing with faith? Paul asks the Galatians this like it should be obvious. Is it obvious to you — and does how you live now actually reflect that answer?</div>
-        <div class="cq-discord" onclick="openLink('https://discord.gg/xnQQqs9tm')">Continue this conversation in Discord →</div>
+      <!-- BILLBOARD POSTS -->
+      <div class="section-eyebrow">What's happening</div>
+      <div id="community-posts"></div>
+
+      <!-- DISCORD WIDGET -->
+      <div class="section-eyebrow">Join the discussion</div>
+      <div class="comm-discord">
+        <div class="cd-top">
+          <div class="cd-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+          </div>
+          <div>
+            <div class="cd-title">We The Church — Discord</div>
+            <div class="cd-sub">Live discussion · every other Saturday</div>
+          </div>
+        </div>
+        <!-- Discord widget — replace SERVER_ID with your Discord server ID -->
+        <div style="border-radius:10px;overflow:hidden;margin-top:12px">
+          <iframe src="https://discord.com/widget?id=SERVER_ID&theme=dark" width="100%" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius:10px;display:block"></iframe>
+        </div>
+        <a class="cd-btn" href="https://discord.gg/xnQQqs9tm" target="_blank" style="margin-top:10px">Open Discord →</a>
       </div>
 
-      <div class="section-eyebrow">Upcoming sessions — Saturdays · times shown in your timezone</div>
+      <!-- UPCOMING SESSIONS -->
+      <div class="section-eyebrow">Upcoming sessions · times in your timezone</div>
       <div class="session-card">
         <div class="sc-date"><div class="sc-month">APR</div><div class="sc-day">20</div></div>
         <div class="sc-info"><div class="sc-title">Galatians — Chapter 2 ✓</div><div class="sc-sub">Completed</div></div>
@@ -552,25 +624,11 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="sc-info"><div class="sc-title">Galatians — Chapter 6</div><div class="sc-sub" data-session-utc="2026-06-20T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
       </div>
 
-      <div class="section-eyebrow">Our Discord community</div>
-      <div class="comm-discord">
-        <div class="cd-top">
-          <div class="cd-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
-          </div>
-          <div>
-            <div class="cd-title">Join us on Discord</div>
-            <div class="cd-sub">Where community happens between sessions</div>
-          </div>
-        </div>
-        <a class="cd-btn" href="https://discord.gg/xnQQqs9tm">Open Discord →</a>
-      </div>
-
       <div class="section-eyebrow">Bring someone in</div>
       <div class="invite-block">
         <div class="ib-title">Know a woman who needs this?</div>
-        <div class="ib-sub">Send her your invite link. She'll get everything she needs to join.</div>
-        <a class="ib-btn" href="https://wethechurch.pages.dev/join">Share We the Church</a>
+        <div class="ib-sub">Send her the link. She'll get everything she needs to join.</div>
+        <a class="ib-btn" href="https://wethechurch.pages.dev/join" target="_blank">Share We the Church</a>
       </div>
 
     </div>
@@ -826,10 +884,38 @@ const ACTIVE_CHAPTER_NUM = 3;
 
 // ── FEATURED — update when new content drops ──────────────────────────────
 const FEATURED_TRUTH = {
+  title: 'Progressive Christianity',
+  sub: 'The Truth',
+  url: '../truth/progressive-christianity.html'
+};
+
+const FEATURED_NEWSLETTER = {
   title: 'Welcome Home — An Introduction to We The Church',
   sub: 'Newsletter · Vol. 1',
   url: '../articles/wtc-introduction.html'
 };
+
+// ── COMMUNITY BILLBOARD — add/edit posts here ─────────────────────────────
+const COMMUNITY_POSTS = [
+  {
+    tag: 'Community',
+    emoji: '✈️',
+    title: 'Olivia is heading to the Middle East',
+    text: 'She just graduated from mission school and is preparing to go to Palestine/Israel. Keep her in your prayers.',
+    link: null,
+    linkText: null,
+    meta: 'May 2026'
+  },
+  {
+    tag: 'This Week\'s Question',
+    emoji: '📖',
+    title: 'Galatians 3 — Did you receive the Spirit by works or by faith?',
+    text: 'Paul asks the Galatians this like it should be obvious. Is it obvious to you — and does how you live now reflect that answer?',
+    link: 'https://discord.gg/xnQQqs9tm',
+    linkText: 'Discuss in Discord →',
+    meta: 'Week of May 30'
+  }
+];
 
 // ── DATA ──────────────────────────────────────────────────────────────────
 
@@ -1675,7 +1761,7 @@ const STUDIES = [
 ];
 
 const RESOURCES = [
-  {id:"r0",type:"article",typeLabel:"Newsletter · Vol. 1",color:"#C2738A",icon:"✉️",
+  {id:"r0",type:"newsletter",typeLabel:"Newsletter · Vol. 1",color:"#C2738A",icon:"✉️",
    title:"Welcome Home — An Introduction to We The Church",desc:"What this community is, who it's for, and why it exists. Start here.",
    url:"../articles/wtc-introduction.html"},
   {id:"r1",type:"pdf",typeLabel:"PDF Download",color:"#4A7C6F",icon:"📄",
@@ -1714,25 +1800,22 @@ let verseNotes = JSON.parse(localStorage.getItem('wtc-vnotes')||'[]');
 
 // ── HOME ──────────────────────────────────────────────────────────────────
 function renderHome() {
-  const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
-  const ch = study && study.chapters.find(c=>c.num===ACTIVE_CHAPTER_NUM);
-  const strip = document.getElementById('home-current-strip');
-  if(study && ch && strip) {
-    document.getElementById('home-current-title').textContent = study.title+' · Ch. '+ch.num+' — '+ch.title;
-    strip.onclick = ()=>openCurrentChapter();
+  // Featured newsletter card
+  const nlCard = document.getElementById('home-newsletter-card');
+  if(nlCard) {
+    document.getElementById('home-newsletter-eyebrow').textContent = FEATURED_NEWSLETTER.sub;
+    document.getElementById('home-newsletter-title').textContent = FEATURED_NEWSLETTER.title;
+    nlCard.onclick = ()=>openLink(FEATURED_NEWSLETTER.url);
   }
-  // Populate featured truth article card
+  // Featured truth article card
   const tacCard = document.getElementById('home-truth-card');
   if(tacCard) {
     document.getElementById('home-truth-title').textContent = FEATURED_TRUTH.title;
     tacCard.onclick = ()=>openLink(FEATURED_TRUTH.url);
   }
-  // Update current chapter card label
-  if(study && ch) {
-    const qcCh = document.getElementById('qc-ch-title');
-    if(qcCh) qcCh.textContent = study.title+' · Ch. '+ch.num;
-  }
   // Render chapter progress dots
+  const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
+  const ch = study && study.chapters.find(c=>c.num===ACTIVE_CHAPTER_NUM);
   if(study && study.chapters) {
     const row = document.getElementById('ch-progress-row');
     const lbl = document.getElementById('ch-progress-label');
@@ -1745,21 +1828,92 @@ function renderHome() {
       }).join('');
     }
   }
-  // Show first discussion question as the weekly question
-  if(ch && ch.discussion && ch.discussion.length) {
-    const wq = document.getElementById('home-week-q');
-    const wqText = document.getElementById('home-wq-text');
-    const wqLabel = document.getElementById('home-wq-label');
-    if(wq && wqText) {
-      wqText.textContent = ch.discussion[0].q;
-      if(wqLabel) wqLabel.textContent = study.title+' Ch. '+ch.num;
-      wq.style.display = 'block';
+}
+
+// ── THIS WEEK ─────────────────────────────────────────────────────────────
+function renderThisWeek() {
+  const study = STUDIES.find(s=>s.id===ACTIVE_STUDY_ID);
+  const ch = study && study.chapters.find(c=>c.num===ACTIVE_CHAPTER_NUM);
+  if(!study || !ch) return;
+
+  // Currently in strip
+  const titleEl = document.getElementById('tw-current-title');
+  if(titleEl) titleEl.textContent = study.title+' · Ch. '+ch.num+' — '+ch.title;
+
+  // Key scripture — find first verse with key:true across all sections
+  let keyVerse = null;
+  if(ch.sections) {
+    for(const sec of ch.sections) {
+      if(sec.verses) {
+        keyVerse = sec.verses.find(v=>v.key);
+        if(keyVerse) break;
+      }
     }
+  }
+  const kvCard = document.getElementById('tw-key-verse');
+  const kvRef  = document.getElementById('tw-kv-ref');
+  const kvText = document.getElementById('tw-kv-text');
+  if(kvCard && keyVerse) {
+    // Strip HTML tags from full verse text
+    const plain = keyVerse.full.replace(/<[^>]+>/g,'');
+    if(kvRef) kvRef.textContent = study.title+' '+ch.num+':'+keyVerse.ref.replace('vv. ','').replace('v.','')+' · Key verse';
+    if(kvText) kvText.textContent = plain;
+    kvCard.style.display = 'block';
+  }
+
+  // Context — first section intro
+  const ctxEyebrow = document.getElementById('tw-context-eyebrow');
+  const ctxCard    = document.getElementById('tw-context-card');
+  const ctxText    = document.getElementById('tw-context-text');
+  if(ch.sections && ch.sections.length && ch.sections[0].intro) {
+    if(ctxEyebrow) ctxEyebrow.style.display='block';
+    if(ctxCard)    ctxCard.style.display='block';
+    if(ctxText)    ctxText.textContent = ch.sections[0].intro;
+  }
+
+  // All discussion questions
+  const dqList = document.getElementById('tw-discussion-list');
+  if(dqList && ch.discussion && ch.discussion.length) {
+    dqList.innerHTML = ch.discussion.map((d,i)=>`
+      <div class="tw-dq">
+        <div class="tw-dq-num">Question ${i+1} of ${ch.discussion.length}</div>
+        <div class="tw-dq-text">${d.q}</div>
+        <span class="tw-dq-toggle" onclick="toggleTWContext(${i})">Context ▾</span>
+        <div class="tw-dq-ctx" id="tw-dq-ctx-${i}">${d.context}</div>
+      </div>
+    `).join('');
   }
 }
 
+function toggleTWContext(i) {
+  const el = document.getElementById('tw-dq-ctx-'+i);
+  if(!el) return;
+  const isOpen = el.style.display === 'block';
+  el.style.display = isOpen ? 'none' : 'block';
+  const toggle = el.previousElementSibling;
+  if(toggle) toggle.textContent = isOpen ? 'Context ▾' : 'Context ▴';
+}
+
+// ── COMMUNITY BILLBOARD ────────────────────────────────────────────────────
+function renderCommunity() {
+  const el = document.getElementById('community-posts');
+  if(!el) return;
+  el.innerHTML = COMMUNITY_POSTS.map(p=>`
+    <div class="billboard-post" ${p.link?`onclick="openLink('${p.link}')"`:''}>
+      <div class="bp-img-placeholder">${p.emoji}</div>
+      <div class="bp-body">
+        <div class="bp-tag">${p.tag}</div>
+        <div class="bp-title">${p.title}</div>
+        <div class="bp-text">${p.text}</div>
+        ${p.link?`<div class="bp-link">${p.linkText}</div>`:''}
+        <div class="bp-meta">${p.meta}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
 function openCurrentChapter() {
-  showScreen('studies', document.querySelectorAll('.tab-btn')[1]);
+  showScreen('studies', null);
   goToStudy(ACTIVE_STUDY_ID);
   setTimeout(()=>openChapter(ACTIVE_CHAPTER_NUM), 50);
 }
@@ -1768,9 +1922,12 @@ function openCurrentChapter() {
 function showScreen(id, btn) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
+  const screen = document.getElementById('screen-'+id);
+  if(screen) screen.classList.add('active');
   if(btn) btn.classList.add('active');
   currentScreen = id;
+  if(id==='thisweek') renderThisWeek();
+  if(id==='community') renderCommunity();
   if(id==='studies') renderStudiesList();
   if(id==='resources') renderResources();
   if(id==='notes') loadNotes();
@@ -1780,7 +1937,7 @@ function goToStudy(studyId) {
   const study = STUDIES.find(s=>s.id===studyId);
   if(!study) return;
   currentStudy = study;
-  showScreen('studies', document.querySelectorAll('.tab-btn')[1]);
+  showScreen('studies', null);
   showChapterList(study);
 }
 
