@@ -960,7 +960,7 @@ const FEATURED_TRUTH = {
   title: 'Progressive Christianity',
   sub: 'The Truth',
   hook: 'They kept the language and changed the theology. Here\'s how Paul would have answered it.',
-  url: '../truth/progressive-christianity.html'
+  url: '/truth/progressive-christianity/'
 };
 
 const FEATURED_NEWSLETTER = {
@@ -1960,7 +1960,7 @@ function renderHome() {
     document.getElementById('home-truth-title').textContent = FEATURED_TRUTH.title;
     const tHook = document.getElementById('home-truth-hook');
     if(tHook) tHook.textContent = FEATURED_TRUTH.hook || '';
-    tacCard.onclick = ()=>openLink(FEATURED_TRUTH.url);
+    tacCard.onclick = ()=>window.open('/truth/progressive-christianity/','_blank');
   }
 }
 
