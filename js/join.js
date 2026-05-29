@@ -55,6 +55,16 @@ function submitForm() {
   });
 }
 
+// ── COPY EMAIL ───────────────────────────────────────────────────────────
+function copyEmail() {
+  navigator.clipboard.writeText('rebeccaannexo@gmail.com').then(() => {
+    const tip = document.getElementById('copy-tip');
+    if(!tip) return;
+    tip.style.display = 'block';
+    setTimeout(() => { tip.style.display = 'none'; }, 2000);
+  });
+}
+
 // Allow Enter key on inputs
 document.querySelectorAll('.form-input').forEach(input => {
   input.addEventListener('keydown', e => { if(e.key === 'Enter') submitForm(); });
