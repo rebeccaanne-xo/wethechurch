@@ -1,0 +1,99 @@
+/**
+ * wtc-introduction.css
+ * ─────────────────────────────────────
+ * Scope:    Article: Introduction to We The Church
+ * Brand:    Navy #1B2A4A · Peony #C2738A · Sage #4A7C6F · Linen #F2E8D6
+ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1B2A4A;
+    --peony: #C2738A;
+    --sage: #4A7C6F;
+    --amber: #C4895A;
+    --ink: #111111;
+    --warm-white: #faf8f4;
+    --parchment: #f0ead8;
+    --linen: #F2E8D6;
+    --gold: #C4895A;
+    --muted: #4a4540;
+    --border: #d9d0bc;
+  }
+  body { font-family: 'Lato', sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.75; font-size: 17px; }
+
+  /* BREADCRUMB */
+  .breadcrumb { padding: 18px 40px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .breadcrumb a { color: var(--peony); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 8px; opacity: .5; }
+
+  /* HERO */
+  .hero { background: var(--navy); color: var(--warm-white); padding: 70px 40px 60px; position: relative; overflow: hidden; }
+  .hero-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--peony); margin-bottom: 16px; font-weight: 700; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 56px); font-weight: 600; line-height: 1.1; max-width: 680px; margin-bottom: 24px; }
+  .hero h1 em { font-style: italic; color: var(--peony); }
+  .hero-intro { font-size: 18px; font-weight: 300; color: rgba(250,248,244,0.85); max-width: 580px; line-height: 1.85; }
+
+  /* MAIN */
+  .main { max-width: 780px; margin: 0 auto; padding: 60px 40px 100px; }
+
+  /* LETTER OPENER */
+  .letter-open { background: var(--parchment); border-left: 3px solid var(--peony); padding: 28px 32px; margin-bottom: 52px; font-style: italic; color: #2a2420; font-size: 16px; line-height: 1.9; border-radius: 0 4px 4px 0; }
+  .letter-open strong { font-style: normal; font-weight: 700; color: var(--navy); }
+
+  /* BODY TEXT */
+  .body-section { margin-bottom: 48px; }
+  .section-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--peony); margin-bottom: 10px; font-weight: 700; }
+  .body-section h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; margin-bottom: 20px; color: var(--navy); line-height: 1.25; }
+  .body-section p { margin-bottom: 18px; font-size: 17px; line-height: 1.85; color: #2a2420; }
+  .body-section p:last-child { margin-bottom: 0; }
+
+  /* SCRIPTURE BLOCK */
+  .scripture-block { background: #fff; border: 1px solid #c8d8c4; border-radius: 4px; padding: 24px 28px; margin: 32px 0; }
+  .scripture-ref { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); font-weight: 700; margin-bottom: 10px; }
+  .scripture-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--navy); line-height: 1.7; margin-bottom: 10px; }
+  .scripture-note { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* WHAT WE ARE / AREN'T */
+  .list-block { background: var(--warm-white); border: 1px solid var(--border); border-radius: 4px; padding: 24px 28px; margin: 28px 0; }
+  .list-block-title { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin-bottom: 16px; }
+  .list-block ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .list-block ul li { font-size: 15px; color: #2a2420; line-height: 1.65; padding-left: 20px; position: relative; }
+  .list-block ul li::before { content: '—'; position: absolute; left: 0; color: var(--peony); font-weight: 700; }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+
+  /* BOTTOM LINE */
+  .bottom-line { background: var(--navy); color: var(--warm-white); padding: 36px 40px; border-radius: 4px; margin-top: 52px; }
+  .bottom-line .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--peony); margin-bottom: 14px; font-weight: 700; }
+  .bottom-line p { font-size: 17px; font-weight: 300; line-height: 1.85; color: rgba(250,248,244,0.92); margin-bottom: 16px; }
+  .bottom-line p:last-child { margin-bottom: 0; }
+  .bottom-line strong { color: #fff; font-weight: 700; }
+
+  /* NEXT STEP */
+  .next-step { margin-top: 52px; padding: 32px 36px; border: 1px solid var(--border); border-radius: 4px; border-top: 3px solid var(--peony); }
+  .next-step .label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--peony); margin-bottom: 12px; font-weight: 700; }
+  .next-step h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 12px; }
+  .next-step p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .next-step a { display: inline-block; background: var(--peony); color: white; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; padding: 13px 28px; border-radius: 4px; text-decoration: none; transition: background 0.2s; }
+  .next-step a:hover { background: #a85f76; }
+
+  /* SIGN OFF */
+  .sign-off { margin-top: 52px; font-style: italic; font-size: 16px; color: var(--muted); line-height: 1.85; }
+  .sign-off strong { font-style: normal; font-weight: 700; color: var(--navy); display: block; margin-top: 12px; font-size: 15px; }
+
+  /* FOOTER */
+  footer { background: #0F1A2E; padding: 32px 40px; text-align: center; margin-top: 80px; }
+  footer p { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; }
+  footer a { color: var(--peony); text-decoration: none; }
+
+  /* MOBILE */
+  @media(max-width:640px){
+    .breadcrumb { padding: 14px 20px; }
+    .hero { padding: 50px 24px 44px; }
+    .main { padding: 40px 24px 80px; }
+    .bottom-line { padding: 28px 24px; }
+    .next-step { padding: 24px 20px; }
+    .letter-open { padding: 20px 22px; }
+  }

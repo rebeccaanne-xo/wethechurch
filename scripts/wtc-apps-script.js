@@ -1,3 +1,12 @@
+/**
+ * wtc-apps-script.js
+ * ─────────────────────────────────────
+ * Job:      Google Apps Script — handles form submissions and data management for We The Church
+ * Connects: Deployed as Google Apps Script web app · receives POST from join form
+ * Reads:    Form submission data
+ * Returns:  Writes to Google Sheet
+ */
+
 // ── WE THE CHURCH — Member Signup Script ─────────────────────────────────
 // Deploy as: Web App · Execute as: Me · Who has access: Anyone
 // After updating, deploy a NEW VERSION — do not edit-in-place

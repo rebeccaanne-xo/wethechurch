@@ -1,0 +1,282 @@
+/**
+ * truth-index.css
+ * ─────────────────────────────────────
+ * Scope:    Truth series index page
+ * Brand:    Navy #1B2A4A · Peony #C2738A · Sage #4A7C6F · Linen #F2E8D6
+ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111111;
+    --warm-white: #faf8f4;
+    --parchment: #f0ead8;
+    --gold: #b5892a;
+    --rust: #7a2e1e;
+    --muted: #4a4540;
+    --border: #d9d0bc;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  /* NAV */
+  .breadcrumb {
+    padding: 20px 40px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 8px; }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--warm-white);
+    padding: 80px 40px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'TRUTH';
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    color: rgba(181,137,42,0.06);
+    position: absolute;
+    top: 0;
+    right: -20px;
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 600;
+    line-height: 1.1;
+    max-width: 600px;
+    margin-bottom: 24px;
+  }
+  .hero-intro {
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(250,248,244,0.88);
+    max-width: 560px;
+    line-height: 1.85;
+    margin-bottom: 36px;
+  }
+  .hero-verse {
+    display: inline-block;
+    border-left: 3px solid var(--gold);
+    padding-left: 18px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(250,248,244,0.70);
+    max-width: 480px;
+    line-height: 1.7;
+  }
+  .hero-verse cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px;
+  }
+  .search-inner {
+    max-width: 600px;
+    position: relative;
+  }
+  .search-inner input {
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 13px 44px 13px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-inner input:focus { border-color: var(--gold); }
+  .search-inner svg {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* CATEGORY */
+  .category { margin-bottom: 60px; }
+  .category-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* TOPIC CARD */
+  .topic-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 26px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    position: relative;
+  }
+  .topic-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 18px rgba(181,137,42,0.13);
+    transform: translateY(-2px);
+  }
+  .topic-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .topic-card-desc {
+    font-size: 14px;
+    color: #3a3530;
+    line-height: 1.65;
+    font-weight: 400;
+    flex: 1;
+  }
+  .topic-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .topic-card-tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .topic-card-arrow {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 700;
+    transition: transform 0.15s;
+  }
+  .topic-card:hover .topic-card-arrow { transform: translateX(4px); }
+  .topic-card.new::after {
+    content: 'NEW';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--gold);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 7px;
+    border-radius: 2px;
+  }
+
+  /* COMING SOON CARD */
+  .topic-card.coming-soon {
+    opacity: 0.55;
+    pointer-events: none;
+    background: var(--warm-white);
+  }
+  .topic-card.coming-soon::after {
+    content: 'COMING SOON';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--muted);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 7px;
+    border-radius: 2px;
+  }
+
+  /* INTRO NOTE */
+  .intro-note {
+    background: var(--parchment);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    margin-bottom: 52px;
+    font-size: 15px;
+    color: #2a2420;
+    line-height: 1.8;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+  }
+  .intro-note strong { font-style: normal; font-weight: 700; color: var(--ink); }
+
+  /* NO RESULTS */
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .breadcrumb { padding: 16px 20px; }
+    .hero { padding: 56px 20px 50px; }
+    .hero::before { font-size: 100px; }
+    .search-wrap { padding: 18px 20px; }
+    .main { padding: 40px 20px 80px; }
+    .topic-grid { grid-template-columns: 1fr; }
+  }
