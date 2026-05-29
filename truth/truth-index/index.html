@@ -302,5 +302,35 @@
 </div>
 
   <script src="/js/truth-index.js"></script>
+
+  <!-- ── JOIN POPUP ── -->
+  <div id="join-popup" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(15,26,46,.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px">
+    <div style="background:#fff;border-radius:20px;max-width:420px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3)">
+      <div style="background:#1B2A4A;padding:28px 28px 24px;position:relative;text-align:center">
+        <button onclick="closePopup()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:rgba(255,255,255,.4);font-size:22px;cursor:pointer;line-height:1">×</button>
+        <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(194,115,138,.7);margin-bottom:8px">We The Church</div>
+        <div style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;font-style:italic;line-height:1.2">The Word hasn't changed.<br>The noise has.</div>
+      </div>
+      <div style="padding:24px 28px">
+        <p style="font-size:14px;color:#5a5550;line-height:1.75;margin-bottom:20px">We're a Bible study community for women who want the Word — real scripture, real conversation, no performance required. Join free and get access to the app, the study, and the community.</p>
+        <a href="/join/?ref=truth-articles" style="display:block;background:#C2738A;color:#fff;text-align:center;padding:14px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:.04em;margin-bottom:10px">Join We The Church — it's free →</a>
+        <button onclick="closePopup()" style="display:block;width:100%;background:none;border:none;color:#b0a49a;font-size:12px;cursor:pointer;padding:4px">No thanks, I'm just reading</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show popup after 60 seconds, once per session
+    if(!sessionStorage.getItem('wtc-popup-seen')) {
+      setTimeout(() => { // 30 seconds
+        const popup = document.getElementById('join-popup');
+        popup.style.display = 'flex';
+      }, 30000);
+    }
+    function closePopup() {
+      document.getElementById('join-popup').style.display = 'none';
+      sessionStorage.setItem('wtc-popup-seen', '1');
+    }
+  </script>
 </body>
 </html>

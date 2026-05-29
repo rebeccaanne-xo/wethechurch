@@ -20,6 +20,9 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // REPLACE THIS URL with your Google Apps Script Web App URL after deploying
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw9EEatC51taTAvbdhaydh608O2SWKHrHgUqzCyoHkg7Z0loEKXUQ5B13LGDwKzP2GVQ/exec';
 
+// Read source from URL ?ref= parameter
+const urlSource = new URLSearchParams(window.location.search).get('ref') || 'landing-page';
+
 function submitForm() {
   const name      = document.getElementById('input-name').value.trim();
   const email     = document.getElementById('input-email').value.trim();
@@ -42,7 +45,7 @@ function submitForm() {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email, newsletter, source: 'landing-page', timestamp: new Date().toISOString() })
+    body: JSON.stringify({ name, email, newsletter, source: urlSource, timestamp: new Date().toISOString() })
   })
   .then(() => {
     document.getElementById('join-form').style.display = 'none';
