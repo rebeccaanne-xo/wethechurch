@@ -313,7 +313,20 @@
       </div>
       <div style="padding:24px 28px">
         <p style="font-size:14px;color:#5a5550;line-height:1.75;margin-bottom:20px">We're a Bible study community for women who want the Word — real scripture, real conversation, no performance required. Join free and get access to the app, the study, and the community.</p>
-        <a href="/join/?ref=truth-articles" style="display:block;background:#C2738A;color:#fff;text-align:center;padding:14px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:.04em;margin-bottom:10px">Join We The Church — it's free →</a>
+        <div id="popup-form">
+          <input id="popup-name" type="text" placeholder="Your first name" autocomplete="given-name"
+            style="width:100%;padding:11px 14px;border:1px solid #e0d8d0;border-radius:10px;font-size:14px;font-family:inherit;margin-bottom:10px;outline:none;color:#1B2A4A">
+          <input id="popup-email" type="email" placeholder="Email address" autocomplete="email"
+            style="width:100%;padding:11px 14px;border:1px solid #e0d8d0;border-radius:10px;font-size:14px;font-family:inherit;margin-bottom:10px;outline:none;color:#1B2A4A">
+          <div id="popup-error" style="display:none;font-size:12px;color:#C2738A;margin-bottom:8px">Please enter a valid email address.</div>
+          <button onclick="submitPopup()" id="popup-btn"
+            style="width:100%;background:#C2738A;color:#fff;border:none;padding:14px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.04em;margin-bottom:10px">Join We The Church — it's free →</button>
+        </div>
+        <div id="popup-success" style="display:none;text-align:center;padding:8px 0 4px">
+          <div style="font-size:18px;margin-bottom:6px">✝︎</div>
+          <div style="font-size:15px;font-weight:700;color:#1B2A4A;margin-bottom:4px">You're in. Welcome home.</div>
+          <div style="font-size:13px;color:#7a6e65">Check your inbox — a welcome email is on its way.</div>
+        </div>
         <button onclick="closePopup()" style="display:block;width:100%;background:none;border:none;color:#b0a49a;font-size:12px;cursor:pointer;padding:4px">No thanks, I'm just reading</button>
       </div>
     </div>
@@ -330,6 +343,31 @@
     function closePopup() {
       document.getElementById('join-popup').style.display = 'none';
       sessionStorage.setItem('wtc-popup-seen', '1');
+    }
+    function submitPopup() {
+      const name  = document.getElementById('popup-name').value.trim();
+      const email = document.getElementById('popup-email').value.trim();
+      const errEl = document.getElementById('popup-error');
+      const btn   = document.getElementById('popup-btn');
+      errEl.style.display = 'none';
+      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errEl.style.display = 'block'; return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw9EEatC51taTAvbdhaydh608O2SWKHrHgUqzCyoHkg7Z0loEKXUQ5B13LGDwKzP2GVQ/exec';
+      fetch(SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, newsletter: true, source: 'truth-articles', timestamp: new Date().toISOString() })
+      }).then(() => {
+        document.getElementById('popup-form').style.display = 'none';
+        document.getElementById('popup-success').style.display = 'block';
+        sessionStorage.setItem('wtc-popup-seen', '1');
+      }).catch(() => {
+        btn.disabled = false;
+        btn.textContent = 'Join We The Church — it\'s free →';
+      });
     }
   </script>
 </body>
