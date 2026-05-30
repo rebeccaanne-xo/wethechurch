@@ -136,7 +136,7 @@ We The Church`;
 
     <p>${firstName}, we're glad you're here. Everything you need to get started is below.</p>
 
-    <a href="https://wethechurch.pages.dev/articles/wtc-introduction.html" class="section" style="text-decoration:none;display:block">
+    <a href="https://wethechurch.pages.dev/articles/wtc-introduction/" class="section" style="text-decoration:none;display:block">
       <div class="section-label">Start Here</div>
       <div class="section-title">Read the Welcome Newsletter →</div>
       <div class="section-desc">An introduction to We The Church — what it is, who it's for, and why it exists.</div>
