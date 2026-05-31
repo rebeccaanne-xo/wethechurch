@@ -200,6 +200,18 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
 .tw-dq-text{font-size:15px;font-weight:600;color:var(--navy);line-height:1.55}
 .tw-dq-ctx{font-size:13px;color:#6B7A8D;line-height:1.65;margin-top:10px;padding-top:10px;border-top:1px solid #F0EAE0;display:none}
 .tw-dq-toggle{font-size:12px;color:var(--sage);font-weight:600;cursor:pointer;margin-top:8px;display:inline-block}
+.tw-dq-answer{width:100%;box-sizing:border-box;margin-top:12px;padding:10px 12px;font-size:14px;font-family:Georgia,serif;line-height:1.65;color:#2a2a3a;background:#faf8f4;border:1px solid #e0d8cc;border-radius:8px;resize:vertical;min-height:72px;outline:none}
+.tw-dq-answer:focus{border-color:var(--sage)}
+.tw-dq-saved{font-size:11px;color:var(--sage);margin-top:4px;opacity:0;transition:opacity .4s}.tw-dq-saved.show{opacity:1}
+/* Prayer list */
+.pr-item{background:white;border-radius:14px;padding:14px 16px;margin-bottom:8px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-left:3px solid var(--peony)}
+.pr-item.answered{border-left-color:var(--sage);opacity:.75}
+.pr-text{font-size:14px;font-family:Georgia,serif;color:#2a2a3a;line-height:1.65;margin-bottom:8px}
+.pr-meta{font-size:11px;color:#8A7968;margin-bottom:8px}
+.pr-actions{display:flex;gap:8px}
+.pr-btn{font-size:12px;font-weight:700;font-family:Arial,sans-serif;border:none;border-radius:6px;padding:6px 12px;cursor:pointer}
+.pr-btn-answered{background:#e8f4f0;color:var(--sage)}
+.pr-btn-delete{background:#f5f0f0;color:#b07070}
 
 .btms-card{background:white;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);cursor:pointer}
 .btms-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px}
@@ -930,12 +942,24 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
     <div class="screen-header" style="background:var(--navy)">
       <div class="sh-title">Prayer</div>
     </div>
-    <div class="screen-body">
-      <div class="section-eyebrow">Talk to Him</div>
-      <div class="card" style="margin-bottom:12px">
-        <div class="card-body">Write out your prayer, or just sit with Him. No script. No performance. He already knows.</div>
+    <div class="screen-body" style="padding-top:16px">
+
+      <!-- Add new request -->
+      <div class="section-eyebrow">Add a prayer request</div>
+      <div style="background:white;border-radius:14px;padding:16px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.07)">
+        <textarea id="prayer-new-text" style="width:100%;box-sizing:border-box;padding:10px 12px;font-size:15px;font-family:Georgia,serif;line-height:1.65;color:var(--navy);background:#faf8f4;border:1px solid #e0d8cc;border-radius:8px;resize:none;min-height:72px;outline:none" placeholder="What are you bringing to Him?"></textarea>
+        <button onclick="addPrayerRequest()" style="margin-top:10px;width:100%;background:var(--peony);color:white;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;font-family:Arial,sans-serif;cursor:pointer;letter-spacing:.03em">Add to my list</button>
       </div>
-      <textarea id="prayer-text" style="width:100%;min-height:240px;padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:white;font-size:15px;line-height:1.75;font-family:-apple-system,sans-serif;color:var(--navy);resize:none;outline:none;box-shadow:0 2px 10px rgba(0,0,0,.06)" placeholder="Lord…"></textarea>
+
+      <!-- Active requests -->
+      <div class="section-eyebrow">Praying for</div>
+      <div id="prayer-active-list"></div>
+      <div id="prayer-empty-msg" style="font-size:14px;color:#8A7968;font-family:Georgia,serif;padding:12px 0;display:none">Nothing here yet. Bring it to Him.</div>
+
+      <!-- Answered -->
+      <div class="section-eyebrow" id="prayer-answered-eyebrow" style="display:none;margin-top:8px">He answered</div>
+      <div id="prayer-answered-list"></div>
+
     </div>
   </div>
 
@@ -2095,9 +2119,90 @@ function renderThisWeek() {
         <div class="tw-dq-text">${d.q}</div>
         <span class="tw-dq-toggle" onclick="toggleTWContext(${i})">Context ▾</span>
         <div class="tw-dq-ctx" id="tw-dq-ctx-${i}">${d.context}</div>
+        <textarea class="tw-dq-answer" id="tw-dq-ans-${i}" placeholder="Your thoughts…" oninput="saveDQAnswer('${ACTIVE_STUDY_ID}',${ACTIVE_CHAPTER_NUM},${i},this.value)">${loadDQAnswer('${ACTIVE_STUDY_ID}',${ACTIVE_CHAPTER_NUM},${i})}</textarea>
+        <div class="tw-dq-saved" id="tw-dq-saved-${i}">Saved</div>
       </div>
     `).join('');
   }
+}
+
+// ── PRAYER LIST ───────────────────────────────────────────────────────────
+function getPrayers() {
+  try { return JSON.parse(localStorage.getItem('wtc-prayers') || '[]'); } catch(e) { return []; }
+}
+function savePrayers(list) {
+  localStorage.setItem('wtc-prayers', JSON.stringify(list));
+}
+function addPrayerRequest() {
+  const ta = document.getElementById('prayer-new-text');
+  const text = ta.value.trim();
+  if (!text) return;
+  const list = getPrayers();
+  list.unshift({ id: Date.now(), text, date: new Date().toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'}), answered: false });
+  savePrayers(list);
+  ta.value = '';
+  renderPrayerList();
+}
+function markAnswered(id) {
+  const list = getPrayers().map(p => p.id === id ? {...p, answered: true, answeredDate: new Date().toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'})} : p);
+  savePrayers(list);
+  renderPrayerList();
+}
+function deletePrayer(id) {
+  savePrayers(getPrayers().filter(p => p.id !== id));
+  renderPrayerList();
+}
+function renderPrayerList() {
+  const list = getPrayers();
+  const active = list.filter(p => !p.answered);
+  const answered = list.filter(p => p.answered);
+  const activeEl = document.getElementById('prayer-active-list');
+  const answeredEl = document.getElementById('prayer-answered-list');
+  const emptyMsg = document.getElementById('prayer-empty-msg');
+  const answeredEyebrow = document.getElementById('prayer-answered-eyebrow');
+  if (!activeEl) return;
+  emptyMsg.style.display = active.length ? 'none' : 'block';
+  activeEl.innerHTML = active.map(p => `
+    <div class="pr-item">
+      <div class="pr-text">${p.text.replace(/</g,'&lt;')}</div>
+      <div class="pr-meta">Added ${p.date}</div>
+      <div class="pr-actions">
+        <button class="pr-btn pr-btn-answered" onclick="markAnswered(${p.id})">He answered ✓</button>
+        <button class="pr-btn pr-btn-delete" onclick="deletePrayer(${p.id})">Remove</button>
+      </div>
+    </div>
+  `).join('');
+  if (answered.length) {
+    answeredEyebrow.style.display = 'block';
+    answeredEl.innerHTML = answered.map(p => `
+      <div class="pr-item answered">
+        <div class="pr-text">${p.text.replace(/</g,'&lt;')}</div>
+        <div class="pr-meta">Added ${p.date} · Answered ${p.answeredDate}</div>
+        <div class="pr-actions">
+          <button class="pr-btn pr-btn-delete" onclick="deletePrayer(${p.id})">Remove</button>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    answeredEyebrow.style.display = 'none';
+    answeredEl.innerHTML = '';
+  }
+}
+
+function saveDQAnswer(studyId, chNum, qIndex, value) {
+  const key = 'wtc-dq-' + studyId + '-ch' + chNum + '-q' + qIndex;
+  localStorage.setItem(key, value);
+  const saved = document.getElementById('tw-dq-saved-' + qIndex);
+  if (saved) {
+    saved.classList.add('show');
+    clearTimeout(saved._t);
+    saved._t = setTimeout(() => saved.classList.remove('show'), 1500);
+  }
+}
+
+function loadDQAnswer(studyId, chNum, qIndex) {
+  const key = 'wtc-dq-' + studyId + '-ch' + chNum + '-q' + qIndex;
+  return (localStorage.getItem(key) || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function toggleTWContext(i) {
@@ -2158,6 +2263,7 @@ function showScreen(id, btn) {
   if(id==='studies') renderStudiesList();
   if(id==='resources') renderResources();
   if(id==='notes') loadNotes();
+  if(id==='prayer') renderPrayerList();
 }
 
 function goToStudy(studyId) {
