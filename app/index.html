@@ -677,19 +677,19 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       </div>
       <div class="session-card">
         <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">2</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 3</div><div class="sc-sub" data-session-utc="2026-06-02T23:00:00Z">Discord · Monday 4:00 PM PT / 7:00 PM ET</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 4</div><div class="sc-sub" data-session-utc="2026-06-02T23:00:00Z">Discord · Monday 4:00 PM PT / 7:00 PM ET</div></div>
       </div>
       <div class="session-card">
         <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">9</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 4</div><div class="sc-sub" data-session-utc="2026-06-09T23:00:00Z">Discord · Monday 4:00 PM PT / 7:00 PM ET</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 5</div><div class="sc-sub" data-session-utc="2026-06-09T23:00:00Z">Discord · Monday 4:00 PM PT / 7:00 PM ET</div></div>
       </div>
       <div class="session-card">
-        <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">13</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 5</div><div class="sc-sub" data-session-utc="2026-06-13T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
+        <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">16</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Chapter 6</div><div class="sc-sub" data-session-utc="2026-06-16T23:00:00Z">Discord · Monday 4:00 PM PT / 7:00 PM ET</div></div>
       </div>
       <div class="session-card">
-        <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">20</div></div>
-        <div class="sc-info"><div class="sc-title">Galatians — Chapter 6</div><div class="sc-sub" data-session-utc="2026-06-20T14:00:00Z">Discord · Saturday 7:00 AM PT</div></div>
+        <div class="sc-date"><div class="sc-month">JUN</div><div class="sc-day">23</div></div>
+        <div class="sc-info"><div class="sc-title">Galatians — Wrap Up</div><div class="sc-sub" data-session-utc="2026-06-23T23:00:00Z">Discord · Monday 4:00 PM PT / 7:00 PM ET</div></div>
       </div>
 
       <div class="section-eyebrow">Bring someone in</div>
@@ -2531,8 +2531,8 @@ if(isIOS && !window.navigator.standalone){
 function localizeNextSession() {
   const el = document.getElementById('ns-date');
   if (!el) return;
-  // Next session is May 30 2026 14:00 UTC (Galatians Ch.3)
-  const date = new Date('2026-05-30T14:00:00Z');
+  // Next session is Jun 2 2026 23:00 UTC (Galatians Ch.4)
+  const date = new Date('2026-06-02T23:00:00Z');
   const now = new Date();
   // If session has passed, find the next one from session cards
   const localDate = date.toLocaleDateString([], {weekday:'long', month:'long', day:'numeric'});
@@ -2545,7 +2545,7 @@ function localizeSessionTimes() {
     const utc = el.getAttribute('data-session-utc');
     const date = new Date(utc);
     const localTime = date.toLocaleTimeString([], {hour:'numeric', minute:'2-digit', timeZoneName:'short'});
-    el.textContent = 'Discord · Saturday ' + localTime;
+    el.textContent = 'Discord · Monday ' + localTime;
   });
 }
 

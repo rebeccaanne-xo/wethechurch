@@ -84,7 +84,7 @@ Everything lives here — the current study, The Truth articles, your notes, ses
 https://wethechurch.pages.dev/app/
 
 JOIN THE DISCORD
-This is where we gather every other Saturday morning and talk between sessions.
+This is where we gather every Monday evening and talk between sessions.
 https://discord.gg/xnQQqs9tm
 
 CURRENT STUDY — GALATIANS
@@ -145,13 +145,13 @@ We The Church`;
     <a href="https://wethechurch.pages.dev/app/" class="section" style="text-decoration:none;display:block">
       <div class="section-label">Current Study</div>
       <div class="section-title">Galatians — Faith alone. Christ alone. →</div>
-      <div class="section-desc">Paul's most urgent letter. We're working through it chapter by chapter, every other Saturday.</div>
+      <div class="section-desc">Paul's most urgent letter. We're working through it chapter by chapter, every Monday evening.</div>
     </a>
 
     <a href="https://discord.gg/xnQQqs9tm" class="section" style="text-decoration:none;display:block">
       <div class="section-label">The Community</div>
       <div class="section-title">Join us on Discord →</div>
-      <div class="section-desc">This is where the Saturday sessions happen and where we talk between studies.</div>
+      <div class="section-desc">This is where the Monday sessions happen and where we talk between studies.</div>
     </a>
 
     <a href="https://wethechurch.pages.dev/app/" class="cta">Open the App →</a>
