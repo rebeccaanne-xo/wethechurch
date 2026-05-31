@@ -447,6 +447,17 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="css-arrow">›</div>
       </div>
 
+      <!-- Next session -->
+      <div class="next-session-card" style="margin-bottom:14px">
+        <div class="ns-label">Next Study Session</div>
+        <div class="ns-date" id="home-ns-date">Monday, June 8 · 4pm PST / 7pm EST</div>
+        <div class="ns-chapter">Galatians 4 · Sons, Not Slaves</div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="ns-join" onclick="showScreen('community',null)" style="border:none;cursor:pointer;flex:1">Join the conversation →</button>
+          <button onclick="addToCalendar()" style="border:none;cursor:pointer;background:rgba(255,255,255,.15);color:white;border-radius:12px;padding:12px 14px;font-size:13px;font-weight:700;font-family:Arial,sans-serif;white-space:nowrap">&#128197; Add to Calendar</button>
+        </div>
+      </div>
+
       <!-- Study progress -->
       <div class="ch-progress-card">
         <div class="ch-progress-label" id="ch-progress-label">Galatians · 6 Chapters</div>
@@ -549,7 +560,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
         <div class="ns-label">Next Study Session</div>
         <div class="ns-date" id="ns-date">Monday, June 8 · 4pm PST / 7pm EST</div>
         <div class="ns-chapter">Galatians 4 · Sons, Not Slaves</div>
-        <button class="ns-join" onclick="showScreen('community',null)" style="border:none;cursor:pointer;width:100%">Join the conversation →</button>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="ns-join" onclick="showScreen('community',null)" style="border:none;cursor:pointer;flex:1">Join the conversation →</button>
+          <button onclick="addToCalendar()" style="border:none;cursor:pointer;background:rgba(255,255,255,.15);color:white;border-radius:12px;padding:12px 14px;font-size:13px;font-weight:700;font-family:Arial,sans-serif;white-space:nowrap">&#128197; Add to Calendar</button>
+        </div>
       </div>
 
     </div>
@@ -2205,6 +2219,47 @@ function loadDQAnswers() {
   });
 }
 
+function addToCalendar() {
+  const title = 'We The Church — Bible Study';
+  const details = 'Galatians Bible Study with We The Church. Open the app: https://wethechurch.pages.dev/app/';
+  const location = 'Discord (link in app)';
+  // Next session: June 8 2026 23:00 UTC, 90 min, weekly on Mondays
+  const start = '20260608T230000Z';
+  const end   = '20260609T003000Z';
+  const recur = 'RRULE:FREQ=WEEKLY;BYDAY=MO';
+
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (isIOS) {
+    // Generate .ics download
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'BEGIN:VEVENT',
+      'DTSTART:' + start,
+      'DTEND:' + end,
+      'RRULE:' + recur,
+      'SUMMARY:' + title,
+      'DESCRIPTION:' + details,
+      'LOCATION:' + location,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([ics], {type:'text/calendar'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'wtc-bible-study.ics'; a.click();
+    URL.revokeObjectURL(url);
+  } else {
+    const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent(title)
+      + '&dates=' + start + '/' + end
+      + '&recur=' + encodeURIComponent(recur)
+      + '&details=' + encodeURIComponent(details)
+      + '&location=' + encodeURIComponent(location);
+    window.open(url, '_blank');
+  }
+}
+
 function openDiscussTab() {
   openCurrentChapter();
   setTimeout(() => {
@@ -2664,15 +2719,15 @@ if(isIOS && !window.navigator.standalone){
 
 // ── LOCAL TIME ────────────────────────────────────────────────────────────
 function localizeNextSession() {
-  const el = document.getElementById('ns-date');
-  if (!el) return;
   // Next session is Jun 8 2026 23:00 UTC (Galatians Ch.4)
   const date = new Date('2026-06-08T23:00:00Z');
-  const now = new Date();
-  // If session has passed, find the next one from session cards
   const localDate = date.toLocaleDateString([], {weekday:'long', month:'long', day:'numeric'});
   const localTime = date.toLocaleTimeString([], {hour:'numeric', minute:'2-digit', timeZoneName:'short'});
-  el.textContent = localDate + ' · ' + localTime;
+  const text = localDate + ' · ' + localTime;
+  ['ns-date', 'home-ns-date'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  });
 }
 
 function localizeSessionTimes() {
