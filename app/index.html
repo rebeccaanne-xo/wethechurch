@@ -468,7 +468,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:var(--navy);font-
       </div>
 
       <!-- Quick access -->
-      <div class="section-eyebrow">Resources</div>
+      <div class="section-eyebrow">Quick Links</div>
       <div class="quick-grid">
         <div class="quick-card" onclick="showScreen('community',null)">
           <div class="qc-icon">💬</div>
@@ -2117,12 +2117,13 @@ function renderThisWeek() {
       <div class="tw-dq">
         <div class="tw-dq-num">Question ${i+1} of ${ch.discussion.length}</div>
         <div class="tw-dq-text">${d.q}</div>
-        <span class="tw-dq-toggle" onclick="toggleTWContext(${i})">Context ▾</span>
+        <span class="tw-dq-toggle" onclick="toggleTWContext(${i})">Context &#9662;</span>
         <div class="tw-dq-ctx" id="tw-dq-ctx-${i}">${d.context}</div>
-        <textarea class="tw-dq-answer" id="tw-dq-ans-${i}" placeholder="Your thoughts…" oninput="saveDQAnswer('${ACTIVE_STUDY_ID}',${ACTIVE_CHAPTER_NUM},${i},this.value)">${loadDQAnswer('${ACTIVE_STUDY_ID}',${ACTIVE_CHAPTER_NUM},${i})}</textarea>
+        <textarea class="tw-dq-answer" id="tw-dq-ans-${i}" placeholder="Your thoughts..." oninput="saveDQAnswer(${i},this.value)"></textarea>
         <div class="tw-dq-saved" id="tw-dq-saved-${i}">Saved</div>
       </div>
     `).join('');
+    loadDQAnswers();
   }
 }
 
@@ -2189,8 +2190,8 @@ function renderPrayerList() {
   }
 }
 
-function saveDQAnswer(studyId, chNum, qIndex, value) {
-  const key = 'wtc-dq-' + studyId + '-ch' + chNum + '-q' + qIndex;
+function saveDQAnswer(qIndex, value) {
+  const key = 'wtc-dq-' + ACTIVE_STUDY_ID + '-ch' + ACTIVE_CHAPTER_NUM + '-q' + qIndex;
   localStorage.setItem(key, value);
   const saved = document.getElementById('tw-dq-saved-' + qIndex);
   if (saved) {
@@ -2200,9 +2201,11 @@ function saveDQAnswer(studyId, chNum, qIndex, value) {
   }
 }
 
-function loadDQAnswer(studyId, chNum, qIndex) {
-  const key = 'wtc-dq-' + studyId + '-ch' + chNum + '-q' + qIndex;
-  return (localStorage.getItem(key) || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function loadDQAnswers() {
+  document.querySelectorAll('.tw-dq-answer').forEach((ta, i) => {
+    const key = 'wtc-dq-' + ACTIVE_STUDY_ID + '-ch' + ACTIVE_CHAPTER_NUM + '-q' + i;
+    ta.value = localStorage.getItem(key) || '';
+  });
 }
 
 function toggleTWContext(i) {
