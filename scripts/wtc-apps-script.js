@@ -90,7 +90,7 @@ https://discord.gg/xnQQqs9tm
 CURRENT STUDY — GALATIANS
 We're working through Paul's most urgent letter right now. You don't need to catch up — just come in at the chapter we're on.
 
-Sessions are every other Saturday morning. Times show in your local timezone inside the app.
+Sessions are every Monday at 4pm PST · 7pm EST. Times show in your local timezone inside the app.
 
 If you have questions, just reply to this email. I actually read them.
 
