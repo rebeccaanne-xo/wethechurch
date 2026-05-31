@@ -2119,11 +2119,8 @@ function renderThisWeek() {
         <div class="tw-dq-text">${d.q}</div>
         <span class="tw-dq-toggle" onclick="toggleTWContext(${i})">Context &#9662;</span>
         <div class="tw-dq-ctx" id="tw-dq-ctx-${i}">${d.context}</div>
-        <textarea class="tw-dq-answer" id="tw-dq-ans-${i}" placeholder="Your thoughts..." oninput="saveDQAnswer(${i},this.value)"></textarea>
-        <div class="tw-dq-saved" id="tw-dq-saved-${i}">Saved</div>
       </div>
-    `).join('');
-    loadDQAnswers();
+    `).join('') + `<button onclick="openDiscussTab()" style="width:100%;margin-top:4px;padding:13px;background:var(--sage);color:white;border:none;border-radius:10px;font-size:14px;font-weight:700;font-family:Arial,sans-serif;cursor:pointer;letter-spacing:.02em">Answer in Discuss &#8594;</button>`;
   }
 }
 
@@ -2206,6 +2203,14 @@ function loadDQAnswers() {
     const key = 'wtc-dq-' + ACTIVE_STUDY_ID + '-ch' + ACTIVE_CHAPTER_NUM + '-q' + i;
     ta.value = localStorage.getItem(key) || '';
   });
+}
+
+function openDiscussTab() {
+  openCurrentChapter();
+  setTimeout(() => {
+    const btn = document.querySelector('.stab[onclick*="discuss"]');
+    if (btn) switchSTab('discuss', btn);
+  }, 100);
 }
 
 function toggleTWContext(i) {
@@ -2494,10 +2499,31 @@ function renderDiscussion() {
     <div style="background:white;border-radius:14px;padding:14px;margin-bottom:10px;border:1px solid rgba(0,0,0,.06)" id="dq-${i}">
       <div style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--peony);margin-bottom:5px">Question ${i+1}</div>
       <div style="font-size:14px;font-weight:600;color:var(--navy);line-height:1.4;margin-bottom:8px">${d.q}</div>
-      <div style="font-size:12px;color:#8A9AB0;cursor:pointer" onclick="toggleDQ(${i})">Context ▾</div>
+      <div style="font-size:12px;color:#8A9AB0;cursor:pointer" onclick="toggleDQ(${i})">Context &#9662;</div>
       <div style="display:none;margin-top:10px;font-size:13px;color:#4A5568;line-height:1.7;padding-top:10px;border-top:1px solid #F0EAE0" id="dq-ctx-${i}">${d.context}</div>
+      <textarea class="tw-dq-answer" id="ch-dq-ans-${i}" placeholder="Your thoughts..." oninput="saveChDQAnswer(${i},this.value)"></textarea>
+      <div class="tw-dq-saved" id="ch-dq-saved-${i}">Saved</div>
     </div>
   `).join('')+'</div>';
+  loadChDQAnswers();
+}
+
+function saveChDQAnswer(qIndex, value) {
+  const key = 'wtc-dq-' + currentStudy.id + '-ch' + currentChapter.num + '-q' + qIndex;
+  localStorage.setItem(key, value);
+  const saved = document.getElementById('ch-dq-saved-' + qIndex);
+  if (saved) {
+    saved.classList.add('show');
+    clearTimeout(saved._t);
+    saved._t = setTimeout(() => saved.classList.remove('show'), 1500);
+  }
+}
+
+function loadChDQAnswers() {
+  document.querySelectorAll('[id^="ch-dq-ans-"]').forEach((ta, i) => {
+    const key = 'wtc-dq-' + currentStudy.id + '-ch' + currentChapter.num + '-q' + i;
+    ta.value = localStorage.getItem(key) || '';
+  });
 }
 
 function toggleDQ(i) {
